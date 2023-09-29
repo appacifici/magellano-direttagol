@@ -2,9 +2,7 @@
 
 
 init() {				
-	cd /home/node/app && npm install
-	npm install videojs-ima
-	npm i --save-dev @types/video.js
+	cd /home/node/app && npm install		
 	npm run watch
 	cd /var/www/html/project && ln -s /var/www/html/jsPlugins .
 }

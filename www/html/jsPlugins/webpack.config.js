@@ -4,7 +4,7 @@ const {CleanWebpackPlugin}      = require( 'clean-webpack-plugin' ); //per la ge
 
 //Definisce l'export delle configurazioni
 module.exports = {
-    mode: 'production', //Definisce la modalità di compilazione
+    mode: 'development', //Definisce la modalità di compilazione
     entry: {
         app:     './src/index.ts'
     },     
@@ -12,11 +12,19 @@ module.exports = {
     target: ['web', 'es5'],
 
     //Per ricaricare il browser in automatico ad ogni salvataggio
+    // devServer: {
+    //     static: {
+    //         directory: path.join(__dirname, "dist")
+    //     }
+    // },
+
     devServer: {
-        static: {
-            directory: path.join(__dirname, "dist")
-        }
+        contentBase: path.join(__dirname, "dist/"),
+        port: 3000,
+        publicPath: "http://localhost:3000/dist/",
+        hotOnly: true
     },
+
     //Se da errore nel ricaricamento automatico della pagina
     optimization: {
         //runtimeChunk: 'single'
@@ -51,7 +59,13 @@ module.exports = {
                 ]
             },
             {
-                test: /\.tsx?/, //Per utilizzare typescript
+                test: /\.(js|jsx)$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: "babel-loader",
+                options: { presets: ["@babel/env"] }
+              },
+            {
+                test: /\.(js|jsx)$/, //Per utilizzare typescript
                 use: [
                     'ts-loader'
                 ]
