@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --mode development --host 0.0.0.0",    
     "watch": "webpack --watch",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,7 +29,9 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "@types/react": "^18.2.23",
+    "babel-loader": "^9.1.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   }
 }

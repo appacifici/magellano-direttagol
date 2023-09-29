@@ -54,6 +54,10 @@ services:
   node:
     build: ./node/
     container_name: node-container    
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
     volumes:
       - ./www/html/jsPlugins:/home/node/app/:cache #per sharare i file compilati da webpack a php e nginx
     volumes_from: #volume condiviso

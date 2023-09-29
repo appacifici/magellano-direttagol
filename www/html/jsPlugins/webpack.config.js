@@ -6,24 +6,24 @@ const {CleanWebpackPlugin}      = require( 'clean-webpack-plugin' ); //per la ge
 module.exports = {
     mode: 'development', //Definisce la modalità di compilazione
     entry: {
-        app:     './src/index.ts'
+        app:     './src/index.tsx'
     },     
     devtool:'inline-source-map',
     target: ['web', 'es5'],
 
-    //Per ricaricare il browser in automatico ad ogni salvataggio
-    // devServer: {
-    //     static: {
-    //         directory: path.join(__dirname, "dist")
-    //     }
-    // },
-
-    devServer: {
-        contentBase: path.join(__dirname, "dist/"),
-        port: 3000,
-        publicPath: "http://localhost:3000/dist/",
-        hotOnly: true
+    watchOptions: {
+        poll: true
     },
+
+    //Per ricaricare il browser in automatico ad ogni salvataggio
+    devServer: {
+        static: {
+            directory: path.join(__dirname, "dist")
+        },
+        port: 8080,
+        allowedHosts: 'all'
+    },
+   
 
     //Se da errore nel ricaricamento automatico della pagina
     optimization: {
@@ -44,7 +44,7 @@ module.exports = {
     
     //Definisce le estensioni che deve gestire
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.jsx']
+        extensions: ['.tsx', '.ts','.js', '.jsx']
     },
     
     //Caricamentio dei moduli richiesti per i file specifici
@@ -59,13 +59,14 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(js|jsx)$/,
+                //Per lavorare con react
+                test: /\.(js|jsx|tsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader",
                 options: { presets: ["@babel/env"] }
               },
             {
-                test: /\.(js|jsx)$/, //Per utilizzare typescript
+                test: /\.(js|jsx|tsx)$/, //Per utilizzare typescript
                 use: [
                     'ts-loader'
                 ]
