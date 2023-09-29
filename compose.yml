@@ -1,0 +1,111 @@
+services:
+
+  #docker compose exec mysql bash
+  mysql:       
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql-container
+    ports:
+      - 3310:3310
+    volumes:
+      #- ./mysql/dump/init:/docker-entrypoint-initdb.d #creare file 01.sql in folder /mysql/dump/init per generare db automaticamente 
+      - mysql-data:/var/lib/mysql:cache #Per persistere i dati non necessario in wp? crea problemi con più instanze vanno smontati i volumi
+      - ./mysql/dump/:/mysql-dump/:cache    
+    env_file:
+      - ./variables.env
+    restart: unless-stopped #Riavvia il contenitore sempre tranne che se bloccato manualmente e non lo riavvia se viene riavviato docker
+                            #https://docs.docker.com/config/containers/start-containers-automatically/#restart-policy-details
+      
+  #docker compose exec nginx bash
+  nginx:
+    build: ./nginx/ # se deve buldiare da un dockerfile
+    container_name: nginx-container
+    ports:
+      - 80:80
+    links:
+      - php        
+    volumes:
+      - ./nginx/ssl:/etc/nginx/ssl/:cache #Per persistere i certificati ssl
+    volumes_from: #volume condiviso
+      - app-data
+    restart: unless-stopped
+
+  #docker compose exec php bash
+  php:
+    build: ./php/
+    container_name: php-container
+    expose:
+      - 9000
+    depends_on: #specifica ordine priorita caricamento
+      - mysql
+    links: #per rendere visibili gli altri container
+      - mysql
+      # - elasticsearch
+    volumes:
+      - ./mysql/dump/:/mysql-dump/:cache
+      - ./gulp/:/gulp/:cache
+    volumes_from: #volume condiviso
+      - app-data
+    env_file:
+       - variables.env
+    restart: unless-stopped
+    
+  #docker compose exec node bash
+  node:
+    build: ./node/
+    container_name: node-container    
+    volumes:
+      - ./www/html/jsPlugins:/home/node/app/:cache #per sharare i file compilati da webpack a php e nginx
+    volumes_from: #volume condiviso
+      - app-data
+    env_file:
+       - variables.env
+
+  app-data:
+    image: php:8.1-fpm-alpine #Path config php  /usr/local/etc
+    container_name: app-data-container
+    volumes: #per persistere i volumi tra container e host per non far cancellare i dati al down di docker
+      - ./www/html/:/var/www/html/:cache #per sharare la cartella del progetto
+      - ./socket/:/socket/:cache #per sharare i socket tra php e nginx
+      - ./www/html/jsPlugins/dist/:/var/www/html/jsPlugins #per sharare i file compilati da webpack a php e nginx
+    #command: "true"
+  
+  #docker compose exec redis  sh
+  redis:
+    image: redis:alpine
+    container_name: redis-server
+    ports:
+      - 6380:6380
+    links:
+      - php
+    volumes:
+      - ./redis/redis-data:/var/lib/redis:cache
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:cache
+    restart: unless-stopped
+
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+  #   container_name: elasticsearch_540
+  #   environment:
+  #     - http.host=0.0.0.0
+  #     - transport.host=0.0.0.0
+  #     - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+  #   volumes:
+  #     - ./elasticsearch:/usr/share/elasticsearch/data:cache
+  #   ports:
+  #     - 9200:9200
+  #     - 9300:9300
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #     nofile:
+  #       soft: 65536
+  #       hard: 65536
+  #   mem_limit: 2g
+  #   cap_add:
+  #     - IPC_LOCK
+  #   restart: unless-stopped
+
+volumes: #persiste questi volumi tra host e container anche al down dei container
+  mysql-data:
