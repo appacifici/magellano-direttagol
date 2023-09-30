@@ -23,7 +23,7 @@ module.exports = {
 
     //Se da errore nel ricaricamento automatico della pagina
     optimization: {
-        //runtimeChunk: 'single'
+        runtimeChunk: 'single'
     },
     
     //Caricamento dei plugin
