@@ -1,13 +1,29 @@
 import React, { Component } from "react";
 
 class App extends Component {
-  render(){
+
+
+  componentDidMount(): void {
+    
+  }
+
+  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{}>, snapshot?: any): void {
+    
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    
+  }
+
+  render(): React.ReactNode {    
+    const div = <div className='main'>
+      <h1>Ciao2</h1>      
+    </div>
+
     return(
-      <div className="App">
-        <h1> Hello, World! </h1>
-      </div>
+      div
     );
   }
 }
 
-export default App;
+export default App; 

@@ -11,10 +11,6 @@ module.exports = {
     devtool:'inline-source-map',
     target: ['web', 'es5'],
 
-    watchOptions: {
-        poll: true
-    },
-
     //Per ricaricare il browser in automatico ad ogni salvataggio
     devServer: {
         static: {
@@ -31,6 +27,7 @@ module.exports = {
     },
     
     //Caricamento dei plugin
+    //TODO: cancella il div iniziale perche sovrascrive il file RISOLVERE
     plugins: [
         new HtmlWebpackPlugin({}),
         new CleanWebpackPlugin()        
