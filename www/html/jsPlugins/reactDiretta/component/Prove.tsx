@@ -1,6 +1,7 @@
 import React from 'react';
 import Clock from './Clock';
-import Ajax from './Ajax';
+import Ajax from './Ajax';1
+import App from './OMBAPI/App';
 
 const happy = <h2>suca</h2>;
 
@@ -11,7 +12,8 @@ function Prove() {
                 prova {happy} {4*8}
             </div> */}
             {/* <Clock country="ITALY" timezone={2}/>             */}
-            <Ajax/>
+            {/* <Ajax/> */}
+            <App/>
         </>
     );
 }
