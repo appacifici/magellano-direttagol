@@ -71,7 +71,7 @@ services:
     volumes: #per persistere i volumi tra container e host per non far cancellare i dati al down di docker
       - ./www/html/:/var/www/html/:cache #per sharare la cartella del progetto
       - ./socket/:/socket/:cache #per sharare i socket tra php e nginx
-      - ./www/html/jsPlugins/dist/:/var/www/html/jsPlugins #per sharare i file compilati da webpack a php e nginx
+      - ./www/html/jsPlugins/dist/:/var/www/html/jsPlugins:cache #per sharare i file compilati da webpack a php e nginx
     #command: "true"
   
   #docker compose exec redis  sh

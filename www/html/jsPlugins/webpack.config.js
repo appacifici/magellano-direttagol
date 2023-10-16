@@ -41,17 +41,18 @@ module.exports = {
     
     //Definisce le estensioni che deve gestire
     resolve: {
-        extensions: ['.tsx', '.ts','.js', '.jsx']
+        extensions: ['.tsx', '.ts','.js', '.jsx','.scss']
     },
     
     //Caricamentio dei moduli richiesti per i file specifici
     module: {
-        rules: [
+        rules: [ 
             {
-                test: /\.css$/, //Definiamo il tipo di file da gestire
+                test: /\.s[ac]ss$/i, //Definiamo il tipo di file da gestire
                 use: [
                     'style-loader',
-                    'css-loader'
+                    'css-loader',                    
+                    'sass-loader'
                     //Definiamo il tipi di loader 
                 ]
             },

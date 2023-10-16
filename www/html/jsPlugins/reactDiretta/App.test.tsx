@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from '@testing-library/react';
-import MatchesBoard from './match/components/MatchesBoard';
+import MatchesBoard from "./pages/MatchesBoard";
 
 test('renders learn react link', () => {
   render(<MatchesBoard />);
