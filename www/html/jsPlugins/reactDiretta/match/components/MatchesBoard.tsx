@@ -229,8 +229,6 @@ function MatchesBoard() {
                 }                                               
             </Container>
         </> 
-
-
     );
 }
 

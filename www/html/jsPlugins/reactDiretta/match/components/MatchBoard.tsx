@@ -20,7 +20,6 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
             matchStatus = 'Finale';
         break;
     }
-
     return matchStatus;
 }
 
