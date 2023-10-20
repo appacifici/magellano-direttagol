@@ -11,7 +11,7 @@ import {
 	TypedUseSelectorHook, 
 	useSelector } 			from 'react-redux';
 import { clickTabMatch } 	from '../match/Slice/TabMatchSlice';
-import stlHeader      		from '../scss/header.module.scss';
+import stlHeader      		from '../../scss/header.module.scss';
 
 function Menu() {
 

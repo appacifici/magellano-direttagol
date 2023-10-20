@@ -5,7 +5,7 @@ import Image 				from 'react-bootstrap/Image';
 import Offcanvas 			from 'react-bootstrap/Offcanvas';
 import TopChampionship 		from './TopChampionship';
 import Nations 				from './Nations';
-import styles 				from '../../scss/aside.module.scss'; 
+import styles 				from '../../../scss/aside.module.scss'; 
  
 function AsideList() {
 	const expand = 'lg';

@@ -3,7 +3,7 @@ import Nav 				from 'react-bootstrap/Nav';
 import Row 				from 'react-bootstrap/Row';
 import Col 				from 'react-bootstrap/Col';
 import Championships 	from './Championships';
-import styles 			from '../../scss/aside.module.scss'; 
+import styles 			from '../../../scss/aside.module.scss'; 
 
 function Nations() {
 	return (

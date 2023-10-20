@@ -1,14 +1,13 @@
 import React            from 'react';
 import { Provider }     from 'react-redux';
-import Header           from '../structure/Header';
-import Footer           from '../structure/Footer';
-import Main             from '../structure/Main';
+import Header           from '../container/Header';
+import Footer           from '../container/Footer';
+import Main             from '../container/Main';
 import MatchesBoard     from '../match/components/MatchesBoard';
 import { Store }        from '../match/Store/Store';
-import globalCss        from '../scss/global.module.scss';
 
 function MatchesBoardPage() {
-    return( 
+    return(  
         <>                                  
             <Header/>
             <Provider store={Store}>

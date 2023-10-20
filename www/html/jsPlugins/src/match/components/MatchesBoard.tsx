@@ -1,4 +1,4 @@
-import stlMatchBoard    from '../../scss/matchBoard.module.scss';
+import stlMatchBoard    from '../../../scss/matchBoard.module.scss';
 import React            from 'react';
 import { 
     Provider,

@@ -3,7 +3,7 @@ import Row				        from 'react-bootstrap/Row';
 import Col				        from 'react-bootstrap/Col';
 import Image				    from 'react-bootstrap/Image';
 import { useState, useEffect }  from 'react';
-import stlMatchBoard               from '../../scss/matchBoard.module.scss';
+import stlMatchBoard            from '../../../scss/matchBoard.module.scss';
 
 
 const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:string ):string => {
