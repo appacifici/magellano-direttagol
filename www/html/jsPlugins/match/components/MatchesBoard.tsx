@@ -1,5 +1,4 @@
-import stlMatchBoard       from '../../scss/matchBoard.module.scss';
-
+import stlMatchBoard    from '../../scss/matchBoard.module.scss';
 import React            from 'react';
 import { 
     Provider,
@@ -11,7 +10,6 @@ import Row				from 'react-bootstrap/Row';
 import Col				from 'react-bootstrap/Col';
 import Image		    from 'react-bootstrap/Image';
 import MatchBoard       from './MatchBoard';
-
 
 function MatchesBoard() {    
     const matches = [
