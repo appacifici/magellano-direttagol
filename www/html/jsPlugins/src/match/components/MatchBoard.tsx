@@ -4,6 +4,7 @@ import Col				        from 'react-bootstrap/Col';
 import Image				    from 'react-bootstrap/Image';
 import { useState, useEffect }  from 'react';
 import stlMatchBoard            from '../../../scss/matchBoard.module.scss';
+import { MatchInterface }       from '../models/matchInterface';
 
 
 const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:string ):string => {
@@ -23,8 +24,7 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
     return matchStatus;
 }
 
-
-const MatchBoard = ({match}:{match:any}) => {
+const MatchBoard = ({match}:{match:MatchInterface}) => {
     const [minuteSymbol, setMinuteSymbol] = useState('');
 
     useEffect(() => {
@@ -40,6 +40,7 @@ const MatchBoard = ({match}:{match:any}) => {
         };
     }, [minuteSymbol]);
 
+    
     return( 
         <>            
             <Row className={stlMatchBoard.match}>                

@@ -1,7 +1,18 @@
 import '../../scss/global.scss';
+import { createWrapper } from 'next-redux-wrapper';
+import {wrapperMatch}  from "../match/store/MatchStore";
+import { Provider } from 'react-redux';
 
-function MyApp({ Component, pageProps }:{ Component:any, pageProps:any }) {    
-    return <Component {...pageProps} />;
+
+function MyApp({ Component, ...rest }:{ Component:any, pageProps:any }) {    
+    const { store, props } = wrapperMatch.useWrappedStore(rest);
+    const { pageProps } = props;
+
+    return (
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      );
 }
   
 export default MyApp;
