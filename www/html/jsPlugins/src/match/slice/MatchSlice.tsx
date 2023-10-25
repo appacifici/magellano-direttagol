@@ -1,7 +1,7 @@
 //{nameFile}Slice.tsx
-import { createSlice, PayloadAction }      from "@reduxjs/toolkit";
-import { HYDRATE }          from "next-redux-wrapper";
-import { CompetitionInterface, MatchesInterface } from "../models/matchInterface";
+import { createSlice, PayloadAction }       from "@reduxjs/toolkit";
+import { HYDRATE }                          from "next-redux-wrapper";
+import { MatchesInterface }                 from "../models/matchInterface";
 
 export const matchSlice = createSlice({
     name: 'matches',
@@ -38,7 +38,7 @@ export const matchSlice = createSlice({
         }        
     },
     
-    //Reducer invocato dal wrapper
+    //Reducer invocato dal wrapper next.js
     extraReducers: {
         [HYDRATE]: (state:MatchesInterface, action) :MatchesInterface => {            
             state = action.payload.matches;
@@ -47,7 +47,6 @@ export const matchSlice = createSlice({
       },   
 });
 
-
-const {actions, reducer} = matchSlice; //Destrutturiamo dalla slice azioni e reducer
-export const {setMatches,getMatches,updateMatches} = actions; //Esportiamo le azioni
-export default reducer; //Esportiamo il reducer come default cosi lo possiamo richiamare con il nome che vogliamo
+const {actions, reducer} = matchSlice;
+export const {setMatches,getMatches,updateMatches} = actions;
+export default reducer;
