@@ -1,4 +1,8 @@
 www/html/jsPlugins/node_modules/
+backend/dist/mongooseconnect.js
+www/html/jsPlugins/dist/app.bundle.js
+www/html/jsPlugins/dist/images
+
 .vscode/
 www/html/jsPlugins/react-create-app/
 
@@ -33,6 +37,7 @@ www/html/jsPlugins/build/Release
 # Dependency directories
 www/html/jsPlugins/node_modules
 www/html/jsPlugins/jspm_packages
+backend/node_modules
 
 # Optional npm cache directory
 www/html/jsPlugins/.npm
