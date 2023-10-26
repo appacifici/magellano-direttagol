@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/node": "^20.8.8",
+    "mongoose": "^7.6.3",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.97",
+    "ts-node": "^10.9.1"
+  }
+}

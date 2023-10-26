@@ -15,40 +15,17 @@ services:
       - ./variables.env
     restart: unless-stopped #Riavvia il contenitore sempre tranne che se bloccato manualmente e non lo riavvia se viene riavviato docker
                             #https://docs.docker.com/config/containers/start-containers-automatically/#restart-policy-details
-      
-  #docker compose exec nginx bash
-  nginx:
-    build: ./nginx/ # se deve buldiare da un dockerfile
-    container_name: nginx-container
-    ports:
-      - 80:80
-    links:
-      - php        
-    volumes:
-      - ./nginx/ssl:/etc/nginx/ssl/:cache #Per persistere i certificati ssl
-    volumes_from: #volume condiviso
-      - app-data
-    restart: unless-stopped
 
-  #docker compose exec php bash
-  php:
-    build: ./php/
-    container_name: php-container
-    expose:
-      - 9000
-    depends_on: #specifica ordine priorita caricamento
-      - mysql
-    links: #per rendere visibili gli altri container
-      - mysql
-      # - elasticsearch
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
     volumes:
-      - ./mysql/dump/:/mysql-dump/:cache
-      - ./gulp/:/gulp/:cache
-    volumes_from: #volume condiviso
-      - app-data
-    env_file:
-       - variables.env
-    restart: unless-stopped
+      - mongodb_data:/data/db
+    # environment:
+      # MONGO_INITDB_ROOT_USERNAME: 27017
+      # MONGO_INITDB_ROOT_PASSWORD: examplepassword
     
   #docker compose exec node bash
   node:
@@ -56,10 +33,28 @@ services:
     container_name: node-container    
     ports:
       - 8080:8080
+      - 3001:3001
     expose:
       - 8080
+      - 3001
     volumes:
       - ./www/html/jsPlugins:/home/node/app/:cache #per sharare i file compilati da webpack a php e nginx
+    volumes_from: #volume condiviso
+      - app-data
+    env_file:
+       - variables.env
+
+  nodebackend:
+    build: ./nodebackend/
+    container_name: node-container-backend    
+    ports:      
+      - 3000:3000
+      - 8081:8081
+    expose:
+      - 8081
+      - 3000
+    volumes:
+      - ./backend:/home/node/app/:cache #per sharare i file compilati da webpack a php e nginx
     volumes_from: #volume condiviso
       - app-data
     env_file:
@@ -72,6 +67,7 @@ services:
       - ./www/html/:/var/www/html/:cache #per sharare la cartella del progetto
       - ./socket/:/socket/:cache #per sharare i socket tra php e nginx
       - ./www/html/jsPlugins/dist/:/var/www/html/jsPlugins:cache #per sharare i file compilati da webpack a php e nginx
+      - ./backend/:/backend:cache #per sharare i file compilati da webpack a php e nginx
     #command: "true"
   
   #docker compose exec redis  sh
@@ -80,12 +76,46 @@ services:
     container_name: redis-server
     ports:
       - 6380:6380
-    links:
-      - php
+    # links:
+    #   - php
     volumes:
       - ./redis/redis-data:/var/lib/redis:cache
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:cache
     restart: unless-stopped
+
+  #docker compose exec nginx bash
+  # nginx:
+  #   build: ./nginx/ # se deve buldiare da un dockerfile
+  #   container_name: nginx-container
+  #   ports:
+  #     - 80:80
+  #   links:
+  #     - php        
+  #   volumes:
+  #     - ./nginx/ssl:/etc/nginx/ssl/:cache #Per persistere i certificati ssl
+  #   volumes_from: #volume condiviso
+  #     - app-data
+  #   restart: unless-stopped
+
+  #docker compose exec php bash
+  # php:
+  #   build: ./php/
+  #   container_name: php-container
+  #   expose:
+  #     - 9000
+  #   depends_on: #specifica ordine priorita caricamento
+  #     - mysql
+  #   links: #per rendere visibili gli altri container
+  #     - mysql
+  #     # - elasticsearch
+  #   volumes:
+  #     - ./mysql/dump/:/mysql-dump/:cache
+  #     - ./gulp/:/gulp/:cache
+  #   volumes_from: #volume condiviso
+  #     - app-data
+  #   env_file:
+  #      - variables.env
+  #   restart: unless-stopped
 
   # elasticsearch:
   #   image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
@@ -113,3 +143,4 @@ services:
 
 volumes: #persiste questi volumi tra host e container anche al down dei container
   mysql-data:
+  mongodb_data:

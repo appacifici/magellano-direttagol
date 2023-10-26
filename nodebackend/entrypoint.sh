@@ -2,9 +2,8 @@
 
 
 init() {				
-	cd /home/node/app && npm install		
-	npm run dev
-	cd /var/www/html/project && ln -s /var/www/html/jsPlugins .
+	echo "avvio"
+	npm install
 }
 
 
