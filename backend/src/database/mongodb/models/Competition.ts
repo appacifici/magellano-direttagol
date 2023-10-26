@@ -1,25 +1,27 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
 type CompetitionSeasonType = {
-    id:         Number;
+    id:         number;
     name:       string;
     start:      string;      
     end:        string;      
 }
 
 type CompetitionType = {    
-    externalId:         Number;
+    externalId:         number;
     name:               string;
-    isReal:             Number;
-    active:             Number;
-    hasGroups:          Number;
-    isLeague:           Number;
-    isCup:              Number;
-    nationalTeamsOnly:  Number;
+    isReal:             number;
+    active:             number;
+    hasGroups:          number;
+    isLeague:           number;
+    isCup:              number;
+    nationalTeamsOnly:  number;
     season:             CompetitionSeasonType;
 }
 
 type CompetitionArrayType = CompetitionType[];
+interface ICompetition extends CompetitionType {}
+interface ICompetition extends Document {}
 
 const CompetitionSchema   = new Schema({
     externalId: { 
@@ -78,11 +80,4 @@ const CompetitionSchema   = new Schema({
 //Creazione indice e chiave univoca
 CompetitionSchema.index({ externalId: 1 }, { unique: true });
 
-//Un metodo è una funzione per elaborare i dati in un certo modo non un metodo semplice find 
-CompetitionSchema.methods.checkBySource = function(source:string) {
-    return mongoose.model('Competition').find({ source: this.source }, source);
-};
-  
-const Competition = mongoose.model('Competition', CompetitionSchema);
-
-export {Competition,CompetitionType,CompetitionArrayType,CompetitionSeasonType};
+export {CompetitionType,CompetitionArrayType,CompetitionSeasonType,ICompetition,CompetitionSchema};

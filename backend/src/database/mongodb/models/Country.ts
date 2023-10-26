@@ -7,6 +7,9 @@ type CountryType = {
 }
 type CountryArrayType = CountryType[];
 
+interface ICountry extends CountryType {}
+interface ICountry extends Document {}
+
 const CountrySchema = new Schema({
     externalId: { 
         type:       Number, 
@@ -32,7 +35,5 @@ CountrySchema.index({ externalId: 1 }, { unique: true });
 CountrySchema.methods.checkBySource = function(source:string) {
     return mongoose.model('country').find({ source: this.source }, source);
 };
-  
-const country = mongoose.model('country', CountrySchema);
 
-export {country,CountryType,CountryArrayType};
+export {ICountry,CountryType,CountryArrayType,CountrySchema};
