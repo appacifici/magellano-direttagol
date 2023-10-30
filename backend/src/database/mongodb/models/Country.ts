@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
 type CountryType = {    
     externalId: Number;
@@ -36,4 +36,6 @@ CountrySchema.methods.checkBySource = function(source:string) {
     return mongoose.model('country').find({ source: this.source }, source);
 };
 
-export {ICountry,CountryType,CountryArrayType,CountrySchema};
+const Country:      Model<ICountry>     = mongoose.model<ICountry>('Country', CountrySchema);
+
+export {Country,ICountry,CountryType,CountryArrayType,CountrySchema};

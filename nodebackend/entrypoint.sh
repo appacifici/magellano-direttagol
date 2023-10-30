@@ -1,9 +1,10 @@
 #!/bin/bash
 
 
-init() {				
+init() {		
 	echo "avvio"
-	npm install
+	npm cache clean -f			
+	#npm install
 }
 
 

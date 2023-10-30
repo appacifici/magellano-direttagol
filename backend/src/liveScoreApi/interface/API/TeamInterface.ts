@@ -1,6 +1,9 @@
-interface TeamApiResponse {
-    success: boolean;
-    data: DataTeam;
+import { GenericApiResponse } from "./GlobalInterface";
+
+interface TeamApiResponse extends GenericApiResponse<Team>{    
+    data: {
+        teams: Team[];
+    };
 }
 
 type DataTeam = {
@@ -34,4 +37,4 @@ type TranslationsTeam = {
     // You can add other language keys if necessary.
 }
 
-export {TeamApiResponse};
+export {TeamApiResponse,Team};
