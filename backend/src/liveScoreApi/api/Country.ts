@@ -10,7 +10,7 @@ import * as CountryApiInterface             from "../interface/API/CountryInterf
 
 import BaseAPiConverter                     from "./BaseConverter";
 
-class FeedProcessor extends BaseAPiConverter  {
+class CountryProcessor extends BaseAPiConverter  {
     constructor(action:string) {
         super();
                 
@@ -78,6 +78,6 @@ const program = new Command();
 program.version('1.0.0').description('CLI country commander') 
     .option('-a, --action <type>', 'Azione da lanciare')
     .action((options) => {    
-        new FeedProcessor(options.action);
+        new CountryProcessor(options.action);
     });
 program.parse(process.argv);

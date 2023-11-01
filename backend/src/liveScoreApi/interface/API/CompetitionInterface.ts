@@ -42,4 +42,4 @@ interface Season {
     end:   string;
 }
 
-export {CompetitionApiResponse};
+export {CompetitionApiResponse,Competition};

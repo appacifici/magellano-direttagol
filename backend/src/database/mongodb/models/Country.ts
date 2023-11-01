@@ -8,9 +8,9 @@ type CountryType = {
 type CountryArrayType = CountryType[];
 
 interface ICountry extends Document, Omit<CountryType, '_id'> {
-    // Your ICountry interface can include additional methods or properties here
+    
 }
-type CountryWithIdType = CountryType & { _id: Document['_id'] };
+type CountryWithIdType      = CountryType & { _id: Document['_id'] };
 type CountryArrayWithIdType = CountryWithIdType[];
 
 

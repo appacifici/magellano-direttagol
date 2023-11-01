@@ -10,7 +10,6 @@ type CompetitionSeasonType = {
 type CompetitionType = {    
     externalId:         number;
     name:               string;
-    isReal:             number;
     active:             number;
     hasGroups:          number;
     isLeague:           number;
@@ -19,9 +18,11 @@ type CompetitionType = {
     season:             CompetitionSeasonType;
 }
 
-type CompetitionArrayType = CompetitionType[];
-interface ICompetition extends CompetitionType {}
-interface ICompetition extends Document {}
+interface ICompetition extends Document, Omit<CompetitionType, '_id'> {
+
+}
+type CompetitionWithIdType      = CompetitionType & { _id: Document['_id'] };
+type CompetitionArrayWithIdType = CompetitionWithIdType[];
 
 const CompetitionSchema   = new Schema({
     externalId: { 
@@ -32,13 +33,7 @@ const CompetitionSchema   = new Schema({
         type:       String, 
         required:   true, 
         maxlength:  255 
-    },
-    isReal: { 
-        type:       Number, 
-        required:   true, 
-        min:        0, 
-        max:        1 
-    },
+    },    
     active: { 
         type:       Number, 
         required:   true, 
@@ -79,5 +74,5 @@ const CompetitionSchema   = new Schema({
 
 //Creazione indice e chiave univoca
 CompetitionSchema.index({ externalId: 1 }, { unique: true });
-
-export {CompetitionType,CompetitionArrayType,CompetitionSeasonType,ICompetition,CompetitionSchema};
+const Competition:  Model<ICompetition> = mongoose.model<ICompetition>('Competition', CompetitionSchema);
+export {Competition,CompetitionType,CompetitionArrayWithIdType,CompetitionWithIdType,CompetitionSeasonType,ICompetition,CompetitionSchema};

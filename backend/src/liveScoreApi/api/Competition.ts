@@ -7,32 +7,32 @@ import { Feed as FeedMongo,
     FeedType as FeedTypeMongo }             from "../../database/mongodb/models/Feed";
 
 import { GenericApiResponse }               from "../interface/API/GlobalInterface";
+import * as CompetitionMongo                    from "../../database/mongodb/models/Competition";
 import * as CountryMongo                    from "../../database/mongodb/models/Country";
 
-import * as TeamMongo                       from "../../database/mongodb/models/Team";
-import * as TeamApiInterface                from "../interface/API/TeamInterface";
+import * as CompetitionApiInterface                from "../interface/API/CompetitionInterface";
 
 import BaseAPiConverter                     from "./BaseConverter";
 
-class TeamProcessor extends BaseAPiConverter  {
+class CompetitionProcessor extends BaseAPiConverter  {
     constructor(action:string) {
         super();
                 
         switch( action ) {
-            case 'importAllTeam':
-                this.importAllTeam();
+            case 'importAllCompetition':
+                this.importAllCompetition();
             break;
         }
     }
 
-    private importAllTeam() :void {
+    private importAllCompetition() :void {
         const feed:Promise<FeedTypeMongo|null|undefined> = this.retrieveAndProcessFeed();
         feed.then( (feed) => {
             if (this.isFeedType(feed)) {
                 const countries:Promise<CountryMongo.CountryArrayWithIdType|null|undefined> = this.retrieveAndProcessCountries();
                 countries.then( (country) => {
                     if (this.isCountryArrayWithIdType(country)) {
-                        this.getCountryApi(country, feed);
+                        this.getCompetitionApi(country, feed);
                     }
                 })
             }
@@ -42,7 +42,7 @@ class TeamProcessor extends BaseAPiConverter  {
     //Recupera l'endPoint per la chiamata al servizio esterpi api livescore dei team
     private async retrieveAndProcessFeed(): Promise<FeedTypeMongo|null|undefined> {
         try {
-            const feed:FeedTypeMongo|null = await FeedMongo.findOne({ name: 'teams' }).exec()
+            const feed:FeedTypeMongo|null = await FeedMongo.findOne({ name: 'competitions' }).exec()
             return feed;             
         } catch (error) {
             console.error('Errore durante la ricerca del feed:', error);
@@ -70,7 +70,7 @@ class TeamProcessor extends BaseAPiConverter  {
     }
 
     //
-    private async getCountryApi(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
+    private async getCompetitionApi(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
         try {
             this.fetchCountriesData(countries, feed);
         } catch (error) {
@@ -79,37 +79,38 @@ class TeamProcessor extends BaseAPiConverter  {
     }
 
     //Per ogni paese chiama la funzione per recuperare i suoi team
-    private async fetchCountriesData(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo) {
-        for (let country of countries) {
-            await this.getTeamPage(`${feed.endPoint}?country_id=${country.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`, country);
+    private async fetchCountriesData(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
+        for (let country of countries) {     
+            const endPoint:string   = `${feed.endPoint}?country_id=${country.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;       
+            console.log(endPoint);
+            const response          = await axios.get(endPoint);
+            const apiResponse: GenericApiResponse<CompetitionApiInterface.Competition> = response.data;       
+            this.insertCompetition(apiResponse,country._id);
         }        
     }
 
-    private async getTeamPage(endPoint:string, country:CountryMongo.CountryWithIdType) {
-        console.log(endPoint);
-        const response = await axios.get(endPoint);
-        const apiResponse: GenericApiResponse<TeamApiInterface.Team> = response.data;       
-        this.insertTeam(apiResponse,country._id);
-
-        if( response.data.data.next_page != false ) {
-            const endPoint = response.data.data.next_page;
-            await this.getTeamPage(endPoint, country);            
-        }                
-    }
-
     //Inserisce su mongo i team di un paese
-    private insertTeam(apiResponse:GenericApiResponse<TeamApiInterface.Team>, countryId:ObjectId ) {
-        if (apiResponse.success && Number(apiResponse.data.total) > 0) {
-            const transform = (team: TeamApiInterface.Team): TeamMongo.TeamType => ({
-                externalId: Number(team.id),
-                name: team.name,
-                stadium: team.stadium,
-                countryId: countryId
+    private insertCompetition(apiResponse:GenericApiResponse<CompetitionApiInterface.Competition>, countryId:ObjectId ) {
+        if (apiResponse.success ) {
+            const transform = (competition: CompetitionApiInterface.Competition): CompetitionMongo.CompetitionType => ({
+                externalId:         Number(competition.id),
+                name:               competition.name,                
+                active:             Number(competition.active),
+                hasGroups:          Number(competition.has_groups),
+                isLeague:           Number(competition.is_league),
+                isCup:              Number(competition.is_cup),
+                nationalTeamsOnly:  Number(competition.national_teams_only),
+                season: {
+                    id:         Number(competition.season.id),
+                    name:       competition.season.name,
+                    start:      competition.season.start,      
+                    end:        competition.season.end
+                }
             });
                             
-            const resultArray = this.transformAPIResponseToArray(apiResponse, 'teams', transform);      
+            const resultArray = this.transformAPIResponseToArray(apiResponse, 'competition', transform);      
 
-            TeamMongo.Team.insertMany(resultArray)
+            CompetitionMongo.Competition.insertMany(resultArray)
             .then((docs) => {
                 console.log('Feeds inserted successfully');
             })
@@ -124,6 +125,6 @@ const program = new Command();
 program.version('1.0.0').description('CLI team commander') 
     .option('-a, --action <type>', 'Azione da lanciare')
     .action((options) => {    
-        new TeamProcessor(options.action);
+        new CompetitionProcessor(options.action);
     });
 program.parse(process.argv);
