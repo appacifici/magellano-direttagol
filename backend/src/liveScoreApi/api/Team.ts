@@ -1,6 +1,8 @@
 import axios                                from "axios";
 import { Command }                          from 'commander';
 
+import {  ObjectId } from 'mongoose';
+
 import { Feed as FeedMongo, 
     FeedType as FeedTypeMongo }             from "../../database/mongodb/models/Feed";
 
@@ -27,9 +29,9 @@ class FeedProcessor extends BaseAPiConverter  {
         const feed:Promise<FeedTypeMongo|null|undefined> = this.retrieveAndProcessFeed();
         feed.then( (feed) => {
             if (this.isFeedType(feed)) {
-                const countries:Promise<CountryMongo.CountryArrayType|null|undefined> = this.retrieveAndProcessCountries();
+                const countries:Promise<CountryMongo.CountryArrayWithIdType|null|undefined> = this.retrieveAndProcessCountries();
                 countries.then( (country) => {
-                    if (this.isCountryArrayType(country)) {
+                    if (this.isCountryArrayWithIdType(country)) {
                         this.getCountryApi(country, feed);
                     }
                 })
@@ -48,9 +50,9 @@ class FeedProcessor extends BaseAPiConverter  {
     }
 
     //Recupera tutti i contries su MongoDB
-    private async retrieveAndProcessCountries(): Promise<CountryMongo.CountryArrayType|null|undefined> {
+    private async retrieveAndProcessCountries(): Promise<CountryMongo.CountryArrayWithIdType|null|undefined> {
         try {
-            const countries:CountryMongo.CountryArrayType|null = await CountryMongo.Country.find({}).exec()
+            const countries:CountryMongo.CountryArrayWithIdType|null = await CountryMongo.Country.find({}).exec()
             return countries;             
         } catch (error) {
             console.error('Errore durante la ricerca del country:', error);
@@ -63,12 +65,12 @@ class FeedProcessor extends BaseAPiConverter  {
     }
 
     //Verifica se è del tipo corretto aspettato
-    private isCountryArrayType(countries: CountryMongo.CountryArrayType|null|undefined): countries is CountryMongo.CountryArrayType {
+    private isCountryArrayWithIdType(countries: CountryMongo.CountryArrayWithIdType|null|undefined): countries is CountryMongo.CountryArrayWithIdType {
         return countries !== null && countries !== undefined;
     }
 
     //
-    private async getCountryApi(countries: CountryMongo.CountryArrayType, feed: FeedTypeMongo): Promise<void> {
+    private async getCountryApi(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
         try {
             this.fetchCountriesData(countries, feed);
         } catch (error) {
@@ -77,39 +79,46 @@ class FeedProcessor extends BaseAPiConverter  {
     }
 
     //Per ogni paese chiama la funzione per recuperare i suoi team
-    private async fetchCountriesData(countries: CountryMongo.CountryArrayType, feed: FeedTypeMongo) {
+    private async fetchCountriesData(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo) {
         for (let country of countries) {
-            const response = await axios.get(`${feed.endPoint}?country_id=${country.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`);
-            const apiResponse: GenericApiResponse<TeamApiInterface.Team> = response.data;       
-            this.insertTeam(apiResponse,country.externalId);              
-        }
+            await this.getTeamPage(`${feed.endPoint}?country_id=${country.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`, country);
+        }        
+    }
+
+    private async getTeamPage(endPoint:string, country:CountryMongo.CountryWithIdType) {
+        console.log(endPoint);
+        const response = await axios.get(endPoint);
+        const apiResponse: GenericApiResponse<TeamApiInterface.Team> = response.data;       
+        this.insertTeam(apiResponse,country._id);
+
+        if( response.data.data.next_page != false ) {
+            const endPoint = response.data.data.next_page;
+            await this.getTeamPage(endPoint, country);            
+        }                
     }
 
     //Inserisce su mongo i team di un paese
-    private insertTeam(apiResponse:GenericApiResponse<TeamApiInterface.Team>, countrExternalId:Number ) {
+    private insertTeam(apiResponse:GenericApiResponse<TeamApiInterface.Team>, countryId:ObjectId ) {
         if (apiResponse.success && Number(apiResponse.data.total) > 0) {
             const transform = (team: TeamApiInterface.Team): TeamMongo.TeamType => ({
                 externalId: Number(team.id),
                 name: team.name,
                 stadium: team.stadium,
-                countryId: Number(countrExternalId)
+                countryId: countryId
             });
                             
-            const resultArray = this.transformAPIResponseToArray(apiResponse, 'team', transform);      
+            const resultArray = this.transformAPIResponseToArray(apiResponse, 'teams', transform);      
 
             TeamMongo.Team.insertMany(resultArray)
             .then((docs) => {
-                console.log('Feeds inserted successfully:', docs);
+                console.log('Feeds inserted successfully');
             })
             .catch((err) => {
                 console.error('Error inserting feeds:', err);
             });
         }
     }
-    
-
 }
-
 
 const program = new Command();
 program.version('1.0.0').description('CLI team commander') 

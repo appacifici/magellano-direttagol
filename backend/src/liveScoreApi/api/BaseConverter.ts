@@ -17,7 +17,7 @@ class BaseAPiConverter {
         response: GenericApiResponse<T>,
         key: string,
         transformFn: TransformFunction<T, U>
-    ): U[] {
+    ): U[] {        
         return response.data[key].map(item => this.transformItemToType(item, transformFn));
     }
     

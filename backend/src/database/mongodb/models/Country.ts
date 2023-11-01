@@ -1,14 +1,18 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model, ObjectId, Types } from 'mongoose';
 
 type CountryType = {    
-    externalId: Number;
+    externalId: number;
     name:       string;
-    isReal:     Number;
+    isReal:     number;
 }
 type CountryArrayType = CountryType[];
 
-interface ICountry extends CountryType {}
-interface ICountry extends Document {}
+interface ICountry extends Document, Omit<CountryType, '_id'> {
+    // Your ICountry interface can include additional methods or properties here
+}
+type CountryWithIdType = CountryType & { _id: Document['_id'] };
+type CountryArrayWithIdType = CountryWithIdType[];
+
 
 const CountrySchema = new Schema({
     externalId: { 
@@ -38,4 +42,4 @@ CountrySchema.methods.checkBySource = function(source:string) {
 
 const Country:      Model<ICountry>     = mongoose.model<ICountry>('Country', CountrySchema);
 
-export {Country,ICountry,CountryType,CountryArrayType,CountrySchema};
+export {Country,ICountry,CountryType,CountryArrayType,CountryArrayWithIdType,CountryWithIdType,CountrySchema};

@@ -1,10 +1,10 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model, ObjectId } from 'mongoose';
 
 type TeamType = {    
     externalId:         number;
     name:               string;
-    stadium:            string;
-    countryId:          number;    
+    stadium?:           string;
+    countryId:          ObjectId;    
 }
 
 interface ITeam extends TeamType {}
@@ -22,7 +22,7 @@ const TeamSchema   = new Schema({
     },
     stadium: { 
         type:       String, 
-        required:   true,      
+        required:   false,      
     },
     countryId: { 
         type: Schema.Types.ObjectId, 
