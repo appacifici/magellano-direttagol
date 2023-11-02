@@ -4,4 +4,7 @@
 npx ts-node src/commands/initDb.ts 
 
 ## Inserimento Country da feed API
+
 npx ts-node src/liveScoreApi/api/Country.ts -a importAllCountries
+npx ts-node src/liveScoreApi/api/Competition.ts -a importAllCompetition
+npx ts-node src/liveScoreApi/api/Team.ts -a importAllTeam

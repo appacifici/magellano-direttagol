@@ -5,11 +5,9 @@ type CountryType = {
     name:       string;
     isReal:     number;
 }
-type CountryArrayType = CountryType[];
+type CountryArrayType       = CountryType[];
 
-interface ICountry extends Document, Omit<CountryType, '_id'> {
-    
-}
+interface ICountry extends Document, Omit<CountryType, '_id'> {}
 type CountryWithIdType      = CountryType & { _id: Document['_id'] };
 type CountryArrayWithIdType = CountryWithIdType[];
 

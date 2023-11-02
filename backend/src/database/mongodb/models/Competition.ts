@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model, ObjectId } from 'mongoose';
 
 type CompetitionSeasonType = {
     id:         number;
@@ -9,6 +9,7 @@ type CompetitionSeasonType = {
 
 type CompetitionType = {    
     externalId:         number;
+    countryId:          ObjectId;    
     name:               string;
     active:             number;
     hasGroups:          number;
@@ -28,6 +29,11 @@ const CompetitionSchema   = new Schema({
     externalId: { 
         type:       Number, 
         required:   true 
+    },
+    countryId: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'Country', 
+        required: true 
     },
     name: { 
         type:       String, 

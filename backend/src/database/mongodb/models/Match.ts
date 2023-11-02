@@ -1,11 +1,20 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 type MatchType = {
-    competitionId:  Schema.Types.ObjectId;
-    teamHome:       Schema.Types.ObjectId;
-    teamAway:       Schema.Types.ObjectId;
-    timeMatch:      String;    
-    dateMatch:      String;    
+    competitionId:      Schema.Types.ObjectId;
+    teamHome:           Schema.Types.ObjectId;
+    teamAway:           Schema.Types.ObjectId;
+    timeMatch:          string;    
+    dateMatch:          string;    
+    extMatchId:         number;
+    fixtureId:          number;
+    score:              string;
+    status:             string;
+    halfTimeScore:      string;
+    fullTimeScore:      string;
+    extraTimeScore:     string;
+    penaltyTimeScore:   string;
+    lastChanged:        Date;
 }
 
 interface IMatch extends MatchType {}
@@ -34,7 +43,7 @@ const MatchSchema = new Schema({
         required: true 
     },
     timeMatch: { 
-        type: Number 
+        type: String 
     },
     dateMatch: { 
         type: Date, 
@@ -63,7 +72,7 @@ const MatchSchema = new Schema({
     }
 });
 
-//Creazione indice e chiave univoca
-MatchSchema.index({ externalId: 1 }, { unique: true });
+MatchSchema.index({ fixtureId:1, externalId: 1 }, { unique: true });
+const Match:Model<IMatch> = mongoose.model<IMatch>('Match', MatchSchema);
 
-export {MatchType,IMatch,MatchSchema};
+export {Match,MatchType,IMatch,MatchSchema};

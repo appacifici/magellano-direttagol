@@ -1,20 +1,15 @@
 import axios                                from "axios";
 import { Command }                          from 'commander';
+import {  ObjectId }                        from 'mongoose';
 
-import {  ObjectId } from 'mongoose';
-
-import { Feed as FeedMongo, 
-    FeedType as FeedTypeMongo }             from "../../database/mongodb/models/Feed";
-
+import { FeedType as FeedTypeMongo }        from "../../database/mongodb/models/Feed";
 import { GenericApiResponse }               from "../interface/API/GlobalInterface";
 import * as CountryMongo                    from "../../database/mongodb/models/Country";
-
 import * as TeamMongo                       from "../../database/mongodb/models/Team";
 import * as TeamApiInterface                from "../interface/API/TeamInterface";
+import BaseApi                              from "./BaseApi";
 
-import BaseAPiConverter                     from "./BaseConverter";
-
-class TeamProcessor extends BaseAPiConverter  {
+class TeamProcessor extends BaseApi  {
     constructor(action:string) {
         super();
                 
@@ -26,63 +21,27 @@ class TeamProcessor extends BaseAPiConverter  {
     }
 
     private importAllTeam() :void {
-        const feed:Promise<FeedTypeMongo|null|undefined> = this.retrieveAndProcessFeed();
+        const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('teams');
         feed.then( (feed) => {
-            if (this.isFeedType(feed)) {
+            if (this.isValidDataType(feed)) {
                 const countries:Promise<CountryMongo.CountryArrayWithIdType|null|undefined> = this.retrieveAndProcessCountries();
                 countries.then( (country) => {
-                    if (this.isCountryArrayWithIdType(country)) {
-                        this.getCountryApi(country, feed);
+                    if (this.isValidDataType(country)) {
+                        this.fetchCountriesData(country, feed);
                     }
                 })
             }
         })        
     }
 
-    //Recupera l'endPoint per la chiamata al servizio esterpi api livescore dei team
-    private async retrieveAndProcessFeed(): Promise<FeedTypeMongo|null|undefined> {
+    private async fetchCountriesData(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
         try {
-            const feed:FeedTypeMongo|null = await FeedMongo.findOne({ name: 'teams' }).exec()
-            return feed;             
-        } catch (error) {
-            console.error('Errore durante la ricerca del feed:', error);
-        }
-    }
-
-    //Recupera tutti i contries su MongoDB
-    private async retrieveAndProcessCountries(): Promise<CountryMongo.CountryArrayWithIdType|null|undefined> {
-        try {
-            const countries:CountryMongo.CountryArrayWithIdType|null = await CountryMongo.Country.find({}).exec()
-            return countries;             
-        } catch (error) {
-            console.error('Errore durante la ricerca del country:', error);
-        }
-    }
-
-    //Verifica se è del tipo corretto aspettato
-    private isFeedType(feed: FeedTypeMongo|null|undefined): feed is FeedTypeMongo {
-        return feed !== null;
-    }
-
-    //Verifica se è del tipo corretto aspettato
-    private isCountryArrayWithIdType(countries: CountryMongo.CountryArrayWithIdType|null|undefined): countries is CountryMongo.CountryArrayWithIdType {
-        return countries !== null && countries !== undefined;
-    }
-
-    //
-    private async getCountryApi(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
-        try {
-            this.fetchCountriesData(countries, feed);
+            for (let country of countries) {
+                await this.getTeamPage(`${feed.endPoint}?country_id=${country.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`, country);
+            }        
         } catch (error) {
             console.error('Errore durante la richiesta:', error);
         }             
-    }
-
-    //Per ogni paese chiama la funzione per recuperare i suoi team
-    private async fetchCountriesData(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo) {
-        for (let country of countries) {
-            await this.getTeamPage(`${feed.endPoint}?country_id=${country.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`, country);
-        }        
     }
 
     private async getTeamPage(endPoint:string, country:CountryMongo.CountryWithIdType) {

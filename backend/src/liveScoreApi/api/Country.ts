@@ -8,9 +8,9 @@ import { Feed as FeedMongo,
 import * as CountryMongo                    from "../../database/mongodb/models/Country";
 import * as CountryApiInterface             from "../interface/API/CountryInterface";
 
-import BaseAPiConverter                     from "./BaseConverter";
+import BaseApi                              from "./BaseApi";
 
-class CountryProcessor extends BaseAPiConverter  {
+class CountryProcessor extends BaseApi  {
     constructor(action:string) {
         super();
                 

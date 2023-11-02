@@ -7,8 +7,9 @@ type TeamType = {
     countryId:          ObjectId;    
 }
 
-interface ITeam extends TeamType {}
-interface ITeam extends Document {}
+interface ITeam extends Document, Omit<TeamType, '_id'> {}
+type TeamWithIdType      = TeamType & { _id: Document['_id'] };
+type TeamArrayWithIdType = TeamWithIdType[];
 
 const TeamSchema   = new Schema({
     externalId: { 
@@ -35,4 +36,4 @@ const TeamSchema   = new Schema({
 TeamSchema.index({ externalId: 1 }, { unique: true });
 const Team:Model<ITeam> = mongoose.model<ITeam>('Team', TeamSchema);
 
-export {TeamType,ITeam,Team,TeamSchema};
+export {TeamType,TeamArrayWithIdType,TeamWithIdType,ITeam,Team,TeamSchema};
