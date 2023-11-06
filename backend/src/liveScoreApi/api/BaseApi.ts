@@ -44,17 +44,25 @@ class BaseApi {
             const competitions:CompetitionMongo.CompetitionArrayWithIdType|null = await CompetitionMongo.Competition.find({}).exec()
             return competitions;             
         } catch (error) {
-            console.error('Errore durante la ricerca del country:', error);
+            console.error('Errore durante la ricerca della competition:', error);
+        }
+    }
+    
+    public async getOneCompetitionByFilter(filter:object): Promise<CompetitionMongo.CompetitionWithIdType|null|undefined> {
+        try {
+            const competition:CompetitionMongo.CompetitionWithIdType|null = await CompetitionMongo.Competition.findOne(filter).exec()
+            return competition;             
+        } catch (error) {
+            console.error('Errore durante la ricerca della competition:', error);
         }
     }
 
-    //Recupera l'endPoint per la chiamata al servizio esterpi api livescore dei team
     public async getTeamByFilter(filter:object): Promise<TeamMongo.TeamWithIdType|null|undefined> {
         try {
             const team:TeamMongo.TeamWithIdType|null = await TeamMongo.Team.findOne(filter).exec()
             return team;             
         } catch (error) {
-            console.error('Errore durante la ricerca del feed:', error);
+            console.error('Errore durante la ricerca del team:', error);
         }
     }
 

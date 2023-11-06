@@ -17,8 +17,9 @@ type MatchType = {
     lastChanged:        Date;
 }
 
-interface IMatch extends MatchType {}
-interface IMatch extends Document {}
+interface IMatch extends Document, Omit<MatchType, '_id'> {}
+type MatchWithIdType      = MatchType & { _id: Document['_id'] };
+type MatchArrayWithIdType = MatchWithIdType[];
 
 const MatchSchema = new Schema({
     extMatchId: { 
@@ -75,4 +76,4 @@ const MatchSchema = new Schema({
 MatchSchema.index({ fixtureId:1, externalId: 1 }, { unique: true });
 const Match:Model<IMatch> = mongoose.model<IMatch>('Match', MatchSchema);
 
-export {Match,MatchType,IMatch,MatchSchema};
+export {Match,MatchType,IMatch,MatchWithIdType,MatchSchema};

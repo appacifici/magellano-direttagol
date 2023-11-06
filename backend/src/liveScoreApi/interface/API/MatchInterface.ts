@@ -1,10 +1,9 @@
-interface MatchApiResponse {
-    success: boolean;
-    data: DataMatch;
-}
+import { GenericApiResponse } from "./GlobalInterface";
 
-type DataMatch = {
-    match: Match[];
+interface MatchApiResponse extends GenericApiResponse<Match>{    
+    data: {
+        match: Match[];
+    };
 }
 
 type Match = {
@@ -62,4 +61,4 @@ type Outcomes = {
     extra_time: null | string;
 }
 
-export {MatchApiResponse};
+export {MatchApiResponse,Match};
