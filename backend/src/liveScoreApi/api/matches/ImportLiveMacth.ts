@@ -1,6 +1,8 @@
 import axios                                from "axios";
 import { Command }                          from 'commander';
 import moment                               from "moment";
+import deepDiff                             from 'deep-diff';
+
 
 import { FeedType as FeedTypeMongo }        from "../../../database/mongodb/models/Feed";
 import { GenericApiResponse }               from "../../interface/API/GlobalInterface";
@@ -82,10 +84,20 @@ class ImportLiveMacth extends BaseApi {
         }  
 
         const resultMatch:MatchMongo.MatchWithIdType|boolean = await this.getMatch(match.id);
-        if( resultMatch !== false ) {
+        if (typeof resultMatch === 'object') {                         
+            const differences = findDiff(dataMatch, resultMatch);
+            const differencesJson = JSON.stringify(differences, null, 2);
+
+            if( match.id == 474087 ) {
+                console.log(dataMatch);
+                console.log(resultMatch);
+                console.log(differencesJson);
+            }
+
+
             MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
             .then(result => {
-                console.log(result);
+                //console.log(result);
             })
             .catch(err => {
                 console.error(err);
@@ -95,7 +107,7 @@ class ImportLiveMacth extends BaseApi {
             console.log('insert');
             const newMatch = new MatchMongo.Match(dataMatch);
             newMatch.save().then(doc => {
-            console.log('Document inserted:', doc);    
+            //console.log('Document inserted:');    
             }).catch(err => {
                 console.error('Error inserting document:', err);            
             });
@@ -118,6 +130,25 @@ class ImportLiveMacth extends BaseApi {
         return false;
     }
 }
+
+function findDiff(obj1: Record<string, any>, obj2: Record<string, any>): Record<string, any> {
+    const diff: Record<string, any> = {};
+    let key: string;
+  
+    for (key in obj1) {      
+      if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
+        diff[key] = obj2[key] ;
+      }
+    }
+  
+    // for (key in obj2) {
+    //   if (!Object.prototype.hasOwnProperty.call(obj1, key)) {
+    //     diff[key] = obj2[key];
+    //   }
+    // }
+  
+    return diff;
+  }
 
 const program = new Command();
 program.version('1.0.0').description('CLI team commander')     

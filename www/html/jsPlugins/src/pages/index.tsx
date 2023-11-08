@@ -14,20 +14,6 @@ import { setMatches,
 import { wrapperMatch }         from '../match/store/MatchStore';
 import { MatchesInterface }     from '../match/models/matchInterface';
 
-
-async function connectToDb() {
-    try {
-        await mongoose.connect('mongodb://79.55.63.147:27017/testdb', {            
-            
-        });
-        console.log('Connected to MongoDB');
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-    }
-}
-
-connectToDb();
-
 const matches:MatchesInterface = {
 	"4": {
 		"competition":

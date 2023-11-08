@@ -2,14 +2,16 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "importAllCountries":  "npx ts-node src/liveScoreApi/api/Country.ts -a importAllCountries",
-    "importAllTeam":  "npx ts-node src/liveScoreApi/api/Team.ts -a importAllTeam",
-    "importCompetition":  "npx ts-node src/liveScoreApi/api/Competition.ts -a importAllCompetition",
+    "importAllCountries": "npx ts-node src/liveScoreApi/api/Country.ts -a importAllCountries",
+    "importAllTeam": "npx ts-node src/liveScoreApi/api/Team.ts -a importAllTeam",
+    "importCompetition": "npx ts-node src/liveScoreApi/api/Competition.ts -a importAllCompetition",
     "importFixtureMatch": "npx ts-node src/liveScoreApi/api/matches/importFixtureMatch.ts"
   },
   "dependencies": {
+    "@types/deep-diff": "^1.0.5",
     "@types/node": "^20.8.8",
     "axios": "^1.6.0",
+    "deep-diff": "^1.0.2",
     "moment": "^2.29.4",
     "mongoose": "^7.6.3",
     "ts-loader": "^9.5.0",
