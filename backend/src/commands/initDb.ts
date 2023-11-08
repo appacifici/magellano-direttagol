@@ -18,7 +18,8 @@ const feedsToInsert:FeedArrayType = [
     { source: SOURCE_FEED.LIVE_SCORE_API_COM, name: 'live',         endPoint: 'https://livescore-api.com/api-client/scores/live.json',       format: FORMAT_FEED.JSON },
     { source: SOURCE_FEED.LIVE_SCORE_API_COM, name: 'countries',    endPoint: 'https://livescore-api.com/api-client/countries/list.json',    format: FORMAT_FEED.JSON },
     { source: SOURCE_FEED.LIVE_SCORE_API_COM, name: 'matches',      endPoint: 'https://livescore-api.com/api-client/fixtures/matches.json',  format: FORMAT_FEED.JSON },
-    { source: SOURCE_FEED.LIVE_SCORE_API_COM, name: 'teams',        endPoint: 'https://livescore-api.com/api-client/teams/list.json',        format: FORMAT_FEED.JSON }
+    { source: SOURCE_FEED.LIVE_SCORE_API_COM, name: 'teams',        endPoint: 'https://livescore-api.com/api-client/teams/list.json',        format: FORMAT_FEED.JSON },
+    { source: SOURCE_FEED.LIVE_SCORE_API_COM, name: 'federations',  endPoint: 'https://livescore-api.com/api-client/federations/list.json',  format: FORMAT_FEED.JSON }
 ];
 
 Feed.insertMany(feedsToInsert)

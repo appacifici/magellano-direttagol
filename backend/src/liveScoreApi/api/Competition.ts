@@ -7,6 +7,7 @@ import { Feed as FeedMongo,
 import { GenericApiResponse }               from "../interface/API/GlobalInterface";
 import * as CompetitionMongo                from "../../database/mongodb/models/Competition";
 import * as CountryMongo                    from "../../database/mongodb/models/Country";
+import * as FederationMongo                 from "../../database/mongodb/models/Federation";
 import * as CompetitionApiInterface         from "../interface/API/CompetitionInterface";
 import BaseApi                              from "./BaseApi";
 
@@ -15,20 +16,36 @@ class CompetitionProcessor extends BaseApi  {
         super();
                 
         switch( action ) {
-            case 'importAllCompetition':
-                this.importAllCompetition();
+            case 'importAllCompetitionByFederation':
+                this.importAllCompetition('federation');
+            break;
+            case 'importAllCompetitionByCountry':
+                this.importAllCompetition('country');
             break;
         }
     }
 
-    private importAllCompetition() :void {
+    private importAllCompetition(byFeed:string) :void {
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('competitions');
         feed.then( (feed) => {
             if (this.isValidDataType(feed)) {
-                const countries:Promise<CountryMongo.CountryArrayWithIdType|null|undefined> = this.retrieveAndProcessCountries();
-                countries.then( (country) => {
-                    if (this.isValidDataType(country)) {
-                        this.fetchCountriesData(country, feed);
+                let elements: Promise<FederationMongo.FederationArrayWithIdType | CountryMongo.CountryArrayWithIdType | null | undefined>;
+
+                switch (byFeed) {
+                    case 'federation':
+                        elements = this.retrieveAndProcessCountries() as Promise<FederationMongo.FederationArrayWithIdType | null | undefined>;
+                        break;
+                    case 'country':
+                        elements = this.retrieveAndProcessCountries() as Promise<CountryMongo.CountryArrayWithIdType | null | undefined>;
+                        break;
+                    default:
+                        elements = Promise.resolve(undefined);
+                        break;
+                }
+                   
+                elements.then( (element) => {
+                    if (this.isValidDataType(element)) {
+                        this.fetchCountriesData(element, feed, byFeed);
                     }
                 })
             }
@@ -36,14 +53,20 @@ class CompetitionProcessor extends BaseApi  {
     }        
 
     //Per ogni paese chiama la funzione per recuperare i suoi team
-    private async fetchCountriesData(countries: CountryMongo.CountryArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
-        try {        
-            for (let country of countries) {     
-                const endPoint:string   = `${feed.endPoint}?country_id=${country.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;       
+    private async fetchCountriesData(elements: CountryMongo.CountryArrayWithIdType|FederationMongo.FederationArrayWithIdType, feed: FeedTypeMongo, byFeed:string): Promise<void> {
+        try {                    
+            for (let element of elements) {     
+                let endPoint:string = '';
+                if( byFeed == 'federation') {
+                    endPoint = `${feed.endPoint}?federation_id=${element.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;
+                } else {
+                    endPoint = `${feed.endPoint}?country_id=${element.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;
+                }
+                
                 console.log(endPoint);
-                const response          = await axios.get(endPoint);
+                const response = await axios.get(endPoint);
                 const apiResponse: GenericApiResponse<CompetitionApiInterface.Competition> = response.data;       
-                this.insertCompetition(apiResponse,country._id);
+                this.insertCompetition(apiResponse,element._id);
             }    
         } catch (error) {
             console.error('Errore durante la richiesta:', error);

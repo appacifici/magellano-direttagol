@@ -10,8 +10,8 @@ import * as TeamMongo                       from "../../../database/mongodb/mode
 import * as MatchApiResponse                from "../../interface/API/MatchInterface";
 import BaseApi                              from "../BaseApi";
 
-class ImportLiveMacth extends BaseApi  {
-    constructor(action:string) {
+class ImportLiveMacth extends BaseApi {
+    constructor() {
         super();  
         this.importAll();       
     }
@@ -27,11 +27,11 @@ class ImportLiveMacth extends BaseApi  {
 
     private async fetchData(feed: FeedTypeMongo): Promise<void> {
         try {
-                let tomorrow = moment().add(1, 'days');
-                const endPoint = `${feed.endPoint}?date=${tomorrow.format('YYYY-MM-DD')}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;        
-                const response = await axios.get(endPoint);
-                const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
-                this.eachFixture(apiResponse);
+            let tomorrow = moment().add(1, 'days');
+            const endPoint = `${feed.endPoint}?date=${tomorrow.format('YYYY-MM-DD')}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;        
+            const response = await axios.get(endPoint);
+            const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
+            this.eachFixture(apiResponse);
         } catch (error) {
             console.error('Errore durante la richiesta:', error);
         }             
@@ -49,8 +49,16 @@ class ImportLiveMacth extends BaseApi  {
         const competition:  CompetitionMongo.CompetitionWithIdType | null | undefined  = await this.getOneCompetitionByFilter({externalId:match.competition_id});
         //competition competition_id
 
-        if( !this.isValidDataType(homeTeam) || !this.isValidDataType(awayTeam) || !this.isValidDataType(competition) ) {
-            console.log('Skip match:', match);   
+        if( !this.isValidDataType(homeTeam) ) {
+            console.log('Skip match not valid homeTeam:', match);   
+            return null;
+        }
+        if(!this.isValidDataType(awayTeam)) {
+            console.log('Skip match not valid awayTeam:', match);   
+            return null;
+        }
+        if(!this.isValidDataType(competition) ) {
+            console.log('Skip match not valid competition:', match);   
             return null;
         }
 
@@ -82,15 +90,16 @@ class ImportLiveMacth extends BaseApi  {
             .catch(err => {
                 console.error(err);
             });
+            console.log('update: '+match.id);
         } else {
+            console.log('insert');
             const newMatch = new MatchMongo.Match(dataMatch);
             newMatch.save().then(doc => {
             console.log('Document inserted:', doc);    
             }).catch(err => {
                 console.error('Error inserting document:', err);            
             });
-        }
-        
+        }        
     }
 
     private async getMatch(matchId:number): Promise<MatchMongo.MatchWithIdType|boolean> {
@@ -108,12 +117,11 @@ class ImportLiveMacth extends BaseApi  {
         }
         return false;
     }
-
 }
 
 const program = new Command();
 program.version('1.0.0').description('CLI team commander')     
     .action((options) => {    
-        new ImportLiveMacth(options.action); 
+        new ImportLiveMacth(); 
     });
 program.parse(process.argv);
