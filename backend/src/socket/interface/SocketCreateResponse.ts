@@ -1,6 +1,4 @@
-import { SocketLiveMatchInterface, CompetitionInterface, MatchesInterface } from "./SockeLiveMatchInterface";
-import * as MatchMongo                      from "../../database/mongodb/models/Match";
-import { CompetitionWithIdType }                  from "../../database/mongodb/models/Competition";
+import { SocketLiveMatchInterface, MatchesInterface }   from "./SockeLiveMatchInterface";
 
 class SocketCreateResponse {
     private socketResponse:MatchesInterface;
@@ -9,23 +7,32 @@ class SocketCreateResponse {
         this.socketResponse = {};
     }
 
-    public addLiveMatch(match:any) {
-        const fullScore     = match.fullTimeScore?.split('-');
-        const halfTimeScore = match.halfTimeScore?.split('-');
+    public addLiveMatch(match:any, matchId:number) {
+        const liveMatch: SocketLiveMatchInterface = {};
 
-        const liveMatch: SocketLiveMatchInterface = {            
-            home_score:             fullScore[0]?.trim(),
-            away_score:             fullScore[1]?.trim(),
-            first_half_away_score:  halfTimeScore[0]?.trim(),
-            first_half_home_score:  halfTimeScore[1]?.trim(),
-            //last_goal:              match._id,
-            status:                 match.status,
-            current_time:           match.timeMatch
-        };
+        const fullScore     = match.score?.split('-');
+        const halfTimeScore = match.halfTimeScore?.split('-');       
 
-        //liveMatch.home_score =  fullScore[0]?.trim();
+        if( typeof match.status != undefined ) {
+            liveMatch.status = match.status;
+        }      
+        if( typeof match.timeMatch != undefined ) {
+            liveMatch.current_time = match.timeMatch;
+        }        
+        if( fullScore != undefined && fullScore[0] != null ) {
+            liveMatch.home_score = fullScore[0]?.trim();
+        }      
+        if( fullScore != undefined && fullScore[0] != null ) {
+            liveMatch.away_score = fullScore[1]?.trim();        
+        }
+        if( halfTimeScore != undefined && halfTimeScore[0] != null ) {
+            liveMatch.first_half_away_score = halfTimeScore[0]?.trim();
+        } 
+        if( halfTimeScore != undefined && halfTimeScore[1] != null ) {
+            liveMatch.first_half_home_score = halfTimeScore[1]?.trim();
+        }
 
-        const matchNumber = match._id;
+        const matchNumber = matchId;
         if (!this.socketResponse[match.competitionId._id]) {
             this.socketResponse[match.competitionId._id] = {
                 competition: {
@@ -35,15 +42,13 @@ class SocketCreateResponse {
                     matches: {}
                 }             
             }
-        }
-                
-        this.socketResponse[match.competitionId._id].competition.matches[matchNumber]  = liveMatch;
+        }                
+        this.socketResponse[match.competitionId._id].competition.matches[matchNumber] = liveMatch;
     }
 
     get objResponse():MatchesInterface {
         return this.socketResponse;
     }
-
 }
 
 export default SocketCreateResponse;

@@ -17,8 +17,7 @@ class ImportLiveMacth extends BaseApi {
     constructor() {
         super();          
         this.socketCreateResponse = new SocketCreateResponse();
-        this.importAll();            
-              
+        this.importAll();                         
     }
 
     private async importAll() :Promise<void> {
@@ -96,9 +95,9 @@ class ImportLiveMacth extends BaseApi {
             const differences = findDiff(dataMatch, resultMatch);
             const differencesJson = JSON.stringify(differences, null, 2);
 
-            // if( match.id == 474158 ) {
-                this.socketCreateResponse.addLiveMatch(resultMatch);
-            // }
+            if( match.id == 474241 ) {
+                this.socketCreateResponse.addLiveMatch(differences, resultMatch._id);
+            }
 
             MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
             .then(result => {
@@ -128,7 +127,6 @@ class ImportLiveMacth extends BaseApi {
             } else {
                 return false;
             }
-
         } catch (error) {
             console.error('Errore durante la ricerca del match:', error);
         }
@@ -142,7 +140,7 @@ function findDiff(obj1: Record<string, any>, obj2: Record<string, any>): Record<
   
     for (key in obj1) {      
       if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
-        diff[key] = obj2[key] ;
+        diff[key] = obj1[key] ;
       }
     }  
     return diff;
