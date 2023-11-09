@@ -16,7 +16,7 @@ class BaseApi {
 
     //Verifica se è del tipo corretto aspettato
     public isValidDataType<T>(data: T | null | undefined): data is T {
-        return data !== null && data !== undefined;
+        return data !== null && data !== undefined && data !== false;
     }
 
     //Recupera l'endPoint per la chiamata al servizio esterpi api livescore dei team

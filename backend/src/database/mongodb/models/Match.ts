@@ -1,9 +1,11 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
+import {CompetitionType} from './Competition';
+import { TeamWithIdType } from './Team';
 
 type MatchType = {
-    competitionId:      Schema.Types.ObjectId;
-    teamHome:           Schema.Types.ObjectId;
-    teamAway:           Schema.Types.ObjectId;
+    competitionId:      Schema.Types.ObjectId|CompetitionType;
+    teamHome:           Schema.Types.ObjectId|TeamWithIdType;
+    teamAway:           Schema.Types.ObjectId|TeamWithIdType;
     timeMatch:          string;    
     dateMatch:          string;    
     extMatchId:         number;
@@ -73,7 +75,7 @@ const MatchSchema = new Schema({
     }
 });
 
-MatchSchema.index({ fixtureId:1, externalId: 1 }, { unique: true });
+MatchSchema.index({ fixtureId:1, extMatchId: 1 }, { unique: true });
 const Match:Model<IMatch> = mongoose.model<IMatch>('Match', MatchSchema);
 
 export {Match,MatchType,IMatch,MatchWithIdType,MatchSchema};

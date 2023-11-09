@@ -1,8 +1,6 @@
 import axios                                from "axios";
 import { Command }                          from 'commander';
 import moment                               from "moment";
-import deepDiff                             from 'deep-diff';
-
 
 import { FeedType as FeedTypeMongo }        from "../../../database/mongodb/models/Feed";
 import { GenericApiResponse }               from "../../interface/API/GlobalInterface";
@@ -10,46 +8,57 @@ import * as MatchMongo                      from "../../../database/mongodb/mode
 import * as CompetitionMongo                from "../../../database/mongodb/models/Competition";
 import * as TeamMongo                       from "../../../database/mongodb/models/Team";
 import * as MatchApiResponse                from "../../interface/API/MatchInterface";
+import SocketCreateResponse                 from "../../../socket/interface/SocketCreateResponse";
 import BaseApi                              from "../BaseApi";
 
-class ImportLiveMacth extends BaseApi {
+class ImportLiveMacth extends BaseApi {    
+    private socketCreateResponse:SocketCreateResponse; 
+
     constructor() {
-        super();  
-        this.importAll();       
+        super();          
+        this.socketCreateResponse = new SocketCreateResponse();
+        this.importAll();            
+              
     }
 
-    private importAll() :void {
+    private async importAll() :Promise<void> {
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('live');
         feed.then( (feed) => {
             if (this.isValidDataType(feed)) {                
                 this.fetchData(feed);                                 
-            }
+            }                 
         })        
     }
 
     private async fetchData(feed: FeedTypeMongo): Promise<void> {
         try {
-            let tomorrow = moment().add(1, 'days');
+            let tomorrow   = moment().add(1, 'days');
             const endPoint = `${feed.endPoint}?date=${tomorrow.format('YYYY-MM-DD')}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;        
             const response = await axios.get(endPoint);
             const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
-            this.eachFixture(apiResponse);
+            await this.eachFixture(apiResponse).then((result) => {
+                // Assuming eachFixture resolves with a result that you want to log
+                console.log(JSON.stringify(this.socketCreateResponse.objResponse));
+            })
         } catch (error) {
             console.error('Errore durante la richiesta:', error);
         }             
     }
 
-    private eachFixture(apiResponse:GenericApiResponse<MatchApiResponse.Match> ) {
-        apiResponse.data['match'].map(item => 
-            this.setLiveMatch(item)
-        );                    
+    private async eachFixture(apiResponse: GenericApiResponse<MatchApiResponse.Match>) {
+        // Map each item to a promise using the async setLiveMatch function
+        const promises = apiResponse.data['match'].map(async (item) => {
+          return this.setLiveMatch(item);
+        });
+      
+        // Wait for all the setLiveMatch promises to resolve
+        await Promise.all(promises);
     }
 
     private async setLiveMatch(match: MatchApiResponse.Match) {
         const homeTeam:     TeamMongo.TeamWithIdType | null | undefined                = await this.getTeamByFilter({externalId:match.home_id});
         const awayTeam:     TeamMongo.TeamWithIdType | null | undefined                = await this.getTeamByFilter({externalId:match.away_id});
         const competition:  CompetitionMongo.CompetitionWithIdType | null | undefined  = await this.getOneCompetitionByFilter({externalId:match.competition_id});
-        //competition competition_id
 
         if( !this.isValidDataType(homeTeam) ) {
             console.log('Skip match not valid homeTeam:', match);   
@@ -65,7 +74,6 @@ class ImportLiveMacth extends BaseApi {
         }
 
         const dateMatch = moment().format('YYYY-MM-DD')+' '+match.scheduled;
-
         const dataMatch:MatchMongo.MatchType = {
             competitionId:      competition._id,
             teamHome:           homeTeam._id,
@@ -80,7 +88,7 @@ class ImportLiveMacth extends BaseApi {
             fullTimeScore:      match.ft_score,
             extraTimeScore:     match.et_score,
             penaltyTimeScore:   match.ps_score,
-            lastChanged:        new Date(match.last_changed),
+            lastChanged:        new Date(match.last_changed)
         }  
 
         const resultMatch:MatchMongo.MatchWithIdType|boolean = await this.getMatch(match.id);
@@ -88,16 +96,13 @@ class ImportLiveMacth extends BaseApi {
             const differences = findDiff(dataMatch, resultMatch);
             const differencesJson = JSON.stringify(differences, null, 2);
 
-            if( match.id == 474087 ) {
-                console.log(dataMatch);
-                console.log(resultMatch);
-                console.log(differencesJson);
-            }
-
+            // if( match.id == 474158 ) {
+                this.socketCreateResponse.addLiveMatch(resultMatch);
+            // }
 
             MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
             .then(result => {
-                //console.log(result);
+                
             })
             .catch(err => {
                 console.error(err);
@@ -107,7 +112,7 @@ class ImportLiveMacth extends BaseApi {
             console.log('insert');
             const newMatch = new MatchMongo.Match(dataMatch);
             newMatch.save().then(doc => {
-            //console.log('Document inserted:');    
+                //console.log('Document inserted:');    
             }).catch(err => {
                 console.error('Error inserting document:', err);            
             });
@@ -117,7 +122,7 @@ class ImportLiveMacth extends BaseApi {
     private async getMatch(matchId:number): Promise<MatchMongo.MatchWithIdType|boolean> {
         try {
             const filter:object = {extMatchId:matchId};
-            const match:MatchMongo.MatchWithIdType|null = await MatchMongo.Match.findOne(filter).exec()
+            const match:MatchMongo.MatchWithIdType|null = await MatchMongo.Match.findOne(filter).populate('competitionId').populate('teamHome').populate('teamAway').exec()
             if( this.isValidDataType(match)) {
                 return match;
             } else {
@@ -139,16 +144,9 @@ function findDiff(obj1: Record<string, any>, obj2: Record<string, any>): Record<
       if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
         diff[key] = obj2[key] ;
       }
-    }
-  
-    // for (key in obj2) {
-    //   if (!Object.prototype.hasOwnProperty.call(obj1, key)) {
-    //     diff[key] = obj2[key];
-    //   }
-    // }
-  
+    }  
     return diff;
-  }
+}
 
 const program = new Command();
 program.version('1.0.0').description('CLI team commander')     
