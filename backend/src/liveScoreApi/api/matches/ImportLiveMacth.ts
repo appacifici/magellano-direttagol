@@ -8,15 +8,15 @@ import * as MatchMongo                      from "../../../database/mongodb/mode
 import * as CompetitionMongo                from "../../../database/mongodb/models/Competition";
 import * as TeamMongo                       from "../../../database/mongodb/models/Team";
 import * as MatchApiResponse                from "../../interface/API/MatchInterface";
-import SocketCreateResponse                 from "../../../socket/interface/SocketCreateResponse";
+import FrontendCreateResponse               from "../../../models/FrontendCreateResponse";
 import BaseApi                              from "../BaseApi";
 
 class ImportLiveMacth extends BaseApi {    
-    private socketCreateResponse:SocketCreateResponse; 
+    private frontendCreateResponse:FrontendCreateResponse; 
 
     constructor() {
         super();          
-        this.socketCreateResponse = new SocketCreateResponse();
+        this.frontendCreateResponse = new FrontendCreateResponse();
         this.importAll();                         
     }
 
@@ -36,21 +36,17 @@ class ImportLiveMacth extends BaseApi {
             const response = await axios.get(endPoint);
             const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
             await this.eachFixture(apiResponse).then((result) => {
-                // Assuming eachFixture resolves with a result that you want to log
-                console.log(JSON.stringify(this.socketCreateResponse.objResponse));
+                console.log(JSON.stringify(this.frontendCreateResponse.objResponse));
             })
         } catch (error) {
             console.error('Errore durante la richiesta:', error);
         }             
     }
 
-    private async eachFixture(apiResponse: GenericApiResponse<MatchApiResponse.Match>) {
-        // Map each item to a promise using the async setLiveMatch function
+    private async eachFixture(apiResponse: GenericApiResponse<MatchApiResponse.Match>) {        
         const promises = apiResponse.data['match'].map(async (item) => {
           return this.setLiveMatch(item);
-        });
-      
-        // Wait for all the setLiveMatch promises to resolve
+        });      
         await Promise.all(promises);
     }
 
@@ -93,11 +89,10 @@ class ImportLiveMacth extends BaseApi {
         const resultMatch:MatchMongo.MatchWithIdType|boolean = await this.getMatch(match.id);
         if (typeof resultMatch === 'object') {                         
             const differences = findDiff(dataMatch, resultMatch);
-            const differencesJson = JSON.stringify(differences, null, 2);
 
-            if( match.id == 474241 ) {
-                this.socketCreateResponse.addLiveMatch(differences, resultMatch._id);
-            }
+            // if( match.id == 474241 ) {
+                this.frontendCreateResponse.addLiveMatch(differences, resultMatch._id);
+            // }
 
             MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
             .then(result => {

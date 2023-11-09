@@ -33,17 +33,20 @@ const MatchSchema = new Schema({
     competitionId: { 
         type: Schema.Types.ObjectId, 
         ref: 'Competition', 
-        required: true 
+        required: true,
+        index: true
     },
     teamHome: { 
         type: Schema.Types.ObjectId, 
         ref: 'Team', 
-        required: true 
+        required: true,
+        index: true
     },
     teamAway: { 
         type: Schema.Types.ObjectId, 
         ref: 'Team', 
-        required: true 
+        required: true,
+        index: true 
     },
     timeMatch: { 
         type: String 
@@ -76,6 +79,8 @@ const MatchSchema = new Schema({
 });
 
 MatchSchema.index({ fixtureId:1, extMatchId: 1 }, { unique: true });
+MatchSchema.index({ dateMatch: 1 });
+MatchSchema.index({ competitionId: 1, teamHome: 1, teamAway: 1 });
 const Match:Model<IMatch> = mongoose.model<IMatch>('Match', MatchSchema);
 
-export {Match,MatchType,IMatch,MatchWithIdType,MatchSchema};
+export {Match,MatchType,IMatch,MatchWithIdType,MatchArrayWithIdType,MatchSchema};

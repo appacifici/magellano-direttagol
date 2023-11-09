@@ -14,11 +14,12 @@ import { setMatches,
 import { wrapperMatch }         from '../match/store/MatchStore';
 import { MatchesInterface }     from '../match/models/matchInterface';
 
+ 
 const matches:MatchesInterface = {
 	"4": {
 		"competition":
 		{
-			"name": "Serie AA",
+			"name": "Serie A",
 			"nation": "italia",
 			"id": 4,
 			"matches":

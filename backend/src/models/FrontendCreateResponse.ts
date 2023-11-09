@@ -1,6 +1,6 @@
-import { SocketLiveMatchInterface, MatchesInterface }   from "./SockeLiveMatchInterface";
+import { FrontendLiveMatchInterface, MatchesInterface }   from "./interface/FrontendLiveMatchInterface";
 
-class SocketCreateResponse {
+class FrontendCreateResponse {
     private socketResponse:MatchesInterface;
 
     constructor() {
@@ -8,7 +8,7 @@ class SocketCreateResponse {
     }
 
     public addLiveMatch(match:any, matchId:number) {
-        const liveMatch: SocketLiveMatchInterface = {};
+        const liveMatch: FrontendLiveMatchInterface = {};
 
         const fullScore     = match.score?.split('-');
         const halfTimeScore = match.halfTimeScore?.split('-');       
@@ -51,4 +51,4 @@ class SocketCreateResponse {
     }
 }
 
-export default SocketCreateResponse;
+export default FrontendCreateResponse;

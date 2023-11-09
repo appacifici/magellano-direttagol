@@ -1,5 +1,5 @@
 
-export type SocketLiveMatchInterface = {
+export type FrontendLiveMatchInterface = {
     match_id?: number;
     home_team?: string;
     away_team?: string;
@@ -20,7 +20,7 @@ export type CompetitionInterface = {
     nation: string;
     id: number;
     matches: {
-        [matchId: string]: SocketLiveMatchInterface;
+        [matchId: string]: FrontendLiveMatchInterface;
     };
 }
 
