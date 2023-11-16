@@ -11,7 +11,7 @@ type TransformFunction<T, U> = (input: T) => U;
 class BaseApi {
 
     constructor() {
-        connectMongoDB();        
+        connectMongoDB();
     }
 
     //Verifica se è del tipo corretto aspettato
@@ -79,8 +79,6 @@ class BaseApi {
             this.transformItemToType(item, transformFn)
         );
     }
-    
-
 }
 
 export default BaseApi;

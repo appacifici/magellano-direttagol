@@ -13,7 +13,8 @@ const MatchesBoard = () => {
     
     let tabStatusMatch      = useTypedSelector( state => state.tabMatch ); //riceve lo stato dallo store    
     let matches             = useTypedSelector( state => state.matches ); //riceve lo stato dallo store
-    
+    console.log(matches);
+
     return( 
         <>                    
             <Container fluid="md" className={`${stlMatchBoard.matchBoard} rounded mt-4`}>

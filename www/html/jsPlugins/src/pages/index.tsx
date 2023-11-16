@@ -4,7 +4,12 @@ import {
     TypedUseSelectorHook, 
     useSelector, 
     useDispatch }               from 'react-redux';
-    
+
+import mongoose, { Model } 				from 'mongoose';
+import * as MatchMongo 			from '../dbService/models/Match';
+import * as TeamMongo           from "../dbService/models/Team";
+import FrontendCreateResponse 	from '../models/FrontendCreateResponse';
+
 import Header                   from '../container/Header';
 import Footer                   from '../container/Footer';
 import Main                     from '../container/Main';
@@ -13,6 +18,9 @@ import { setMatches,
          updateMatches } 	    from '../match/slice/MatchSlice';
 import { wrapperMatch }         from '../match/store/MatchStore';
 import { MatchesInterface }     from '../match/models/matchInterface';
+
+import Competition,{ CompetitionSchema } from '../dbService/models/Competition';
+import { Team, TeamSchema } from '../dbService/models/Team';
 
  
 const matches:MatchesInterface = {
@@ -228,13 +236,38 @@ const matchesUpdate:MatchesInterface = {
 	}
 };
 
-export const getServerSideProps = wrapperMatch.getServerSideProps(
-    (store) => async (context) => {      
-    store.dispatch(setMatches(matches));        
-      return {
-        props: {},
-      };
+const connectMongoDB = async () => {
+	console.log('Mongoose connected to MongoDB333');
+    try {
+        await mongoose.connect('mongodb://mongodb:27017/livescore', {
+            
+        });
+        console.log('Mongoose connected to MongoDB');
+    } catch (err) {
+        console.error('Error connecting to MongoDB');        
+        process.exit(1);
     }
+};
+
+export const getServerSideProps = wrapperMatch.getServerSideProps(
+    (store) => async (context) => {     	
+
+		const frontendCreateResponse = new FrontendCreateResponse();
+
+		await connectMongoDB();
+	
+		const matches = await MatchMongo.Match.find().populate('competitionId').populate('teamHome').populate('teamAway').exec();
+		for (let match of matches) {   
+            // Processa ogni 'match' come necessario
+            frontendCreateResponse.addLiveMatch(match, match._id);
+        };
+		console.log(frontendCreateResponse.objResponse);
+
+		store.dispatch(setMatches(frontendCreateResponse.objResponse));        
+		return {
+			props: {},
+		};
+	}
 );
 
 

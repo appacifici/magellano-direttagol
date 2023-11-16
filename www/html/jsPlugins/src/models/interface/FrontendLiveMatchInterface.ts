@@ -1,6 +1,6 @@
 
-export type MatchInterface = {
-    match_id?: string;
+export type FrontendLiveMatchInterface = {
+    match_id?: number;
     home_team?: string;
     away_team?: string;
     home_team_img?: string;
@@ -11,7 +11,7 @@ export type MatchInterface = {
     first_half_away_score?: string;
     first_half_home_score?: string;
     last_goal?: "home" | "away";
-    status?: "live" | "ended" | "next";
+    status?: string;
     current_time?: string;
   }
   
@@ -20,7 +20,7 @@ export type CompetitionInterface = {
     nation: string;
     id: number;
     matches: {
-        [matchId: string]: MatchInterface;
+        [matchId: string]: FrontendLiveMatchInterface;
     };
 }
 

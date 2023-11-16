@@ -1,4 +1,5 @@
-import { FrontendLiveMatchInterface, MatchesInterface }   from "./interface/FrontendLiveMatchInterface";
+// import { FrontendLiveMatchInterface, MatchesInterface }   from "./interface/FrontendLiveMatchInterface";
+import { MatchInterface, MatchesInterface } from "../match/models/matchInterface";
 
 class FrontendCreateResponse {
     private socketResponse:MatchesInterface;
@@ -8,7 +9,9 @@ class FrontendCreateResponse {
     }
 
     public addLiveMatch(match:any, matchId:number) {
-        const liveMatch: FrontendLiveMatchInterface = {};
+        const liveMatch: MatchInterface = {};
+
+        console.log(match);
 
         const fullScore     = match.score?.split('-');
         const halfTimeScore = match.halfTimeScore?.split('-');       
@@ -31,12 +34,14 @@ class FrontendCreateResponse {
         if( halfTimeScore != undefined && halfTimeScore[1] != null ) {
             liveMatch.first_half_home_score = halfTimeScore[1]?.trim();
         }
-        if( match.away_team != undefined && match.away_team != null ) {
-            liveMatch.away_team = match.away_team;
+        if( match.teamHome != undefined && match.teamHome != null ) {
+            liveMatch.away_team = match.teamHome.name;
         }
-        if( match.home_team != undefined && match.home_team != null ) {
-            liveMatch.home_team = match.home_team;
+        if( match.teamAway != undefined && match.teamAway != null ) {
+            liveMatch.home_team = match.teamAway.name;
         }
+
+        //liveMatch.time = match.dateMatch;
 
         const matchNumber = matchId;
         if (!this.socketResponse[match.competitionId._id]) {
@@ -44,7 +49,7 @@ class FrontendCreateResponse {
                 competition: {
                     name:   match.competitionId.name,
                     nation: match.competitionId.name,
-                    id:     match.competitionId._id,               
+                    id:     match.competitionId.externalId,
                     matches: {}
                 }             
             }

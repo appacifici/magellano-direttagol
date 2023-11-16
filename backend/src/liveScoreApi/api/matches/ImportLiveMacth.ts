@@ -23,7 +23,7 @@ class ImportLiveMacth extends BaseApi {
     private async importAll() :Promise<void> {
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('live');
         feed.then( (feed) => {
-            if (this.isValidDataType(feed)) {                
+            if (this.isValidDataType(feed)) {
                 this.fetchData(feed);                                 
             }                 
         })        
@@ -37,6 +37,7 @@ class ImportLiveMacth extends BaseApi {
             const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
             await this.eachFixture(apiResponse).then((result) => {
                 console.log(JSON.stringify(this.frontendCreateResponse.objResponse));
+                //Da inviare al socket server che lo invia ai client
             })
         } catch (error) {
             console.error('Errore durante la richiesta:', error);
