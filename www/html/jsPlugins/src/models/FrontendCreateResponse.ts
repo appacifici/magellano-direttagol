@@ -31,17 +31,17 @@ class FrontendCreateResponse {
         return wStatus;
     }
 
-    public addLiveMatch(match:any, matchId:number) {
+    public addLiveMatch(match:any, matchId:string) {
         const liveMatch: MatchInterface = {};
-
-        console.log(match);
-
         const fullScore     = match.score?.split('-');
         const halfTimeScore = match.halfTimeScore?.split('-');       
 
+        liveMatch.keyMatch = matchId; 
+        
         if( typeof match.status != undefined ) {
             liveMatch.status = this.wrapStatusName(match.status); 
-        }      
+        }                      
+        
         if( typeof match.timeMatch != undefined ) {
             liveMatch.current_time = match.timeMatch;
         }        
@@ -63,8 +63,8 @@ class FrontendCreateResponse {
         if( match.teamAway != undefined && match.teamAway != null ) {
             liveMatch.home_team = match.teamAway.name;
         }
-
-        //liveMatch.time = match.dateMatch;
+        
+        liveMatch.follow = false;
 
         const matchNumber = matchId;
         if (!this.socketResponse[match.competitionId._id]) {

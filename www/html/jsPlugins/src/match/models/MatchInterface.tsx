@@ -13,6 +13,8 @@ export type MatchInterface = {
     last_goal?: "home" | "away";
     status?: "next" | "interval" | "added_time" | "ended" | "live";
     current_time?: string;
+    follow?: boolean;
+    keyMatch?: string;
   }
   
 export type CompetitionInterface = {
@@ -25,7 +27,8 @@ export type CompetitionInterface = {
 }
 
 export interface MatchesInterface {
-    [competitionId: string]: {           
+    [competitionId: string]: {
+      matches(matches: any): unknown;           
       competition: CompetitionInterface;
     };
 }

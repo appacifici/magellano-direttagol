@@ -46,13 +46,18 @@ const MatchBoard = ({match}:{match:MatchInterface}) => {
         };
     }, [minuteSymbol]);
 
+    const manageClick: React.MouseEventHandler<HTMLElement> = (event):void => {
+        event.preventDefault();		
+        // dispatch( clickTabMatch(event.currentTarget.id) ); //Fa dispatch dell'azione
+        console.log(event.currentTarget.id);
+    }
     
     return( 
         <>            
             <Row className={stlMatchBoard.match}>                
                 <Col xs={1} md={1}>
                     <span className='pt-2'>
-                        <i className={`bi bi-star ${stlMatchBoard.biStar}`}></i>
+                        <i className={`bi bi-star ${stlMatchBoard.biStar}`} id={match.keyMatch} onClick={manageClick}></i>
                     </span>
                 </Col>                
                 <Col className={"pt-2 text-center "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')} xs={2} md={1}>{getStatus(match.status, match.time, match.current_time, minuteSymbol)}</Col>                

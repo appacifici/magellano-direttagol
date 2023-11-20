@@ -47,6 +47,9 @@ function Menu() {
 								<Col className="mb-lg-0 pb-lg-0 border-lg-0 w-25">
 									<Badge id="next" onClick={manageClick} role="button" bg={tabStatusMatch == 'next' && primary} className="float-end ms-2 mt-1 w-100">Prossime</Badge>
 								</Col>
+								<Col className="mb-lg-0 pb-lg-0 border-lg-0 w-25">
+									<Badge id="follow" onClick={manageClick} role="button" bg={tabStatusMatch == 'follow' && primary} className="float-end ms-2 mt-1 w-100">Seguite</Badge>
+								</Col>
 							</Row>
 						</Nav>
 					</Container>
