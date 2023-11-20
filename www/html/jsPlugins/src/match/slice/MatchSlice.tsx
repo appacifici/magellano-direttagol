@@ -1,7 +1,7 @@
 //{nameFile}Slice.tsx
 import { createSlice, PayloadAction }       from "@reduxjs/toolkit";
 import { HYDRATE }                          from "next-redux-wrapper";
-import { MatchesInterface }                 from "../models/matchInterface";
+import { MatchesInterface }                 from "../models/MatchInterface";
 
 export const matchSlice = createSlice({
     name: 'matches',

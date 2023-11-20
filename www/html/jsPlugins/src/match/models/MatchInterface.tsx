@@ -11,7 +11,7 @@ export type MatchInterface = {
     first_half_away_score?: string;
     first_half_home_score?: string;
     last_goal?: "home" | "away";
-    status?: "live" | "ended" | "next";
+    status?: "next" | "interval" | "added_time" | "ended" | "live";
     current_time?: string;
   }
   

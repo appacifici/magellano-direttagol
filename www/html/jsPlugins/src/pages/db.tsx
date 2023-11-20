@@ -12,7 +12,7 @@ import MatchesBoard             from '../match/components/MatchesBoard';
 import { setMatches,
          updateMatches } 	    from '../match/slice/MatchSlice';
 import { wrapperMatch }         from '../match/store/MatchStore';
-import { MatchesInterface }     from '../match/models/matchInterface';
+import { MatchesInterface }     from '../match/models/MatchInterface';
 
 import 	mongoose, { Document, Schema } from 'mongoose';
  

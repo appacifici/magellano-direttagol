@@ -6,7 +6,7 @@ import Container        from 'react-bootstrap/Container';
 
 import Competition      from './Competition';
 import stlMatchBoard    from '../../../scss/matchBoard.module.scss';
-import { MatchesInterface } from '../models/matchInterface';
+import { MatchesInterface } from '../models/MatchInterface';
 
 const MatchesBoard = () => {        
     const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
@@ -18,8 +18,9 @@ const MatchesBoard = () => {
     return( 
         <>                    
             <Container fluid="md" className={`${stlMatchBoard.matchBoard} rounded mt-4`}>
-                {Object.keys(matches).map( (key:any) =>
+                {Object.keys(matches).map( (key:any) => <>
                     <Competition matches={...matches[key]} tabStatusMatch={tabStatusMatch}/>                             
+                    </>
                 )}
             </Container>
         </> 

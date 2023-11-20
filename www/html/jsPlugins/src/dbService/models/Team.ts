@@ -34,7 +34,7 @@ const TeamSchema   = new Schema({
 
 //Creazione indice e chiave univoca
 TeamSchema.index({ externalId: 1 }, { unique: true });
-const Team:Model<ITeam> = mongoose.model<ITeam>('Team',TeamSchema);
+const Team:Model<ITeam> = mongoose.models.Team || mongoose.model<ITeam>('Team',TeamSchema);
 
 export { Team, TeamSchema };
 export type { TeamType, TeamArrayWithIdType, TeamWithIdType, ITeam };

@@ -1,11 +1,34 @@
 // import { FrontendLiveMatchInterface, MatchesInterface }   from "./interface/FrontendLiveMatchInterface";
-import { MatchInterface, MatchesInterface } from "../match/models/matchInterface";
+import { MatchInterface, MatchesInterface } from "../match/models/MatchInterface";
 
 class FrontendCreateResponse {
     private socketResponse:MatchesInterface;
 
     constructor() {
         this.socketResponse = {};
+    }
+
+    public wrapStatusName( status:string ):MatchInterface['status'] {
+        let wStatus: MatchInterface['status']; // dichiarazione esplicita del tipo
+        switch (status) {
+            case 'IN PLAY':
+                wStatus = "live";
+                break;
+            case 'FINISHED':
+                wStatus = "ended";
+                break;
+            case 'HALF TIME BREAK':
+                wStatus = "interval";
+                break;
+            case "ADDED TIME":
+                wStatus = "added_time";
+                break;
+            default:
+                wStatus = "next";
+                break;
+        }
+
+        return wStatus;
     }
 
     public addLiveMatch(match:any, matchId:number) {
@@ -17,7 +40,7 @@ class FrontendCreateResponse {
         const halfTimeScore = match.halfTimeScore?.split('-');       
 
         if( typeof match.status != undefined ) {
-            liveMatch.status = match.status;
+            liveMatch.status = this.wrapStatusName(match.status); 
         }      
         if( typeof match.timeMatch != undefined ) {
             liveMatch.current_time = match.timeMatch;

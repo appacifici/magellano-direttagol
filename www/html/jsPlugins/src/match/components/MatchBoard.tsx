@@ -4,7 +4,7 @@ import Col				        from 'react-bootstrap/Col';
 import Image				    from 'react-bootstrap/Image';
 import { useState, useEffect }  from 'react';
 import stlMatchBoard            from '../../../scss/matchBoard.module.scss';
-import { MatchInterface }       from '../models/matchInterface';
+import { MatchInterface }       from '../models/MatchInterface';
 
 
 const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:string ):string => {
@@ -19,6 +19,12 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
         break;
         case 'ended':
             matchStatus = 'Finale';
+        break;
+        case 'interval':
+            matchStatus = "interval";
+        break;
+        case "added_time":
+            matchStatus = "recupero";
         break;
     }
     return matchStatus;

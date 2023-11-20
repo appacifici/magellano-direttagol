@@ -17,9 +17,9 @@ import MatchesBoard             from '../match/components/MatchesBoard';
 import { setMatches,
          updateMatches } 	    from '../match/slice/MatchSlice';
 import { wrapperMatch }         from '../match/store/MatchStore';
-import { MatchesInterface }     from '../match/models/matchInterface';
+import { MatchesInterface }     from '../match/models/MatchInterface';
 
-import Competition,{ CompetitionSchema } from '../dbService/models/Competition';
+import Competition,{ CompetitionSchema, ICompetition } from '../dbService/models/Competition';
 import { Team, TeamSchema } from '../dbService/models/Team';
 
  
@@ -239,6 +239,8 @@ const matchesUpdate:MatchesInterface = {
 const connectMongoDB = async () => {
 	console.log('Mongoose connected to MongoDB333');
     try {
+		const Competition:Model<ICompetition> = mongoose.models.Competition || mongoose.model<ICompetition>('Competition', CompetitionSchema);
+		const Team:Model<TeamMongo.ITeam> =mongoose.models.Team || mongoose.model<TeamMongo.ITeam>('Team',TeamSchema);
         await mongoose.connect('mongodb://mongodb:27017/livescore', {
             
         });
@@ -253,15 +255,21 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
     (store) => async (context) => {     	
 
 		const frontendCreateResponse = new FrontendCreateResponse();
-
 		await connectMongoDB();
 	
-		const matches = await MatchMongo.Match.find().populate('competitionId').populate('teamHome').populate('teamAway').exec();
+		const startOfDay 	= new Date("2023-11-20T00:00:00Z");
+		const endOfDay 		= new Date("2023-11-20T23:59:59Z");
+		const matches 		= await MatchMongo.Match.find({
+			dateMatch: {
+				$gte: startOfDay,
+				$lte: endOfDay
+			}
+		}).populate('competitionId').populate('teamHome').populate('teamAway').exec();
 		for (let match of matches) {   
             // Processa ogni 'match' come necessario
             frontendCreateResponse.addLiveMatch(match, match._id);
         };
-		console.log(frontendCreateResponse.objResponse);
+		
 
 		store.dispatch(setMatches(frontendCreateResponse.objResponse));        
 		return {
