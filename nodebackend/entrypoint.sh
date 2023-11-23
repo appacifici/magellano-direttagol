@@ -5,6 +5,8 @@ init() {
 	echo "avvio"
 	npm cache clean -f			
 	#npm install
+	cd /home/node/app 
+	npx ts-node src/liveScoreApi/api/matches/ImportLiveMacth.ts
 }
 
 
@@ -12,7 +14,7 @@ case "$1" in
 	
 	init)
 		init
-		;;	
+		;;		
 	bash)
 		/bin/bash
 		;;

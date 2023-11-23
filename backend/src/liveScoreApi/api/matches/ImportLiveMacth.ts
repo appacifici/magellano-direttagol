@@ -11,16 +11,26 @@ import * as MatchApiResponse                from "../../interface/API/MatchInter
 import FrontendCreateResponse               from "../../../models/FrontendCreateResponse";
 import BaseApi                              from "../BaseApi";
 
+import SocketToClient                       from "../../../services/SocketToClient";
+
 class ImportLiveMacth extends BaseApi {    
     private frontendCreateResponse:FrontendCreateResponse; 
+    private socketToClient:SocketToClient;
 
     constructor() {
         super();          
         this.frontendCreateResponse = new FrontendCreateResponse();
-        this.importAll();                         
+        this.socketToClient = new SocketToClient(3001);
+        this.socketToClient.connectClientSocket();
+        
+        const that = this;
+        setInterval(() => {
+            that.importAll();
+        }, 60000);        
     }
 
     private async importAll() :Promise<void> {
+        this.frontendCreateResponse = new FrontendCreateResponse();
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('live');
         feed.then( (feed) => {
             if (this.isValidDataType(feed)) {
@@ -35,9 +45,8 @@ class ImportLiveMacth extends BaseApi {
             const endPoint = `${feed.endPoint}?date=${tomorrow.format('YYYY-MM-DD')}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;        
             const response = await axios.get(endPoint);
             const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
-            await this.eachFixture(apiResponse).then((result) => {
-                console.log(JSON.stringify(this.frontendCreateResponse.objResponse));
-                //Da inviare al socket server che lo invia ai client
+            await this.eachFixture(apiResponse).then((result) => {                
+                this.socketToClient.sendDataLive(JSON.stringify(this.frontendCreateResponse.objResponse));
             })
         } catch (error) {
             console.error('Errore durante la richiesta:', error);

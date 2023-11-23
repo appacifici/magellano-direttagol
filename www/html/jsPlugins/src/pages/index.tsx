@@ -5,6 +5,8 @@ import {
     useSelector, 
     useDispatch }               from 'react-redux';
 
+import { Socket, io as socketIOClient } from 'socket.io-client';
+
 import mongoose, { Model } 				from 'mongoose';
 import * as MatchMongo 			from '../dbService/models/Match';
 import * as TeamMongo           from "../dbService/models/Team";
@@ -21,6 +23,7 @@ import { MatchesInterface }     from '../match/models/MatchInterface';
 
 import Competition,{ CompetitionSchema, ICompetition } from '../dbService/models/Competition';
 import { Team, TeamSchema } from '../dbService/models/Team';
+
 
 // const matchesUpdate:MatchesInterface = {
 // 	"4": {
@@ -128,9 +131,17 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 function MatchesBoardPage(data:any) {    
     const dispatch = useDispatch();
 
-    setTimeout(() => {
-        //dispatch(updateMatches(matchesUpdate));    
-    },1000);
+
+    const host = 'ws://79.23.219.60:3001';
+    const socket: Socket = socketIOClient(host);
+    socket.on('connect', () => {
+        console.info('Client connesso');
+    });
+    socket.on('dataLive', (data) => {
+        console.info('Client Riceve data' + data);
+       // dispatch(updateMatches(data));
+    });
+    
 
     return(  
         <>                                                        
