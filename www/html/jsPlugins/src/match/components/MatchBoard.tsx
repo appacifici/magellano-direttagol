@@ -3,9 +3,14 @@ import Row				        from 'react-bootstrap/Row';
 import Col				        from 'react-bootstrap/Col';
 import Image				    from 'react-bootstrap/Image';
 import { useState, useEffect }  from 'react';
+import { 
+	useDispatch, 
+	TypedUseSelectorHook, 
+	useSelector } 			    from 'react-redux';
 import stlMatchBoard            from '../../../scss/matchBoard.module.scss';
 import { MatchInterface }       from '../models/MatchInterface';
-
+import { addFollowMatch, 
+    removeFollowMatch, FollowMatchState } 	    from '../../match/slice/MatchSlice';
 
 const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:string ):string => {
     let matchStatus:string = '';
@@ -30,7 +35,9 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
     return matchStatus;
 }
 
-const MatchBoard = ({match}:{match:MatchInterface}) => {
+const MatchBoard = ({match,competitionId}:{match:MatchInterface,competitionId:string}) => {
+    const dispatch = useDispatch();
+    
     const [minuteSymbol, setMinuteSymbol] = useState('');
 
     useEffect(() => {
@@ -47,9 +54,18 @@ const MatchBoard = ({match}:{match:MatchInterface}) => {
     }, [minuteSymbol]);
 
     const manageClick: React.MouseEventHandler<HTMLElement> = (event):void => {
-        event.preventDefault();		
-        // dispatch( clickTabMatch(event.currentTarget.id) ); //Fa dispatch dell'azione
-        console.log(event.currentTarget.id);
+        event.preventDefault();
+        const followState:FollowMatchState = {competitionId:competitionId, matchId:event.currentTarget.id};
+
+        if( event.currentTarget.getAttribute('follow') === 'true' ) {
+            event.currentTarget.setAttribute('follow', 'false');
+            event.currentTarget.className = `bi bi-star ${stlMatchBoard.biStar}`;            
+            dispatch( removeFollowMatch(followState) );
+        } else {
+            event.currentTarget.setAttribute('follow', 'true');
+            event.currentTarget.className = `bi bi-star-fill ${stlMatchBoard.biStar}`;
+            dispatch( addFollowMatch(followState) );
+        }                        
     }
     
     return( 

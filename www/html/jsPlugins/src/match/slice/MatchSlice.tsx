@@ -3,6 +3,11 @@ import { createSlice, PayloadAction }       from "@reduxjs/toolkit";
 import { HYDRATE }                          from "next-redux-wrapper";
 import { MatchesInterface }                 from "../models/MatchInterface";
 
+interface FollowMatchState {
+    competitionId: string,
+    matchId: string
+}
+
 export const matchSlice = createSlice({
     name: 'matches',
     initialState: {},
@@ -35,7 +40,27 @@ export const matchSlice = createSlice({
 
         getMatches(state:MatchesInterface, action:PayloadAction<MatchesInterface>):MatchesInterface {               
             return state;
-        }        
+        },       
+
+        addFollowMatch(state:MatchesInterface, action:PayloadAction<FollowMatchState>):MatchesInterface {      
+            const { competitionId, matchId } = action.payload;
+            
+            const match = state[competitionId]?.competition?.matches[matchId];
+            if( match != null ){
+                state[competitionId].competition.matches[matchId].follow = true;
+            }  
+            
+            return state;
+        },
+
+        removeFollowMatch(state:MatchesInterface, action:PayloadAction<FollowMatchState>):MatchesInterface {      
+            const { competitionId, matchId } = action.payload;
+            const match = state[competitionId]?.competition?.matches[matchId];
+            if( match != null ){
+                state[competitionId].competition.matches[matchId].follow = false;
+            }  
+            return state;
+        }
     },
     
     //Reducer invocato dal wrapper next.js
@@ -48,5 +73,6 @@ export const matchSlice = createSlice({
 });
 
 const {actions, reducer} = matchSlice;
-export const {setMatches,getMatches,updateMatches} = actions;
+export const {setMatches,getMatches,updateMatches,addFollowMatch,removeFollowMatch} = actions;
+export type {FollowMatchState};
 export default reducer;

@@ -11,9 +11,8 @@ import { MatchesInterface } from '../models/MatchInterface';
 const MatchesBoard = () => {        
     const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
     
-    let tabStatusMatch      = useTypedSelector( state => state.tabMatch ); //riceve lo stato dallo store    
+    let tabStatusMatch      = useTypedSelector( state => state.tabMatch.tab ); //riceve lo stato dallo store    
     let matches             = useTypedSelector( state => state.matches ); //riceve lo stato dallo store
-    console.log(matches);
 
     return( 
         <>                    

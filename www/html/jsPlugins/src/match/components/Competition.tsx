@@ -6,9 +6,12 @@ import { MatchesInterface } from "../models/MatchInterface";
 
 const Competition = ({matches, tabStatusMatch}:{matches:MatchesInterface, tabStatusMatch:string}) => {    
     
-    const getMatches = ( matches:any ) => {          
+
+    //Aggiungere nello store dei tab un array con i match selezionati, quando viene cliccato il tab follow nei controlli sotto verificare se il matchId e dentro l'arrau visualizzare il match
+
+    const getMatches = ( matches:any, competitionId:string ) => {          
         return Object.keys(matches).map( (key: any) => <>                
-            { (matches[key].status == tabStatusMatch || tabStatusMatch == 'all' || ( matches[key].follow == true && tabStatusMatch == 'follow' ) ) && <MatchBoard key={matches.match_id} match={matches[key]}/>}
+            { (matches[key].status == tabStatusMatch || tabStatusMatch == 'all' || ( matches[key].follow == true && tabStatusMatch == 'follow' ) ) && <MatchBoard key={matches.match_id} match={matches[key]} competitionId={competitionId}/>}
         </> );
     }
 
@@ -40,7 +43,7 @@ const Competition = ({matches, tabStatusMatch}:{matches:MatchesInterface, tabSta
 
     return( <>                        
         {getCompetition(matches)}
-        {getMatches(matches.competition.matches)}        
+        {getMatches(matches.competition.matches, matches.competition.id)}        
     </>); 
 };
 

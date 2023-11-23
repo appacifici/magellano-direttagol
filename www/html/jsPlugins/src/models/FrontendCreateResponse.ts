@@ -58,21 +58,23 @@ class FrontendCreateResponse {
             liveMatch.first_half_home_score = halfTimeScore[1]?.trim();
         }
         if( match.teamHome != undefined && match.teamHome != null ) {
-            liveMatch.away_team = match.teamHome.name;
+            liveMatch.away_team = match.teamHome.name;            
         }
         if( match.teamAway != undefined && match.teamAway != null ) {
-            liveMatch.home_team = match.teamAway.name;
+            liveMatch.home_team = match.teamAway.name;            
         }
-        
+
+        liveMatch.away_team_img = match.competitionId.name;
+        liveMatch.home_team_img = match.competitionId.name;
         liveMatch.follow = false;
 
         const matchNumber = matchId;
-        if (!this.socketResponse[match.competitionId._id]) {
-            this.socketResponse[match.competitionId._id] = {
+        if (!this.socketResponse[match.competitionId._id.toString()]) {
+            this.socketResponse[match.competitionId._id.toString()] = {
                 competition: {
                     name:   match.competitionId.name,
                     nation: match.competitionId.name,
-                    id:     match.competitionId.externalId,
+                    id:     match.competitionId._id.toString(),
                     matches: {}
                 }             
             }
