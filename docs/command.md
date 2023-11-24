@@ -12,3 +12,4 @@ npx ts-node src/liveScoreApi/api/Team.ts -a importAllTeam
 npx ts-node src/liveScoreApi/api/matches/ImportFixtureMatch.ts
 npx ts-node src/liveScoreApi/api/matches/ImportLiveMacth.ts
     
+

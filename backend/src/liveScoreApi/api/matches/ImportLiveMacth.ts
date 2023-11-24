@@ -26,7 +26,8 @@ class ImportLiveMacth extends BaseApi {
         const that = this;
         setInterval(() => {
             that.importAll();
-        }, 60000);        
+        }, 20000);        
+        
     }
 
     private async importAll() :Promise<void> {
@@ -45,7 +46,8 @@ class ImportLiveMacth extends BaseApi {
             const endPoint = `${feed.endPoint}?date=${tomorrow.format('YYYY-MM-DD')}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;        
             const response = await axios.get(endPoint);
             const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
-            await this.eachFixture(apiResponse).then((result) => {                
+            await this.eachFixture(apiResponse).then((result) => {         
+                //console.log(JSON.stringify(this.frontendCreateResponse.objResponse));       
                 this.socketToClient.sendDataLive(JSON.stringify(this.frontendCreateResponse.objResponse));
             })
         } catch (error) {
@@ -100,9 +102,12 @@ class ImportLiveMacth extends BaseApi {
         if (typeof resultMatch === 'object') {                         
             const differences = findDiff(dataMatch, resultMatch);
 
-            // if( match.id == 474241 ) {
+            
+
+            if( JSON.stringify(differences) !== '{}' ) {
+                console.log(differences);
                 this.frontendCreateResponse.addLiveMatch(differences, resultMatch._id);
-            // }
+            }
 
             MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
             .then(result => {
@@ -111,7 +116,7 @@ class ImportLiveMacth extends BaseApi {
             .catch(err => {
                 console.error(err);
             });
-            console.log('update: '+match.id);
+            //console.log('update: '+match.id);
         } else {
             console.log('insert');
             const newMatch = new MatchMongo.Match(dataMatch);
@@ -142,12 +147,23 @@ class ImportLiveMacth extends BaseApi {
 function findDiff(obj1: Record<string, any>, obj2: Record<string, any>): Record<string, any> {
     const diff: Record<string, any> = {};
     let key: string;
+    let competitionId: string = '';  // Initialize competitionId with a default value
   
     for (key in obj1) {      
-      if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
-        diff[key] = obj1[key] ;
-      }
+        if (key == 'competitionId') {
+            competitionId = obj1[key];
+        }  
+        if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
+            if (key != 'teamHome' && key != 'teamAway' && key != 'dateMatch' && key != 'competitionId' && key != 'lastChanged') {
+                diff[key] = obj1[key];            
+            }    
+        }
     }  
+    
+    if (JSON.stringify(diff) !== '{}' && competitionId != '') {
+        diff['competitionId'] = competitionId;
+    }
+
     return diff;
 }
 

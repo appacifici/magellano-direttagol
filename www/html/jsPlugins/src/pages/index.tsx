@@ -1,9 +1,5 @@
 import React, { useEffect }     from 'react';
-import { 
-    Provider,
-    TypedUseSelectorHook, 
-    useSelector, 
-    useDispatch }               from 'react-redux';
+import { useDispatch }          from 'react-redux';
 
 import { Socket, io as socketIOClient } from 'socket.io-client';
 
@@ -25,68 +21,10 @@ import Competition,{ CompetitionSchema, ICompetition } from '../dbService/models
 import { Team, TeamSchema } from '../dbService/models/Team';
 
 
-// const matchesUpdate:MatchesInterface = {
-// 	"4": {
-// 		"competition":
-// 		{
-// 			"name": "Serie A",
-// 			"nation": "italia",
-// 			"id": 4,
-// 			"matches":
-// 			{
-// 				"1":
-// 				{
-// 					"match_id": "1",					
-// 					"home_score": "5",
-// 					"away_score": "1"					
-// 				},
-//                 "2": {
-// 					"match_id": "2",
-// 					"home_team": "Fiorentina",
-// 					"away_team": "Sassuolo",
-// 					"home_team_img": "/images/flags/italia.png",
-// 					"away_team_img": "/images/flags/italia.png",
-// 					"time": "13:00",
-// 					"home_score": "2",
-// 					"away_score": "3",
-// 					"first_half_away_score": "1",
-// 					"first_half_home_score": "0",
-// 					"last_goal": "away",
-// 					"status": "ended",
-// 					"current_time": "81"
-// 				},
-// 			}
-// 		}
-// 	},
-//     "5": {
-// 		"competition":
-// 		{
-// 			"name": "Liga ",
-// 			"nation": "spain",
-// 			"id": 4,
-// 			"matches":
-// 			{
-// 				"6":
-// 				{
-// 					"match_id": "6",
-// 					"home_team": "Real",
-// 					"away_team": "Barcellona",					
-// 					"time": "13:00",
-// 					"home_score": "2",
-// 					"away_score": "2",
-// 					"first_half_away_score": "1",
-// 					"first_half_home_score": "0",
-// 					"last_goal": "home",
-// 					"status": "live",
-// 					"current_time": "65"
-// 				}
-// 			}
-// 		}
-// 	}
-// };
+const matchesUpdate:MatchesInterface = {"654bcb0850ad1ee8c57aa3da":{"competition":{"id":"654bcb0850ad1ee8c57aa3da","matches":{"6560e1416d929032388a4c61":{"current_time":"83"}}}},"654bcaf550ad1ee8c57aa2b9":{"competition":{"id":"654bcaf550ad1ee8c57aa2b9","matches":{"6560e1416d929032388a4c9d":{"current_time":"90"},"6560e1416d929032388a4c9b":{"current_time":"88"}}}},"654bcaf950ad1ee8c57aa2ed":{"competition":{"id":"654bcaf950ad1ee8c57aa2ed","matches":{"6560e84dd7a15903991f8d67":{"current_time":"57"},"6560e84dd7a15903991f8d65":{"current_time":"53"},"6560e84dd7a15903991f8d6c":{"current_time":"59"},"6560e84dd7a15903991f8d6e":{"current_time":"60"},"6560e84dd7a15903991f8d81":{"current_time":"58"},"6560e84dd7a15903991f8d83":{"current_time":"59"}}}},"654bcb0c50ad1ee8c57aa40c":{"competition":{"id":"654bcb0c50ad1ee8c57aa40c","matches":{"6560e87fd7a15903991f9ced":{"current_time":"60"}}}},"654bcb0350ad1ee8c57aa37f":{"competition":{"id":"654bcb0350ad1ee8c57aa37f","matches":{"6560ef5b519abfa26c025188":{"status":"ADDED TIME","current_time":"45+"},"6560ef5b519abfa26c025192":{"status":"ADDED TIME","current_time":"45+"},"6560ef5b519abfa26c0251ce":{"status":"HALF TIME BREAK","current_time":"HT","first_half_away_score":"1","first_half_home_score":"0"}}}},"654bd88be5a4549faacdaf62":{"competition":{"id":"654bd88be5a4549faacdaf62","matches":{"6560ef83519abfa26c02563b":{"status":"ADDED TIME","current_time":"45+"}}}},"654bd87be5a4549faacdaf35":{"competition":{"id":"654bd87be5a4549faacdaf35","matches":{"6560ef97519abfa26c025875":{"status":"HALF TIME BREAK","current_time":"HT","first_half_away_score":"3","first_half_home_score":"0"}}}},"654bcb0650ad1ee8c57aa3b2":{"competition":{"id":"654bcb0650ad1ee8c57aa3b2","matches":{"6560f663519abfa26c030cf2":{"current_time":"16"}}}},"654bcb0650ad1ee8c57aa3bb":{"competition":{"id":"654bcb0650ad1ee8c57aa3bb","matches":{"6560f663519abfa26c030cf6":{"current_time":"15"}}}},"654bcaf950ad1ee8c57aa2f6":{"competition":{"id":"654bcaf950ad1ee8c57aa2f6","matches":{"6560f663519abfa26c030d41":{"current_time":"18"}}}},"654bcafd50ad1ee8c57aa334":{"competition":{"id":"654bcafd50ad1ee8c57aa334","matches":{"6560fa10519abfa26c037634":{"status":"IN PLAY","current_time":"1","home_score":"0","away_score":"0"}}}}};
 
 const connectMongoDB = async () => {
-	console.log('Mongoose connected to MongoDB333');
+	console.log('Mongoose connected to MongoDB');
     try {
 		const Competition:Model<ICompetition> = mongoose.models.Competition || mongoose.model<ICompetition>('Competition', CompetitionSchema);
 		const Team:Model<TeamMongo.ITeam> =mongoose.models.Team || mongoose.model<TeamMongo.ITeam>('Team',TeamSchema);
@@ -106,8 +44,8 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 		const frontendCreateResponse = new FrontendCreateResponse();
 		await connectMongoDB();
 	
-		const startOfDay 	= new Date("2023-11-20T00:00:00Z");
-		const endOfDay 		= new Date("2023-11-20T23:59:59Z");
+		const startOfDay 	= new Date("2023-11-24T00:00:00Z");
+		const endOfDay 		= new Date("2023-11-24T23:59:59Z");
 		const matches 		= await MatchMongo.Match.find({
 			dateMatch: {
 				$gte: startOfDay,
@@ -119,7 +57,6 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
             frontendCreateResponse.addLiveMatch(match, match._id.toString());
         };
 		
-
 		store.dispatch(setMatches(frontendCreateResponse.objResponse));        
 		return {
 			props: {},
@@ -130,17 +67,30 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 
 function MatchesBoardPage(data:any) {    
     const dispatch = useDispatch();
-
+    let lastHidden = false;
 
     const host = 'ws://79.23.219.60:3001';
     const socket: Socket = socketIOClient(host);
     socket.on('connect', () => {
         console.info('Client connesso');
+        
     });
     socket.on('dataLive', (data) => {
-        console.info('Client Riceve data' + data);
-       // dispatch(updateMatches(data));
+        // console.info('Client Riceve data' + data);
+        dispatch(updateMatches(JSON.parse(data)));
+    });    
+
+    socket.on('ping', function() {
+//            console.log('ping socketLCS');            
+        //se è mobile lascio la gestione della visibilità della pagina per la disconnessione del socket
+        let isMobile  = 1;
+        // let nowHidden = isMobile == 1 ? document.hidden : false;
+        let nowHidden = false;
+        socket.emit('pongSocket', {'hidden': nowHidden, 'lastHidden' : lastHidden });            
+//                console.log('ping socketLCS:' +document.hidden);  
+        //lastHidden = window.document.hidden;
     });
+
     
 
     return(  

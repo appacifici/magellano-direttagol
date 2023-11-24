@@ -13,6 +13,13 @@ class FrontendCreateResponse {
         const fullScore     = match.score?.split('-');
         const halfTimeScore = match.halfTimeScore?.split('-');       
 
+
+        
+        if(matchId.toString() == '6560da37d788a721d6a2ba43') {
+            console.log(match);
+        }
+        
+
         if( typeof match.status != undefined ) {
             liveMatch.status = match.status;
         }      

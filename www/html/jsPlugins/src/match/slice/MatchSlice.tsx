@@ -17,24 +17,46 @@ export const matchSlice = createSlice({
             return state;
         },       
 
-        updateMatches(state:MatchesInterface, action:PayloadAction<MatchesInterface>):MatchesInterface {                               
-            Object.keys(action.payload).reduce((result:any, competitionId:any) => {    
-                Object.keys( action.payload[competitionId].competition.matches).reduce((result:any, matchId:any) => {    
-                    const { match_id, 
-                            last_goal, 
-                            home_score, 
-                            away_score, 
-                            current_time 
-                    } = action.payload[competitionId].competition.matches[matchId];                    
-                    
-                    const match = state[competitionId]?.competition?.matches[matchId];
-                    if( match != null ){
-                        state[competitionId].competition.matches[matchId].home_score = home_score;
-                        state[competitionId].competition.matches[matchId].away_score = away_score;
-                    }                        
-                },{});                    
-            }, {});
-                              
+        updateMatches(state: MatchesInterface, action: PayloadAction<MatchesInterface>): MatchesInterface {
+            console.info('eccomi1');
+            console.info(action.payload);
+        
+            Object.keys(action.payload).forEach(competitionId => {
+                console.log(competitionId);
+                const matches = action.payload[competitionId]?.competition;
+                if (matches != null) {
+                    console.info('eccomi2');
+                    Object.keys(action.payload[competitionId].competition.matches).forEach(matchId => {
+                        const {
+                            match_id,
+                            last_goal,
+                            home_score,
+                            away_score,
+                            current_time,
+                            status
+                        } = action.payload[competitionId].competition.matches[matchId];
+        
+                        const match = state[competitionId]?.competition?.matches[matchId];
+                        if (match != null) {
+                            console.info('eccomi3');
+                            console.info(status);
+                            if( home_score != undefined ) {
+                                state[competitionId].competition.matches[matchId].home_score    = home_score;
+                            }
+                            if( away_score != undefined ) {
+                                state[competitionId].competition.matches[matchId].away_score    = away_score;
+                            }
+                            if( current_time != undefined ) {
+                                state[competitionId].competition.matches[matchId].current_time  = current_time;
+                            }
+                            if( status != undefined ) {
+                                state[competitionId].competition.matches[matchId].status        = status;
+                            }
+                        }
+                    });
+                }
+            });
+        
             return state;
         },
 

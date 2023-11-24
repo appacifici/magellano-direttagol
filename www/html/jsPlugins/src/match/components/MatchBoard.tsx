@@ -70,7 +70,7 @@ const MatchBoard = ({match,competitionId}:{match:MatchInterface,competitionId:st
     
     return( 
         <>            
-            <Row className={stlMatchBoard.match}>                
+            <Row className={stlMatchBoard.match} key={match.match_id} data-id={match.match_id}>                
                 <Col xs={1} md={1}>
                     <span className='pt-2'>
                         <i className={`bi bi-star ${stlMatchBoard.biStar}`} id={match.keyMatch} onClick={manageClick}></i>
