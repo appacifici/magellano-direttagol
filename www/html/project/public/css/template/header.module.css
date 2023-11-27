@@ -1,0 +1,25 @@
+header .topBar {
+  height: 50px;
+  background-color: #292c31;
+  text-align: center;
+}
+header .topBar img {
+  padding-top: 5px;
+}
+header .searchBar {
+  background: transparent;
+  height: 20px;
+}
+header .navtab {
+  background-color: #292c31;
+  color: #fff;
+}
+header .navtab .row img {
+  width: 25px;
+}
+header .navtab .row span {
+  font-size: 12px;
+}
+header .navtab .navbar-toggler {
+  background-color: #fff;
+}/*# sourceMappingURL=header.module.css.map */

@@ -83,7 +83,9 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                         <i className={`bi bi-star ${stlMatchBoard.biStar}`} id={match.keyMatch} onClick={manageClick}></i>
                     </span>
                 </Col>                
-                <Col className={"pt-2 text-center "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')} xs={2} md={1}>{getStatus(match.status, match.time, match.current_time, minuteSymbol)}</Col>                
+                <Col className={"pt-2 text-center "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')} xs={2} md={1}>
+                    {getStatus(match.status, match.time, match.current_time, minuteSymbol)}
+                </Col>                
                 <Col xs={6} md={8} className='text-left'>
                     <Row>
                         <Col xs={2} md={1} className='p-0'>

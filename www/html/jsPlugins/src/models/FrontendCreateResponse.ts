@@ -36,7 +36,15 @@ class FrontendCreateResponse {
         const fullScore     = match.score?.split('-');
         const halfTimeScore = match.halfTimeScore?.split('-');       
 
-        liveMatch.keyMatch = matchId; 
+        liveMatch.keyMatch = matchId;  
+
+        if( typeof match.time != undefined ) {
+            const hours   = match.dateMatch.getHours().toString().padStart(2, '0');
+            const minutes = match.dateMatch.getMinutes().toString().padStart(2, '0');
+            const seconds = match.dateMatch.getSeconds().toString().padStart(2, '0');
+
+            liveMatch.time = `${hours}:${minutes}`;
+        }    
 
         if( typeof match.lastGoal != undefined ) {
             liveMatch.last_goal = match.lastGoal;

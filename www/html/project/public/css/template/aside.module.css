@@ -1,0 +1,32 @@
+aside .navbarToggler {
+  position: fixed;
+  top: 9px;
+  right: 9px;
+  font-size: 15px;
+  width: 48px;
+  background-color: #fff;
+}
+
+.asideOffcanvas {
+  color: #fff;
+  display: block !important;
+}
+.asideOffcanvas .logo {
+  margin: 0 25%;
+}
+.asideOffcanvas .navbar-nav img {
+  width: 50px;
+}
+.asideOffcanvas .row h2 {
+  font-size: 13px;
+  border-left: 4px solid #38a9ff;
+  padding: 8px 7px;
+  background-color: #292c31;
+}
+.asideOffcanvas .row img {
+  width: 22px;
+  margin-top: 1px;
+}
+.asideOffcanvas .row span {
+  font-size: 12px;
+}/*# sourceMappingURL=aside.module.css.map */

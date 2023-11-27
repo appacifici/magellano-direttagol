@@ -46,7 +46,14 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 
 		const frontendCreateResponse = new FrontendCreateResponse();
 		await connectMongoDB();
-	
+         
+        let nationsCompetitions:any = {};
+        await buildResponse().then(response => {
+            nationsCompetitions = JSON.stringify(response, null, 2);
+        }).catch(error => {
+            console.error('Error:', error);
+        });  
+
 		const startOfDay 	= new Date("2023-11-27T00:00:00Z");
 		const endOfDay 		= new Date("2023-11-27T23:59:59Z");
 		const matches 		= await MatchMongo.Match.find({
@@ -68,13 +75,38 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
             frontendCreateResponse.addLiveMatch(match, match._id.toString());
         };
 		
-		store.dispatch(setMatches(frontendCreateResponse.objResponse));        
+		store.dispatch(setMatches(frontendCreateResponse.objResponse));   
+        
 		return {
-			props: {},
+			props: {
+                'nationsCompetitions': nationsCompetitions
+            },
 		};
 	}
 );
 
+const buildResponse = async () => {
+    return CountryMongo.Country.find().then(countries => {
+        let response:any = {};
+
+        return Promise.all(countries.map(country => {
+            return Competition.find({ countryId: country._id }).then(competitions => {
+                let competitionsObj:any = {};
+                competitions.forEach(comp => {
+                    competitionsObj[comp._id] = { name: comp.name };
+                });
+
+                response[country._id] = {
+                    country: {
+                        id: country._id,
+                        name: country.name,
+                        competitions: competitionsObj
+                    }
+                };
+            });
+        })).then(() => response);
+    });
+}
 
 function MatchesBoardPage(data:any) {    
     const dispatch = useDispatch();
@@ -91,9 +123,7 @@ function MatchesBoardPage(data:any) {
         dispatch(updateMatches(JSON.parse(data)));
     });    
 
-    socket.on('ping', function() {
-//            console.log('ping socketLCS');            
-        //se è mobile lascio la gestione della visibilità della pagina per la disconnessione del socket
+    socket.on('ping', function() {    
         let isMobile  = 1;
         // let nowHidden = isMobile == 1 ? document.hidden : false;
         let nowHidden = false;
@@ -107,7 +137,7 @@ function MatchesBoardPage(data:any) {
     return(  
         <>                                                        
             <Header/>            
-                <Main MatchBoard={<MatchesBoard/>}/>
+                <Main nationsCompetitions={data.nationsCompetitions} MatchBoard={<MatchesBoard/>}/>
             <Footer/>            
         </>
     );

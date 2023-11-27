@@ -170,12 +170,18 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
         diff['competitionId'] = competitionId;
     }
 
-    console.log(mongoMatch._id+' ==> '+mongoMatch.score +' != '+ apiDataMatch.score);
+    if( mongoMatch._id == '6564d39873e13f2e4a4e9d7c') {
+        console.log(mongoMatch._id+' ==> '+mongoMatch.score +' != '+ apiDataMatch.score);
+    }
+    
     if( mongoMatch.score != apiDataMatch.score ) {
         const [homeTeamScoreMongo, awayTeamScoreMongo]  = mongoMatch.score.split('-');
         const [homeTeamScoreApi, awayTeamScoreApi]      = apiDataMatch.score.split('-');
 
-        console.log(`${mongoMatch._id} ===> ${homeTeamScoreMongo} !== ${homeTeamScoreApi}`);
+        if( mongoMatch._id == '6564d39873e13f2e4a4e9d7c') {
+            console.log(`${mongoMatch._id} ===> ${homeTeamScoreMongo} !== ${homeTeamScoreApi}`);
+            console.log(`${mongoMatch._id} ===> ${awayTeamScoreMongo} !== ${awayTeamScoreApi}`);
+        }
         if (homeTeamScoreMongo !== homeTeamScoreApi) {
             diff['lastGoal'] = 'home';
         }
@@ -183,8 +189,11 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
         if (awayTeamScoreMongo !== awayTeamScoreApi) {
             diff['lastGoal'] = 'away';
         }
-    }
 
+        if( mongoMatch._id == '6564d39873e13f2e4a4e9d7c') {
+            console.log(diff['lastGoal']);
+        }
+    }
     return diff;
 }
 

@@ -7,8 +7,9 @@ import TopChampionship 		from './TopChampionship';
 import Nations 				from './Nations';
 import styles 				from '../../../scss/aside.module.scss'; 
  
-function AsideList() {
+function AsideList({ nationsCompetitions }:{nationsCompetitions:any} ) {
 	const expand = 'lg';
+	
 	return (
 		<>			 
 			<aside>
@@ -22,7 +23,7 @@ function AsideList() {
 							<Offcanvas.Body className={styles.asideOffcanvas}>
 								<Image src="/images/logo2.png" rounded className='logo d-lg-none' />									
 								<TopChampionship/>
-								<Nations/>
+								<Nations nationsCompetitions={nationsCompetitions}/>
 							</Offcanvas.Body>
 						</Navbar.Offcanvas>
 					</Container>
