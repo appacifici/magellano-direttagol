@@ -21,6 +21,7 @@ export type CompetitionInterface = {
     name: string;
     nation: string;
     id: number;
+    countryName: string
     matches: {
         [matchId: string]: MatchInterface;
     };

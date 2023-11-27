@@ -104,7 +104,7 @@ class SocketToClient {
         
     sendDataLive(jsonData: string): void {
         this.io.sockets.emit( 'dataLive', jsonData );
-        console.log('jsonData  =>'+ jsonData);
+        //console.log('jsonData  =>'+ jsonData);
     }
 
     rtrim(str: string, char: string): string {

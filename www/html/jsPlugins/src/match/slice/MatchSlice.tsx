@@ -17,15 +17,11 @@ export const matchSlice = createSlice({
             return state;
         },       
 
-        updateMatches(state: MatchesInterface, action: PayloadAction<MatchesInterface>): MatchesInterface {
-            console.info('eccomi1');
-            console.info(action.payload);
-        
+        updateMatches(state: MatchesInterface, action: PayloadAction<MatchesInterface>): MatchesInterface {                    
             Object.keys(action.payload).forEach(competitionId => {
                 console.log(competitionId);
                 const matches = action.payload[competitionId]?.competition;
                 if (matches != null) {
-                    console.info('eccomi2');
                     Object.keys(action.payload[competitionId].competition.matches).forEach(matchId => {
                         const {
                             match_id,
@@ -37,9 +33,7 @@ export const matchSlice = createSlice({
                         } = action.payload[competitionId].competition.matches[matchId];
         
                         const match = state[competitionId]?.competition?.matches[matchId];
-                        if (match != null) {
-                            console.info('eccomi3');
-                            console.info(status);
+                        if (match != null) {                            
                             if( home_score != undefined ) {
                                 state[competitionId].competition.matches[matchId].home_score    = home_score;
                             }

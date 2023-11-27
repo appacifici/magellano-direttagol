@@ -76,6 +76,7 @@ class ImportFixtureMatch extends BaseApi  {
             timeMatch:          fixture.time,
             dateMatch:          fixture.date,
             extMatchId:         fixture.id,
+            lastGoal:           'away',
             score:              '0-0',
             status:             '',
             halfTimeScore:      '0-0',

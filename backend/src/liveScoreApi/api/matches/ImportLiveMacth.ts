@@ -20,12 +20,13 @@ class ImportLiveMacth extends BaseApi {
     constructor() {
         super();          
         this.frontendCreateResponse = new FrontendCreateResponse();
-        this.socketToClient = new SocketToClient(3001);
+        this.socketToClient = new SocketToClient(3004);
         this.socketToClient.connectClientSocket();
         
         const that = this;
+        that.importAll();
         setInterval(() => {
-            that.importAll();
+            //that.importAll();
         }, 20000);        
         
     }
@@ -90,6 +91,7 @@ class ImportLiveMacth extends BaseApi {
             dateMatch:          dateMatch,
             extMatchId:         match.id,
             score:              match.score,
+            lastGoal:           '',
             status:             match.status,
             halfTimeScore:      match.ht_score,
             fullTimeScore:      match.ft_score,
@@ -101,11 +103,15 @@ class ImportLiveMacth extends BaseApi {
         const resultMatch:MatchMongo.MatchWithIdType|boolean = await this.getMatch(match.id);
         if (typeof resultMatch === 'object') {                         
             const differences = findDiff(dataMatch, resultMatch);
-
+            console.log(differences);
             
 
             if( JSON.stringify(differences) !== '{}' ) {
-                console.log(differences);
+                
+                if( differences.lastGoal != '' ) {
+                    dataMatch.lastGoal = differences.lastGoal;
+                }
+
                 this.frontendCreateResponse.addLiveMatch(differences, resultMatch._id);
             }
 
@@ -144,24 +150,39 @@ class ImportLiveMacth extends BaseApi {
     }
 }
 
-function findDiff(obj1: Record<string, any>, obj2: Record<string, any>): Record<string, any> {
+function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, any>): Record<string, any> {
     const diff: Record<string, any> = {};
     let key: string;
     let competitionId: string = '';  // Initialize competitionId with a default value
   
-    for (key in obj1) {      
+    for (key in apiDataMatch) {      
         if (key == 'competitionId') {
-            competitionId = obj1[key];
+            competitionId = apiDataMatch[key];
         }  
-        if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
-            if (key != 'teamHome' && key != 'teamAway' && key != 'dateMatch' && key != 'competitionId' && key != 'lastChanged') {
-                diff[key] = obj1[key];            
+        if (JSON.stringify(apiDataMatch[key]) !== JSON.stringify(mongoMatch[key])) {
+            if (key != 'teamHome' && key != 'teamAway' && key != 'dateMatch' && key != 'competitionId' && key != 'lastChanged' && key != 'lastGoal') {
+                diff[key] = apiDataMatch[key];            
             }    
         }
     }  
     
     if (JSON.stringify(diff) !== '{}' && competitionId != '') {
         diff['competitionId'] = competitionId;
+    }
+
+    console.log(mongoMatch._id+' ==> '+mongoMatch.score +' != '+ apiDataMatch.score);
+    if( mongoMatch.score != apiDataMatch.score ) {
+        const [homeTeamScoreMongo, awayTeamScoreMongo]  = mongoMatch.score.split('-');
+        const [homeTeamScoreApi, awayTeamScoreApi]      = apiDataMatch.score.split('-');
+
+        console.log(`${mongoMatch._id} ===> ${homeTeamScoreMongo} !== ${homeTeamScoreApi}`);
+        if (homeTeamScoreMongo !== homeTeamScoreApi) {
+            diff['lastGoal'] = 'home';
+        }
+
+        if (awayTeamScoreMongo !== awayTeamScoreApi) {
+            diff['lastGoal'] = 'away';
+        }
     }
 
     return diff;

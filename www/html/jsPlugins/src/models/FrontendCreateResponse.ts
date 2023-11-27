@@ -37,7 +37,11 @@ class FrontendCreateResponse {
         const halfTimeScore = match.halfTimeScore?.split('-');       
 
         liveMatch.keyMatch = matchId; 
-        
+
+        if( typeof match.lastGoal != undefined ) {
+            liveMatch.last_goal = match.lastGoal;
+        }    
+
         if( typeof match.status != undefined ) {
             liveMatch.status = this.wrapStatusName(match.status); 
         }                      
@@ -66,14 +70,15 @@ class FrontendCreateResponse {
 
         liveMatch.away_team_img = match.competitionId.name;
         liveMatch.home_team_img = match.competitionId.name;
-        liveMatch.follow = false;
+        liveMatch.follow = false;        
+        
 
         const matchNumber = matchId;
         if (!this.socketResponse[match.competitionId._id.toString()]) {
             this.socketResponse[match.competitionId._id.toString()] = {
                 competition: {
                     name:   match.competitionId.name,
-                    nation: match.competitionId.name,
+                    nation: match.competitionId.countryId.name,
                     id:     match.competitionId._id.toString(),
                     matches: {}
                 }             

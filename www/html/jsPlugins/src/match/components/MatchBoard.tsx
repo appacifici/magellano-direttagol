@@ -26,16 +26,16 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
             matchStatus = 'Finale';
         break;
         case 'interval':
-            matchStatus = "interval";
+            matchStatus = "Intervallo";
         break;
         case "added_time":
-            matchStatus = "recupero";
+            matchStatus = "Recupero";
         break;
     }
     return matchStatus;
 }
 
-const MatchBoard = ({match,competitionId}:{match:MatchInterface,competitionId:string}) => {
+const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competitionId:string, nation:string}) => {
     const dispatch = useDispatch();
     
     const [minuteSymbol, setMinuteSymbol] = useState('');
@@ -67,6 +67,13 @@ const MatchBoard = ({match,competitionId}:{match:MatchInterface,competitionId:st
             dispatch( addFollowMatch(followState) );
         }                        
     }
+
+    const getHalfTimeScore = (score:string|void) => {        
+        if( score != undefined  && score != '' ) {
+            return <>({score})</>
+        }
+        return <></>;
+    }
     
     return( 
         <>            
@@ -80,31 +87,31 @@ const MatchBoard = ({match,competitionId}:{match:MatchInterface,competitionId:st
                 <Col xs={6} md={8} className='text-left'>
                     <Row>
                         <Col xs={2} md={1} className='p-0'>
-                            <Image src={match.home_team_img} className="float-start border border-lg-0" />
+                            <Image src={"/images/flags/"+nation+".png"} className="float-start border border-lg-0" />
                         </Col>
                         <Col xs={10} md={11}>{match.home_team}</Col>                            
                     </Row>   
                     <Row>
                         <Col xs={2} md={1} className='p-0'>
-                        <Image src={match.away_team_img} className="float-start border border-lg-0" />
+                        <Image src={"/images/flags/"+nation+".png"} className="float-start border border-lg-0" />
                         </Col>
                         <Col xs={10} md={11}>{match.away_team}</Col>                          
                     </Row>   
-                </Col>                 
+                </Col>
                 <Col xs={2} md={1}>
                     <Row>                            
                         <Col xs={6} md={6} className={"position-relative "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')}>
-                            {match.last_goal == 'home' && <div className="lastGoal"></div>}
+                            {match.last_goal == 'home' && <div className={stlMatchBoard.lastGoal}></div>}
                             {match.home_score}
                         </Col>                            
-                        <Col xs={6} md={6}>({match.first_half_away_score})</Col>                            
+                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_away_score)}</Col>                            
                     </Row>    
                     <Row>                            
                         <Col xs={6} md={6} className={"position-relative "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')}>
-                            {match.last_goal == 'away' && <div className="lastGoal"></div>}
+                            {match.last_goal == 'away' && <div className={stlMatchBoard.lastGoal}></div>}
                             {match.away_score}
                         </Col>
-                        <Col xs={6} md={6}>({match.first_half_home_score})</Col>                            
+                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_home_score)}</Col>                            
                     </Row>    
                 </Col>                                             
             </Row>

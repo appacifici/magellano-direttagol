@@ -11,6 +11,7 @@ type MatchType = {
     extMatchId:         number;
     fixtureId:          number;
     score:              string;
+    lastGoal:           string;
     status:             string;
     halfTimeScore:      string;
     fullTimeScore:      string;
@@ -56,6 +57,9 @@ const MatchSchema = new Schema({
         required: true 
     },
     score: { 
+        type: String         
+    },
+    lastGoal: { 
         type: String         
     },
     status: { 
