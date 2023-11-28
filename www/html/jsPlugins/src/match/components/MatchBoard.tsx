@@ -37,23 +37,45 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
 
 const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competitionId:string, nation:string}) => {
     const dispatch = useDispatch();
-    
+    const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
+    let matches      = useTypedSelector( state => state.matches.tab ); //riceve lo stato dallo store   
+
+    const [stateGetFollowed, setStateGetFollowed] = useState('');
+
+
     const [minuteSymbol, setMinuteSymbol] = useState('');
 
     useEffect(() => {
         const interval = setInterval(() => {         
             if( minuteSymbol == "'" ) {
-                setMinuteSymbol("");
+                //setMinuteSymbol("");
             } else {
-                setMinuteSymbol("'");
+                //setMinuteSymbol("'");
             }            
         }, 1000);
+        setInitialFollow();
+        setStateGetFollowed('1');
+        const timeout = setTimeout(() => {         
+            console.log('si');
+            setStateGetFollowed('0');           
+        }, 5000);
         return () => {
             clearInterval(interval);
         };
     }, [minuteSymbol]);
 
-    const manageClick: React.MouseEventHandler<HTMLElement> = (event):void => {
+    //Gestisce i match seguiti iniziali dell'utente salvati nel local storage e li setta nello store
+    const setInitialFollow = () => {
+        let followedMatches = localStorage.getItem('followMatches');
+        let array = JSON.parse(followedMatches);
+        array.forEach((item:FollowMatchState) => {            
+            let followState = {competitionId:item.competitionId, matchId:item.matchId};
+            dispatch( addFollowMatch(followState) );
+        });        
+    }
+
+    //Gestisce i match seguiti inserendoli e rimuovendoli dal local storare e dallo store
+    const manageClickFollow: React.MouseEventHandler<HTMLElement> = (event):void => {
         event.preventDefault();
         const followState:FollowMatchState = {competitionId:competitionId, matchId:event.currentTarget.id};
 
@@ -61,11 +83,47 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
             event.currentTarget.setAttribute('follow', 'false');
             event.currentTarget.className = `bi bi-star ${stlMatchBoard.biStar}`;            
             dispatch( removeFollowMatch(followState) );
+
+            let followedMatches = localStorage.getItem('followMatches');
+            let array = JSON.parse(followedMatches);
+            array = array.filter((item:FollowMatchState) => !(item.competitionId === followState.competitionId && item.matchId === followState.matchId));
+            let updatedJsonString = JSON.stringify(array);
+            localStorage.setItem('followMatches', updatedJsonString);
+
         } else {
             event.currentTarget.setAttribute('follow', 'true');
             event.currentTarget.className = `bi bi-star-fill ${stlMatchBoard.biStar}`;
             dispatch( addFollowMatch(followState) );
+
+            let followedMatches = localStorage.getItem('followMatches');
+            if( followedMatches == undefined ) {
+                followedMatches = `[${JSON.stringify(followState)}]`;
+                localStorage.setItem('followMatches', followedMatches);
+            } else {
+                let array = JSON.parse(followedMatches);
+                array.push(followState);
+                let updatedJsonString = JSON.stringify(array);
+                localStorage.setItem('followMatches', updatedJsonString);
+            }            
         }                        
+    }
+
+    //Determina se deve mettere la stella vuota o piena
+    const getMatchIsFollowed = (matchId:string):string => {          
+        if (typeof window !== "undefined") {
+            let followedMatches = localStorage.getItem('followMatches');
+            let array = JSON.parse(followedMatches);
+            
+            if( array.some((item:FollowMatchState) => { 
+                return item.matchId === matchId 
+            }) ) {
+                console.log('getMatchIsFollowed');
+                return `bi bi-star-fill ${stlMatchBoard.biStar}`;
+            }
+            console.log('getMatchIsFollowe2');
+            return `bi bi-star ${stlMatchBoard.biStar}`;
+        }
+        return `bi bi-star ${stlMatchBoard.biStar}`;
     }
 
     const getHalfTimeScore = (score:string|void) => {        
@@ -80,7 +138,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
             <Row className={stlMatchBoard.match} key={match.match_id} data-id={match.match_id}>                
                 <Col xs={1} md={1}>
                     <span className='pt-2'>
-                        <i className={`bi bi-star ${stlMatchBoard.biStar}`} id={match.keyMatch} onClick={manageClick}></i>
+                        <i className={getMatchIsFollowed(match.keyMatch)} id={match.keyMatch} onClick={manageClickFollow}></i>
                     </span>
                 </Col>                
                 <Col className={"pt-2 text-center "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')} xs={2} md={1}>
@@ -122,3 +180,4 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
 }
 
 export default MatchBoard;
+
