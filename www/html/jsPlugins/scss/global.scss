@@ -43,6 +43,16 @@ body {
     position: absolute; 
 }
 
+.mb-2 {
+    margin-bottom: 3px !important;
+}
+
+.react-datepicker-wrapper {
+    display: block!important;
+    width: 200px!important;
+    margin: 0 auto!important;
+}
+
 .accordion {
   .accordion-item {
       border: none;
@@ -54,6 +64,7 @@ body {
       padding: 0;
       background: transparent;
       color: #fff; 
+      font-size: 13px;
       &:focus {
           box-shadow: none;
       }

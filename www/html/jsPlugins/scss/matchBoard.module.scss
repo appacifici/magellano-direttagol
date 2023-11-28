@@ -1,5 +1,13 @@
 @import "myvariables.module";
 
+.datePickerMatches {
+    width: 200px;
+    margin: 0 auto;
+    background: #1e1f24;
+    border: 1px solid;
+    color: #fff;
+}
+
 .matchBoard {
     background-color: $boxBgColor;
     color: #fff;

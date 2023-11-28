@@ -1,5 +1,7 @@
 import React, { useEffect }     from 'react';
 import { useDispatch }          from 'react-redux';
+import { useRouter }            from 'next/router';
+
 
 import { Socket, io as socketIOClient } from 'socket.io-client';
 
@@ -42,7 +44,10 @@ const connectMongoDB = async () => {
 };
 
 export const getServerSideProps = wrapperMatch.getServerSideProps(
-    (store) => async (context) => {     	
+    (store) => async (context) => {     	        
+        const { date } = context.query;
+        
+        const dateMatches = date != undefined ? date : '2023-11-28';
 
 		const frontendCreateResponse = new FrontendCreateResponse();
 		await connectMongoDB();
@@ -54,8 +59,10 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
             console.error('Error:', error);
         });  
 
-		const startOfDay 	= new Date("2023-11-27T00:00:00Z");
-		const endOfDay 		= new Date("2023-11-27T23:59:59Z");
+        console.log('dateMatches ==>'+dateMatches);        
+
+		const startOfDay 	= new Date(`${dateMatches}T00:00:00Z`);
+		const endOfDay 		= new Date(`${dateMatches}T23:59:59Z`);
 		const matches 		= await MatchMongo.Match.find({
 			dateMatch: {
 				$gte: startOfDay,
