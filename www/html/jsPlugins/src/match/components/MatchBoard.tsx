@@ -41,10 +41,8 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
     const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
     let matches      = useTypedSelector( state => state.matches.tab ); //riceve lo stato dallo store   
 
-    const [stateGetFollowed, setStateGetFollowed] = useState('');
-
-
-    const [minuteSymbol, setMinuteSymbol] = useState('');
+    const [stateGetFollowed, setStateGetFollowed]   = useState('');
+    const [minuteSymbol, setMinuteSymbol]           = useState('');
 
     useEffect(() => {
         const interval = setInterval(() => {         
@@ -118,19 +116,16 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
 
             if( array.some((item:FollowMatchState) => { 
                 return item.matchId === matchId 
-            }) ) {
-                console.log('getMatchIsFollowed');
+            }) ) {                
                 return `bi bi-star-fill ${stlMatchBoard.biStar}`;
-            }
-            console.log('getMatchIsFollowe2');
+            }            
             return `bi bi-star ${stlMatchBoard.biStar}`;
-        }
-        console.log('getMatchIsFollowe3');
+        }        
         return `bi bi-star ${stlMatchBoard.biStar}`;
     }
 
-    const getHalfTimeScore = (score:string|void) => {        
-        if( score != undefined  && score != '' ) {
+    const getHalfTimeScore = (score:string|void,status:string) => {        
+        if( score != undefined  && score != '' && status != 'next' ) {
             return <>({score})</>
         }
         return <></>;
@@ -165,16 +160,16 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                     <Row>                            
                         <Col xs={6} md={6} className={"position-relative "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')}>
                             {match.last_goal == 'home' && <div className={stlMatchBoard.lastGoal}></div>}
-                            {match.home_score}
+                            {match.status != 'next' && match.home_score}
                         </Col>                            
-                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_away_score)}</Col>                            
+                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_away_score,match.status)}</Col>                            
                     </Row>    
                     <Row>                            
                         <Col xs={6} md={6} className={"position-relative "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')}>
                             {match.last_goal == 'away' && <div className={stlMatchBoard.lastGoal}></div>}
-                            {match.away_score}
+                            {match.status != 'next' && match.away_score}
                         </Col>
-                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_home_score)}</Col>                            
+                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_home_score,match.status)}</Col>                            
                     </Row>    
                 </Col>                                             
             </Row>

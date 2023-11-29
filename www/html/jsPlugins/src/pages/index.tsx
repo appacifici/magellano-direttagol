@@ -53,13 +53,13 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 		await connectMongoDB();
          
         let nationsCompetitions:any = {};
-        await buildResponse().then(response => {
+        await getMenuCompetitions().then(response => {
             nationsCompetitions = JSON.stringify(response, null, 2);
         }).catch(error => {
             console.error('Error:', error);
         });  
 
-        console.log('dateMatches ==>'+dateMatches);        
+        console.log('nationsCompetitions ==>'+nationsCompetitions);        
 
 		const startOfDay 	= new Date(`${dateMatches}T00:00:00Z`);
 		const endOfDay 		= new Date(`${dateMatches}T23:59:59Z`);
@@ -83,21 +83,26 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
         };
 		
 		store.dispatch(setMatches(frontendCreateResponse.objResponse));   
+
+        const competitionsTop = await Competition.find({ isTop: 1 }).lean().exec();
+        const competitionsTopJSON = JSON.stringify(competitionsTop);
         
 		return {
 			props: {
-                'nationsCompetitions': nationsCompetitions
+                'nationsCompetitions': nationsCompetitions,
+                'competitionsTop': competitionsTopJSON
             },
 		};
 	}
 );
 
-const buildResponse = async () => {
-    return CountryMongo.Country.find().then(countries => {
+const getMenuCompetitions = async () => {
+    // Sorting countries first by isTop (descending) and then by name (ascending)
+    return CountryMongo.Country.find().sort({ isTop: -1, name: 1 }).then(countries => {
         let response:any = {};
 
         return Promise.all(countries.map(country => {
-            return Competition.find({ countryId: country._id }).then(competitions => {
+            return Competition.find({ countryId: country._id }).sort({ isTop: -1, name: 1 }).then(competitions => {
                 let competitionsObj:any = {};
                 competitions.forEach(comp => {
                     competitionsObj[comp._id] = { name: comp.name };
@@ -144,7 +149,7 @@ function MatchesBoardPage(data:any) {
     return(  
         <>                                                        
             <Header/>            
-                <Main nationsCompetitions={data.nationsCompetitions} MatchBoard={<MatchesBoard/>}/>
+                <Main nationsCompetitions={data.nationsCompetitions} competitionsTop={data.competitionsTop} MatchBoard={<MatchesBoard/>}/>
             <Footer/>            
         </>
     );

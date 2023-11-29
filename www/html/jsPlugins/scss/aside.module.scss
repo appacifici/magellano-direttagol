@@ -22,9 +22,18 @@ aside {
             width: 50px;                
         }
     }
+    .bgNone {
+        background: transparent;
+    }
      
     .row {
         h2 {
+            font-size: 16px;
+            border-left: 4px solid #38a9ff;
+            padding: 4px 7px;
+            background-color: #292c31;        
+        }
+        h3 {
             font-size: 13px;
             border-left: 4px solid #38a9ff;
             padding: 1px 7px;

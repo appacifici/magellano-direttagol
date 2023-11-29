@@ -84,6 +84,7 @@ class CompetitionProcessor extends BaseApi  {
                 hasGroups:          Number(competition.has_groups),
                 isLeague:           Number(competition.is_league),
                 isCup:              Number(competition.is_cup),
+                isTop:              0,
                 nationalTeamsOnly:  Number(competition.national_teams_only),
                 season: {
                     id:         Number(competition.season.id),

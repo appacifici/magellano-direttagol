@@ -4,6 +4,7 @@ type CountryType = {
     externalId: number;
     name:       string;
     isReal:     number;
+    isTop:      number;
 }
 type CountryArrayType       = CountryType[];
 
@@ -27,7 +28,13 @@ const CountrySchema = new Schema({
         required:   true, 
         min:        0, 
         max:        1 
-    } 
+    },
+    isTop: { 
+        type:       Number, 
+        required:   false, 
+        min:        0, 
+        max:        1 
+    },
 });
 
 //Creazione indice e chiave univoca

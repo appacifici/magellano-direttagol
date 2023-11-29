@@ -4,12 +4,12 @@ import Row          from 'react-bootstrap/Row';
 import Col          from 'react-bootstrap/Col';
 import AsideList    from '../championship/components/AsideList';
 
-const Main = ( { nationsCompetitions,MatchBoard }:{nationsCompetitions:any,MatchBoard:any} ) => {
+const Main = ( { nationsCompetitions,competitionsTop,MatchBoard }:{nationsCompetitions:any,competitionsTop:any,MatchBoard:any} ) => {
     return( 
         <Container>  
             <Row>
                 <Col xs={6} lg={3}>
-                    <AsideList nationsCompetitions={nationsCompetitions}></AsideList>
+                    <AsideList nationsCompetitions={nationsCompetitions} competitionsTop={competitionsTop}></AsideList>
                 </Col>
                 <Col xs={12} lg={7}>
                     {MatchBoard}

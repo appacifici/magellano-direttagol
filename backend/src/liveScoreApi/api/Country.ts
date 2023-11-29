@@ -53,7 +53,8 @@ class CountryProcessor extends BaseApi  {
                 const transform = (country: CountryApiInterface.Country): CountryMongo.CountryType => ({
                     externalId: Number(country.id),
                     name: country.name,
-                    isReal: Number(country.is_real)
+                    isReal: Number(country.is_real),
+                    isTop: 0,
                 });
                                 
                 const resultArray = this.transformAPIResponseToArray(apiResponse, 'country', transform);      

@@ -17,6 +17,7 @@ type CompetitionType = {
     isCup:              number;
     nationalTeamsOnly:  number;
     season:             CompetitionSeasonType;
+    isTop?:             number;
 }
 
 interface ICompetition extends Document, Omit<CompetitionType, '_id'> {
@@ -75,10 +76,17 @@ const CompetitionSchema   = new Schema({
         name:       String,
         start:      String,      
         end:        String,      
-    } 
+    },
+    isTop: { 
+        type:       Number, 
+        required:   false, 
+        min:        0, 
+        max:        1 
+    },
 });
 
+
 //Creazione indice e chiave univoca
-CompetitionSchema.index({ externalId: 1 }, { unique: true });
+CompetitionSchema.index({ externalId: 1, countryId:1 }, { unique: true });
 const Competition:  Model<ICompetition> = mongoose.model<ICompetition>('Competition', CompetitionSchema);
 export {Competition,CompetitionType,CompetitionArrayWithIdType,CompetitionWithIdType,CompetitionSeasonType,ICompetition,CompetitionSchema};

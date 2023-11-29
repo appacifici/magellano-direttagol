@@ -30,7 +30,9 @@ function Championships({ nation, competitions }: ChampionshipsProps) {
         <>      
             <Accordion>
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>{nation}</Accordion.Header>
+                    <Accordion.Header>
+                        {nation}
+                    </Accordion.Header>
                     <Accordion.Body>
                         <Nav>
                             <Row className="w-100">
@@ -44,8 +46,8 @@ function Championships({ nation, competitions }: ChampionshipsProps) {
 									}
 
 									return (
-										<React.Fragment key={key}>
-											<h3 key={name} className="float-start ms-2">{name}</h3>
+										<React.Fragment key={key}>                                            
+											<h4 key={name} className="float-start ms-2">{name}</h4>
 										</React.Fragment>
 									);
 								})
