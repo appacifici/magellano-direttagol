@@ -40,6 +40,7 @@ class FederationProcessor extends BaseApi  {
 
     private async getFederationApi(feed: FeedTypeMongo): Promise<void> {
         try {
+            console.log(`${feed.endPoint}?&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`);
             const response = await axios.get(`${feed.endPoint}?&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`);
             const apiResponse: GenericApiResponse<FederationApiInterface.Federation> = response.data;
 

@@ -11,6 +11,7 @@ import stlMatchBoard            from '../../../scss/matchBoard.module.scss';
 import { MatchInterface }       from '../models/MatchInterface';
 import { addFollowMatch, 
     removeFollowMatch, FollowMatchState } 	    from '../../match/slice/MatchSlice';
+import { clickTabMatch } from '../slice/TabMatchSlice';
 
 const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:string ):string => {
     let matchStatus:string = '';
@@ -53,12 +54,8 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                 //setMinuteSymbol("'");
             }            
         }, 1000);
-        setInitialFollow();
-        setStateGetFollowed('1');
-        const timeout = setTimeout(() => {         
-            console.log('si');
-            setStateGetFollowed('0');           
-        }, 5000);
+        setInitialFollow();     
+        
         return () => {
             clearInterval(interval);
         };
@@ -68,10 +65,12 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
     const setInitialFollow = () => {
         let followedMatches = localStorage.getItem('followMatches');
         let array = JSON.parse(followedMatches);
-        array.forEach((item:FollowMatchState) => {            
-            let followState = {competitionId:item.competitionId, matchId:item.matchId};
-            dispatch( addFollowMatch(followState) );
-        });        
+        if( array !== null ) {                    
+            array.forEach((item:FollowMatchState) => {            
+                let followState = {competitionId:item.competitionId, matchId:item.matchId};
+                dispatch( addFollowMatch(followState) );
+            });        
+        }
     }
 
     //Gestisce i match seguiti inserendoli e rimuovendoli dal local storare e dallo store
@@ -113,7 +112,10 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
         if (typeof window !== "undefined") {
             let followedMatches = localStorage.getItem('followMatches');
             let array = JSON.parse(followedMatches);
-            
+            if( array == null ) {
+                return `bi bi-star ${stlMatchBoard.biStar}`;
+            }
+
             if( array.some((item:FollowMatchState) => { 
                 return item.matchId === matchId 
             }) ) {
@@ -123,6 +125,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
             console.log('getMatchIsFollowe2');
             return `bi bi-star ${stlMatchBoard.biStar}`;
         }
+        console.log('getMatchIsFollowe3');
         return `bi bi-star ${stlMatchBoard.biStar}`;
     }
 
@@ -138,7 +141,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
             <Row className={stlMatchBoard.match} key={match.match_id} data-id={match.match_id}>                
                 <Col xs={1} md={1}>
                     <span className='pt-2'>
-                        <i className={getMatchIsFollowed(match.keyMatch)} id={match.keyMatch} onClick={manageClickFollow}></i>
+                        <i className={getMatchIsFollowed(match.keyMatch)} id={match.keyMatch} onClick={manageClickFollow}></i>{match.follow}
                     </span>
                 </Col>                
                 <Col className={"pt-2 text-center "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')} xs={2} md={1}>
@@ -180,4 +183,3 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
 }
 
 export default MatchBoard;
-
