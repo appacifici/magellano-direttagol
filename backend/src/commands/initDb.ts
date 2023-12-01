@@ -5,6 +5,7 @@ import { ICompetition, CompetitionSchema }      from '../database/mongodb/models
 import { TeamType,ITeam,TeamSchema }            from '../database/mongodb/models/Team';
 import { CountryType, ICountry, CountrySchema } from '../database/mongodb/models/Country';
 import { MatchType,IMatch,MatchSchema }         from '../database/mongodb/models/Match';
+import { Standing, IStanding, StandingSchema }  from '../database/mongodb/models/Standing';
 import { Feed,
          FORMAT_FEED,
          SOURCE_FEED,
@@ -36,6 +37,7 @@ const Country:      Model<ICountry>     = mongoose.model<ICountry>('Country', Co
 const Competition:  Model<ICompetition> = mongoose.model<ICompetition>('Competition', CompetitionSchema);
 const Team:         Model<ITeam>        = mongoose.model<ITeam>('Team', TeamSchema);
 const Match:        Model<IMatch>       = mongoose.model<IMatch>('Match', MatchSchema);
+const Standing:     Model<IStanding>    = mongoose.model<IStanding>('Standing', StandingSchema);
 
 // const newFeed = new Feed({
 //     source: SOURCE_FEED.LIVE_SCORE_API_COM,
