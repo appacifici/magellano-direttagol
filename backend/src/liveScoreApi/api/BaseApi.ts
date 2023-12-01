@@ -66,6 +66,15 @@ class BaseApi {
         }
     }
 
+    public async getCountryByName(search:string):Promise<CountryMongo.CountryWithIdType|null|undefined> {
+        try {
+            const countryId:CountryMongo.CountryWithIdType|null = await CountryMongo.Country.findOne({ name: search }).exec()
+            return countryId;              
+        } catch (error) {
+            console.error('Errore durante la ricerca del caountry by name:', error);
+    }
+    }
+
     private transformItemToType<T, U>(item: T, transformFn: TransformFunction<T, U>): U {
         return transformFn(item);
     }

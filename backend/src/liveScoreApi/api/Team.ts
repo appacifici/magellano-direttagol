@@ -8,6 +8,7 @@ import * as CountryMongo                    from "../../database/mongodb/models/
 import * as TeamMongo                       from "../../database/mongodb/models/Team";
 import * as TeamApiInterface                from "../interface/API/TeamInterface";
 import BaseApi                              from "./BaseApi";
+import StringUtility                        from "../../services/StringUtility";   
 
 class TeamProcessor extends BaseApi  {
     constructor(action:string) {
@@ -63,7 +64,8 @@ class TeamProcessor extends BaseApi  {
                 externalId: Number(team.id),
                 name: team.name,
                 stadium: team.stadium,
-                countryId: countryId
+                countryId: countryId,
+                img: StringUtility.sanitizeString(team.name)
             });
                             
             const resultArray = this.transformAPIResponseToArray(apiResponse, 'teams', transform);      

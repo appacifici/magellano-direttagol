@@ -10,6 +10,7 @@ import * as CountryMongo                    from "../../database/mongodb/models/
 import * as FederationMongo                 from "../../database/mongodb/models/Federation";
 import * as CompetitionApiInterface         from "../interface/API/CompetitionInterface";
 import BaseApi                              from "./BaseApi";
+import StringUtility                        from "../../services/StringUtility";   
 
 class CompetitionProcessor extends BaseApi  {
     constructor(action:string) {
@@ -21,6 +22,9 @@ class CompetitionProcessor extends BaseApi  {
             break;
             case 'importAllCompetitionByCountry':
                 this.importAllCompetition('country');
+            break;
+            case 'setTopCompetition':
+                this.setTopCompetition();
             break;
         }
     }
@@ -55,18 +59,26 @@ class CompetitionProcessor extends BaseApi  {
     //Per ogni paese chiama la funzione per recuperare i suoi team
     private async fetchCountriesData(elements: CountryMongo.CountryArrayWithIdType|FederationMongo.FederationArrayWithIdType, feed: FeedTypeMongo, byFeed:string): Promise<void> {
         try {                    
+            const countryWorldId = await this.getCountryByName('Coppe');
             for (let element of elements) {     
                 let endPoint:string = '';
+                let countryId:ObjectId|undefined = undefined;
                 if( byFeed == 'federation') {
-                    endPoint = `${feed.endPoint}?federation_id=${element.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;
+                    endPoint  = `${feed.endPoint}?federation_id=${element.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;         
+                    if (this.isValidDataType(countryWorldId)) {
+                        countryId = countryWorldId._id;  
+                    }                                 
                 } else {
-                    endPoint = `${feed.endPoint}?country_id=${element.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;
+                    endPoint  = `${feed.endPoint}?country_id=${element.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`;
+                    countryId = element._id;
                 }
                 
                 console.log(endPoint);
                 const response = await axios.get(endPoint);
-                const apiResponse: GenericApiResponse<CompetitionApiInterface.Competition> = response.data;       
-                this.insertCompetition(apiResponse,element._id);
+                const apiResponse: GenericApiResponse<CompetitionApiInterface.Competition> = response.data;    
+                if (this.isValidDataType(countryId)) {   
+                    this.insertCompetition(apiResponse,countryId);
+                }
             }    
         } catch (error) {
             console.error('Errore durante la richiesta:', error);
@@ -85,6 +97,7 @@ class CompetitionProcessor extends BaseApi  {
                 isLeague:           Number(competition.is_league),
                 isCup:              Number(competition.is_cup),
                 isTop:              0,
+                img:                StringUtility.sanitizeString(competition.name),
                 nationalTeamsOnly:  Number(competition.national_teams_only),
                 season: {
                     id:         Number(competition.season.id),
@@ -104,6 +117,30 @@ class CompetitionProcessor extends BaseApi  {
                 console.error('Error inserting feeds:', err);
             });
         }
+    }
+
+    private setTopCompetition() {
+        /**
+         * 4   = Serie A
+         * 47   = Serie B
+         * 3   = LaLiga Santander
+         * 244 = Europa League
+         * 245 = Europa League
+         * 5 = Ligue 1
+         * 2 = Premier Ligue
+         * 1 = Bundesliga
+         */
+        CompetitionMongo.Competition.updateMany(
+            { externalId: { $in: [244, 245, 3, 4, 5, 47, 2, 1] } }, // Criterio di selezione
+            { $set: { isTop: 1 } }                 // Aggiornamento
+        )
+        .then(result => {
+            console.log('Aggiornamento completato:', result);
+        })
+        .catch(err => {
+            console.error('Errore durante l\'aggiornamento:', err);
+        });
+
     }
 }
 

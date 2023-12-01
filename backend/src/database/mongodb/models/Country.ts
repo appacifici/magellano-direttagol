@@ -3,6 +3,7 @@ import mongoose, { Document, Schema, Model, ObjectId, Types } from 'mongoose';
 type CountryType = {    
     externalId: number;
     name:       string;
+    img?:       string;
     isReal:     number;
     isTop:      number;
 }
@@ -19,6 +20,11 @@ const CountrySchema = new Schema({
         required:   true 
     },
     name: { 
+        type:       String, 
+        required:   true, 
+        maxlength:  255 
+    },
+    img: { 
         type:       String, 
         required:   true, 
         maxlength:  255 

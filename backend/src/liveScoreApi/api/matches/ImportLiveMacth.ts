@@ -20,18 +20,17 @@ class ImportLiveMacth extends BaseApi {
     constructor() {
         super();          
         this.frontendCreateResponse = new FrontendCreateResponse();
-        this.socketToClient = new SocketToClient(3004);
+        this.socketToClient         = new SocketToClient(3004);
         this.socketToClient.connectClientSocket();
         
         const that = this;
         that.importAll();
         setInterval(() => {
-            //that.importAll();
-        }, 20000);        
-        
+            that.importAll();
+        }, 20000);                
     }
 
-    private async importAll() :Promise<void> {
+    private async importAll():Promise<void> {
         this.frontendCreateResponse = new FrontendCreateResponse();
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('live');
         feed.then( (feed) => {
@@ -105,13 +104,10 @@ class ImportLiveMacth extends BaseApi {
             const differences = findDiff(dataMatch, resultMatch);
             console.log(differences);
             
-
-            if( JSON.stringify(differences) !== '{}' ) {
-                
+            if( JSON.stringify(differences) !== '{}' ) {                
                 if( differences.lastGoal != '' ) {
                     dataMatch.lastGoal = differences.lastGoal;
                 }
-
                 this.frontendCreateResponse.addLiveMatch(differences, resultMatch._id);
             }
 
@@ -170,18 +166,10 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
         diff['competitionId'] = competitionId;
     }
 
-    if( mongoMatch._id == '6564d39873e13f2e4a4e9d7c') {
-        console.log(mongoMatch._id+' ==> '+mongoMatch.score +' != '+ apiDataMatch.score);
-    }
-    
     if( mongoMatch.score != apiDataMatch.score ) {
         const [homeTeamScoreMongo, awayTeamScoreMongo]  = mongoMatch.score.split('-');
         const [homeTeamScoreApi, awayTeamScoreApi]      = apiDataMatch.score.split('-');
 
-        if( mongoMatch._id == '6564d39873e13f2e4a4e9d7c') {
-            console.log(`${mongoMatch._id} ===> ${homeTeamScoreMongo} !== ${homeTeamScoreApi}`);
-            console.log(`${mongoMatch._id} ===> ${awayTeamScoreMongo} !== ${awayTeamScoreApi}`);
-        }
         if (homeTeamScoreMongo !== homeTeamScoreApi) {
             diff['lastGoal'] = 'home';
         }

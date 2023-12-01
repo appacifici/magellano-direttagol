@@ -9,7 +9,7 @@ type CompetitionSeasonType = {
 
 type CompetitionType = {    
     externalId:         number;
-    countryId:          ObjectId;    
+    countryId?:         ObjectId;    
     name:               string;
     active:             number;
     hasGroups:          number;
@@ -18,6 +18,7 @@ type CompetitionType = {
     nationalTeamsOnly:  number;
     season:             CompetitionSeasonType;
     isTop?:             number;
+    img?:               string;
 }
 
 interface ICompetition extends Document, Omit<CompetitionType, '_id'> {
@@ -82,6 +83,11 @@ const CompetitionSchema   = new Schema({
         required:   false, 
         min:        0, 
         max:        1 
+    },
+    img: { 
+        type:       String, 
+        required:   true, 
+        maxlength:  255 
     },
 });
 

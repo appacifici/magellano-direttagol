@@ -9,6 +9,7 @@ import * as CountryMongo                    from "../../database/mongodb/models/
 import * as CountryApiInterface             from "../interface/API/CountryInterface";
 
 import BaseApi                              from "./BaseApi";
+import StringUtility                        from "../../services/StringUtility";   
 
 class CountryProcessor extends BaseApi  {
     constructor(action:string) {
@@ -17,6 +18,9 @@ class CountryProcessor extends BaseApi  {
         switch( action ) {
             case 'importAllCountries':
                 this.importAllCountries();
+            break;
+            case 'setTopCountries':
+                this.setTopCountries();
             break;
         }
     }
@@ -49,15 +53,25 @@ class CountryProcessor extends BaseApi  {
             const apiResponse: GenericApiResponse<CountryApiInterface.Country> = response.data;
 
             console.log(apiResponse.success);
+            
             if (apiResponse.success) {
                 const transform = (country: CountryApiInterface.Country): CountryMongo.CountryType => ({
                     externalId: Number(country.id),
                     name: country.name,
                     isReal: Number(country.is_real),
                     isTop: 0,
+                    img: StringUtility.sanitizeString(country.name)
                 });
                                 
                 const resultArray = this.transformAPIResponseToArray(apiResponse, 'country', transform);      
+
+                resultArray.push({
+                    externalId: 999,
+                    name: 'Coppe',
+                    isReal: 0,
+                    isTop: 0,
+                    img: 'coppe'
+                });
 
                 CountryMongo.Country.insertMany(resultArray)
                 .then((docs) => {
@@ -72,6 +86,20 @@ class CountryProcessor extends BaseApi  {
             console.error('Errore durante la richiesta:', error);
         }
     }   
+
+    private setTopCountries() {
+        CountryMongo.Country.updateMany(
+            { name: { $in: ['Italy', 'Spain'] } }, // Criterio di selezione
+            { $set: { isTop: 1 } }                 // Aggiornamento
+        )
+        .then(result => {
+            console.log('Aggiornamento completato:', result);
+        })
+        .catch(err => {
+            console.error('Errore durante l\'aggiornamento:', err);
+        });
+
+    }
 }
 
 

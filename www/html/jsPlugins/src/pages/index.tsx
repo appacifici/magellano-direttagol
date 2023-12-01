@@ -1,8 +1,5 @@
-import React, { useEffect }     from 'react';
-import { useDispatch }          from 'react-redux';
-import { useRouter }            from 'next/router';
-
-
+import React, { useEffect }             from 'react';
+import { useDispatch }                  from 'react-redux';
 import { Socket, io as socketIOClient } from 'socket.io-client';
 
 import mongoose, { Model } 				from 'mongoose';
@@ -98,11 +95,11 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 
 const getMenuCompetitions = async () => {
     // Sorting countries first by isTop (descending) and then by name (ascending)
-    return CountryMongo.Country.find().sort({ isTop: -1, name: 1 }).then(countries => {
+    return CountryMongo.Country.find().sort({ isTop: -1 }).then(countries => {
         let response:any = {};
 
         return Promise.all(countries.map(country => {
-            return Competition.find({ countryId: country._id }).sort({ isTop: -1, name: 1 }).then(competitions => {
+            return Competition.find({ countryId: country._id }).sort({ name: 1 }).then(competitions => {
                 let competitionsObj:any = {};
                 competitions.forEach(comp => {
                     competitionsObj[comp._id] = { name: comp.name };
@@ -143,8 +140,6 @@ function MatchesBoardPage(data:any) {
 //                console.log('ping socketLCS:' +document.hidden);  
         //lastHidden = window.document.hidden;
     });
-
-    
 
     return(  
         <>                                                        
