@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-3 {
+        fill: #223693;
+      }
+
+      .cls-4 {
+        fill: #c51d32;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="ICELAND">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-3" width="33.56" height="19.58"/>
+        </g>
+        <g class="cls-6">
+          <rect class="cls-5" x="7.61" width="4.35" height="19.58"/>
+        </g>
+        <g class="cls-9">
+          <rect class="cls-5" y="7.61" width="33.56" height="4.35"/>
+        </g>
+        <g class="cls-8">
+          <rect class="cls-4" x="8.7" width="2.18" height="19.58"/>
+        </g>
+        <g class="cls-7">
+          <rect class="cls-4" y="8.7" width="33.56" height="2.18"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

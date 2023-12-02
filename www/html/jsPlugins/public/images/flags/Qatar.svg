@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #681840;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="QATAR">
+      <g>
+        <g class="cls-1">
+          <polygon class="cls-4" points="10 0 13.57 1.09 10 2.18 13.57 3.27 10 4.35 13.57 5.44 10 6.53 13.57 7.61 10 8.7 13.57 9.79 10 10.88 13.57 11.96 10 13.05 13.57 14.14 10 15.23 13.57 16.32 10 17.4 13.57 18.49 10 19.58 33.56 19.58 33.56 0 10 0"/>
+        </g>
+        <g class="cls-5">
+          <polygon class="cls-3" points="0 0 0 19.58 10 19.58 13.57 18.49 10 17.4 13.57 16.32 10 15.23 13.57 14.14 10 13.05 13.57 11.96 10 10.88 13.57 9.79 10 8.7 13.57 7.61 10 6.53 13.57 5.44 10 4.35 13.57 3.27 10 2.18 13.57 1.09 10 0 0 0"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

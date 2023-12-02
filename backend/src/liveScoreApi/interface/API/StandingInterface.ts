@@ -2,7 +2,7 @@ import { GenericApiResponse } from "./GlobalInterface";
 
 interface StandingApiResponse extends GenericApiResponse<Standing>{    
     data: {
-        fixtures: Standing[];
+        table: Standing[];
     };
 }
 

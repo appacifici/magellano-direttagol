@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-3 {
+        fill: #296437;
+      }
+
+      .cls-4 {
+        fill: #b01f35;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="MOROCCO">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-4" width="33.56" height="19.58"/>
+        </g>
+        <g class="cls-5">
+          <polygon class="cls-3" points="15.44 8.23 11.12 8.23 16.04 11.98 16.78 11.42 13.8 9.14 15.16 9.14 15.44 8.23"/>
+        </g>
+        <g class="cls-8">
+          <polygon class="cls-3" points="18.12 8.23 16.78 3.91 14.9 9.98 15.64 10.55 16.78 6.86 17.2 8.23 18.12 8.23"/>
+        </g>
+        <g class="cls-7">
+          <polygon class="cls-3" points="18.94 10.9 22.44 8.23 16.36 8.23 16.07 9.14 19.76 9.14 18.66 9.98 18.94 10.9"/>
+        </g>
+        <g class="cls-6">
+          <polygon class="cls-3" points="16.78 12.55 20.28 15.21 18.4 9.14 17.49 9.14 18.62 12.82 17.52 11.98 16.78 12.55"/>
+        </g>
+        <g class="cls-9">
+          <polygon class="cls-3" points="14.62 10.89 13.29 15.22 18.2 11.46 17.92 10.55 14.94 12.83 15.36 11.46 14.62 10.89"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

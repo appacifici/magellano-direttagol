@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-7);
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath-6);
+      }
+
+      .cls-12 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-3 {
+        fill: #2a4b9e;
+      }
+
+      .cls-4 {
+        fill: #d90031;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="KOREA_NORTH" data-name="KOREA NORTH">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-3" width="33.56" height="3.26"/>
+        </g>
+        <g class="cls-6">
+          <rect class="cls-3" y="16.32" width="33.56" height="3.26"/>
+        </g>
+        <g class="cls-9">
+          <rect class="cls-4" y="3.8" width="33.56" height="11.97"/>
+        </g>
+        <g class="cls-8">
+          <rect class="cls-5" y="3.26" width="33.56" height=".54"/>
+        </g>
+        <g class="cls-7">
+          <rect class="cls-5" y="15.77" width="33.56" height=".54"/>
+        </g>
+        <g class="cls-12">
+          <g>
+            <g class="cls-11">
+              <path class="cls-5" d="m13.05,5.44c2.4,0,4.35,1.95,4.35,4.35s-1.95,4.35-4.35,4.35-4.35-1.95-4.35-4.35c0-2.4,1.95-4.35,4.35-4.35"/>
+            </g>
+            <g class="cls-10">
+              <polygon class="cls-4" points="13.05 5.57 14 8.48 17.06 8.48 14.58 10.29 15.53 13.2 13.05 11.4 10.57 13.2 11.52 10.29 9.04 8.48 12.1 8.48 13.05 5.57"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

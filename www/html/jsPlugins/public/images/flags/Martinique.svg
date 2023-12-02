@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f1e;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #00a650;
+      }
+
+      .cls-3 {
+        fill: #ef1923;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <g>
+      <rect id="noir" class="cls-1" width="33.56" height="19.58"/>
+      <rect id="vert" class="cls-2" width="33.56" height="9.79"/>
+      <polygon id="tri_rouge" data-name="tri rouge" class="cls-3" points="0 0 16.78 9.79 0 19.58 0 0"/>
+    </g>
+  </g>
+</svg>

@@ -30,7 +30,7 @@ const Competition = ({matches, tabStatusMatch}:{matches:MatchesInterface, tabSta
         return <Row key={matches.competition.id} className={`${stlMatchBoard.championship}`}>
             {/* <Col xs={1} md={1}><i className={`bi bi-star ${stlMatchBoard.biStar}`}></i></Col> */}
             <Col xs={10} className='text-center mt-1'>
-                <Image src={"/images/flags/"+matches.competition.nation+".png"}/>
+                <Image src={"/images/flags/"+matches.competition.nation+".svg"}/>
                     {matches.competition.name} - {matches.competition.nation}
             </Col>
         </Row>;

@@ -145,13 +145,13 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                 <Col xs={6} md={8} className='text-left'>
                     <Row>
                         <Col xs={2} md={1} className='p-0'>
-                            <Image src={"/images/flags/"+nation+".png"} className="float-start border border-lg-0" />
+                            <Image src={"/images/flags/"+nation+".svg"} className="float-start border border-lg-0" />
                         </Col>
                         <Col xs={10} md={11}>{match.home_team}</Col>                            
                     </Row>   
                     <Row>
                         <Col xs={2} md={1} className='p-0'>
-                        <Image src={"/images/flags/"+nation+".png"} className="float-start border border-lg-0" />
+                        <Image src={"/images/flags/"+nation+".svg"} className="float-start border border-lg-0" />
                         </Col>
                         <Col xs={10} md={11}>{match.away_team}</Col>                          
                     </Row>   

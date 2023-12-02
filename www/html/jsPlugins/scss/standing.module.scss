@@ -1,0 +1,19 @@
+@import "myvariables.module";
+
+
+.standingTable {
+    background-color: $boxBgColor;
+    
+    font-size: 13px;    
+    padding: 10px;  
+    th {
+        color: #38a9ff!important;
+    }
+    td {
+        color: #fff!important;
+    }      
+    .rank {
+        background: #38a9ff;
+        
+    }
+}

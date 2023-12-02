@@ -1,0 +1,1317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath-7);
+      }
+
+      .cls-12 {
+        clip-path: url(#clippath-8);
+      }
+
+      .cls-13 {
+        clip-path: url(#clippath-6);
+      }
+
+      .cls-14 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-15 {
+        clip-path: url(#clippath-9);
+      }
+
+      .cls-16 {
+        clip-path: url(#clippath-60);
+      }
+
+      .cls-17 {
+        clip-path: url(#clippath-69);
+      }
+
+      .cls-18 {
+        clip-path: url(#clippath-20);
+      }
+
+      .cls-19 {
+        clip-path: url(#clippath-21);
+      }
+
+      .cls-20 {
+        clip-path: url(#clippath-24);
+      }
+
+      .cls-21 {
+        clip-path: url(#clippath-23);
+      }
+
+      .cls-22 {
+        clip-path: url(#clippath-22);
+      }
+
+      .cls-23 {
+        clip-path: url(#clippath-25);
+      }
+
+      .cls-24 {
+        clip-path: url(#clippath-44);
+      }
+
+      .cls-25 {
+        clip-path: url(#clippath-45);
+      }
+
+      .cls-26 {
+        clip-path: url(#clippath-40);
+      }
+
+      .cls-27 {
+        clip-path: url(#clippath-42);
+      }
+
+      .cls-28 {
+        clip-path: url(#clippath-41);
+      }
+
+      .cls-29 {
+        clip-path: url(#clippath-47);
+      }
+
+      .cls-30 {
+        clip-path: url(#clippath-43);
+      }
+
+      .cls-31 {
+        clip-path: url(#clippath-46);
+      }
+
+      .cls-32 {
+        clip-path: url(#clippath-48);
+      }
+
+      .cls-33 {
+        clip-path: url(#clippath-49);
+      }
+
+      .cls-34 {
+        clip-path: url(#clippath-84);
+      }
+
+      .cls-35 {
+        clip-path: url(#clippath-88);
+      }
+
+      .cls-36 {
+        clip-path: url(#clippath-86);
+      }
+
+      .cls-37 {
+        clip-path: url(#clippath-81);
+      }
+
+      .cls-38 {
+        clip-path: url(#clippath-83);
+      }
+
+      .cls-39 {
+        clip-path: url(#clippath-85);
+      }
+
+      .cls-40 {
+        clip-path: url(#clippath-80);
+      }
+
+      .cls-41 {
+        clip-path: url(#clippath-87);
+      }
+
+      .cls-42 {
+        clip-path: url(#clippath-82);
+      }
+
+      .cls-43 {
+        clip-path: url(#clippath-98);
+      }
+
+      .cls-44 {
+        clip-path: url(#clippath-89);
+      }
+
+      .cls-45 {
+        clip-path: url(#clippath-27);
+      }
+
+      .cls-46 {
+        clip-path: url(#clippath-28);
+      }
+
+      .cls-47 {
+        clip-path: url(#clippath-26);
+      }
+
+      .cls-48 {
+        clip-path: url(#clippath-29);
+      }
+
+      .cls-49 {
+        clip-path: url(#clippath-34);
+      }
+
+      .cls-50 {
+        clip-path: url(#clippath-35);
+      }
+
+      .cls-51 {
+        clip-path: url(#clippath-36);
+      }
+
+      .cls-52 {
+        clip-path: url(#clippath-37);
+      }
+
+      .cls-53 {
+        clip-path: url(#clippath-39);
+      }
+
+      .cls-54 {
+        clip-path: url(#clippath-33);
+      }
+
+      .cls-55 {
+        clip-path: url(#clippath-32);
+      }
+
+      .cls-56 {
+        clip-path: url(#clippath-30);
+      }
+
+      .cls-57 {
+        clip-path: url(#clippath-38);
+      }
+
+      .cls-58 {
+        clip-path: url(#clippath-31);
+      }
+
+      .cls-59 {
+        clip-path: url(#clippath-95);
+      }
+
+      .cls-60 {
+        clip-path: url(#clippath-99);
+      }
+
+      .cls-61 {
+        clip-path: url(#clippath-93);
+      }
+
+      .cls-62 {
+        clip-path: url(#clippath-94);
+      }
+
+      .cls-63 {
+        clip-path: url(#clippath-91);
+      }
+
+      .cls-64 {
+        clip-path: url(#clippath-96);
+      }
+
+      .cls-65 {
+        clip-path: url(#clippath-90);
+      }
+
+      .cls-66 {
+        clip-path: url(#clippath-92);
+      }
+
+      .cls-67 {
+        clip-path: url(#clippath-97);
+      }
+
+      .cls-68 {
+        clip-path: url(#clippath-53);
+      }
+
+      .cls-69 {
+        clip-path: url(#clippath-54);
+      }
+
+      .cls-70 {
+        clip-path: url(#clippath-50);
+      }
+
+      .cls-71 {
+        clip-path: url(#clippath-51);
+      }
+
+      .cls-72 {
+        clip-path: url(#clippath-52);
+      }
+
+      .cls-73 {
+        clip-path: url(#clippath-55);
+      }
+
+      .cls-74 {
+        clip-path: url(#clippath-56);
+      }
+
+      .cls-75 {
+        clip-path: url(#clippath-57);
+      }
+
+      .cls-76 {
+        clip-path: url(#clippath-58);
+      }
+
+      .cls-77 {
+        clip-path: url(#clippath-79);
+      }
+
+      .cls-78 {
+        clip-path: url(#clippath-61);
+      }
+
+      .cls-79 {
+        clip-path: url(#clippath-64);
+      }
+
+      .cls-80 {
+        clip-path: url(#clippath-62);
+      }
+
+      .cls-81 {
+        clip-path: url(#clippath-68);
+      }
+
+      .cls-82 {
+        clip-path: url(#clippath-67);
+      }
+
+      .cls-83 {
+        clip-path: url(#clippath-73);
+      }
+
+      .cls-84 {
+        clip-path: url(#clippath-59);
+      }
+
+      .cls-85 {
+        clip-path: url(#clippath-65);
+      }
+
+      .cls-86 {
+        clip-path: url(#clippath-63);
+      }
+
+      .cls-87 {
+        clip-path: url(#clippath-66);
+      }
+
+      .cls-88 {
+        clip-path: url(#clippath-70);
+      }
+
+      .cls-89 {
+        clip-path: url(#clippath-75);
+      }
+
+      .cls-90 {
+        clip-path: url(#clippath-72);
+      }
+
+      .cls-91 {
+        clip-path: url(#clippath-78);
+      }
+
+      .cls-92 {
+        clip-path: url(#clippath-71);
+      }
+
+      .cls-93 {
+        clip-path: url(#clippath-77);
+      }
+
+      .cls-94 {
+        clip-path: url(#clippath-74);
+      }
+
+      .cls-95 {
+        clip-path: url(#clippath-76);
+      }
+
+      .cls-96 {
+        clip-path: url(#clippath-14);
+      }
+
+      .cls-97 {
+        clip-path: url(#clippath-13);
+      }
+
+      .cls-98 {
+        clip-path: url(#clippath-12);
+      }
+
+      .cls-99 {
+        clip-path: url(#clippath-10);
+      }
+
+      .cls-100 {
+        clip-path: url(#clippath-15);
+      }
+
+      .cls-101 {
+        clip-path: url(#clippath-17);
+      }
+
+      .cls-102 {
+        clip-path: url(#clippath-16);
+      }
+
+      .cls-103 {
+        clip-path: url(#clippath-19);
+      }
+
+      .cls-104 {
+        clip-path: url(#clippath-11);
+      }
+
+      .cls-105 {
+        clip-path: url(#clippath-18);
+      }
+
+      .cls-3 {
+        fill: #50b63f;
+      }
+
+      .cls-4 {
+        fill: #4497b1;
+      }
+
+      .cls-5 {
+        fill: #bc0030;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-106 {
+        clip-path: url(#clippath-113);
+      }
+
+      .cls-107 {
+        clip-path: url(#clippath-112);
+      }
+
+      .cls-108 {
+        clip-path: url(#clippath-111);
+      }
+
+      .cls-109 {
+        clip-path: url(#clippath-110);
+      }
+
+      .cls-110 {
+        clip-path: url(#clippath-115);
+      }
+
+      .cls-111 {
+        clip-path: url(#clippath-114);
+      }
+
+      .cls-112 {
+        clip-path: url(#clippath-116);
+      }
+
+      .cls-113 {
+        clip-path: url(#clippath-117);
+      }
+
+      .cls-114 {
+        clip-path: url(#clippath-118);
+      }
+
+      .cls-115 {
+        clip-path: url(#clippath-119);
+      }
+
+      .cls-116 {
+        clip-path: url(#clippath-105);
+      }
+
+      .cls-117 {
+        clip-path: url(#clippath-100);
+      }
+
+      .cls-118 {
+        clip-path: url(#clippath-102);
+      }
+
+      .cls-119 {
+        clip-path: url(#clippath-103);
+      }
+
+      .cls-120 {
+        clip-path: url(#clippath-107);
+      }
+
+      .cls-121 {
+        clip-path: url(#clippath-109);
+      }
+
+      .cls-122 {
+        clip-path: url(#clippath-104);
+      }
+
+      .cls-123 {
+        clip-path: url(#clippath-101);
+      }
+
+      .cls-124 {
+        clip-path: url(#clippath-108);
+      }
+
+      .cls-125 {
+        clip-path: url(#clippath-106);
+      }
+
+      .cls-126 {
+        clip-path: url(#clippath-122);
+      }
+
+      .cls-127 {
+        clip-path: url(#clippath-126);
+      }
+
+      .cls-128 {
+        clip-path: url(#clippath-125);
+      }
+
+      .cls-129 {
+        clip-path: url(#clippath-120);
+      }
+
+      .cls-130 {
+        clip-path: url(#clippath-121);
+      }
+
+      .cls-131 {
+        clip-path: url(#clippath-123);
+      }
+
+      .cls-132 {
+        clip-path: url(#clippath-124);
+      }
+
+      .cls-133 {
+        clip-path: url(#clippath-127);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-8">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-9">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-10">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-11">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-12">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-13">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-14">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-15">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-16">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-17">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-18">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-19">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-20">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-21">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-22">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-23">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-24">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-25">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-26">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-27">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-28">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-29">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-30">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-31">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-32">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-33">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-34">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-35">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-36">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-37">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-38">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-39">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-40">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-41">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-42">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-43">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-44">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-45">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-46">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-47">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-48">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-49">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-50">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-51">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-52">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-53">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-54">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-55">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-56">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-57">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-58">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-59">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-60">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-61">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-62">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-63">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-64">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-65">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-66">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-67">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-68">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-69">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-70">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-71">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-72">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-73">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-74">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-75">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-76">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-77">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-78">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-79">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-80">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-81">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-82">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-83">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-84">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-85">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-86">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-87">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-88">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-89">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-90">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-91">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-92">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-93">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-94">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-95">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-96">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-97">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-98">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-99">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-100">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-101">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-102">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-103">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-104">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-105">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-106">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-107">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-108">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-109">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-110">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-111">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-112">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-113">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-114">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-115">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-116">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-117">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-118">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-119">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-120">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-121">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-122">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-123">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-124">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-125">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-126">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-127">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="UZBEKISTAN">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-4" width="33.56" height="6.27"/>
+        </g>
+        <g class="cls-7">
+          <rect class="cls-5" y="6.27" width="33.56" height=".39"/>
+        </g>
+        <g class="cls-10">
+          <rect class="cls-6" y="6.66" width="33.56" height="6.27"/>
+        </g>
+        <g class="cls-9">
+          <rect class="cls-5" y="12.93" width="33.56" height=".39"/>
+        </g>
+        <g class="cls-8">
+          <rect class="cls-3" y="13.32" width="33.56" height="6.27"/>
+        </g>
+        <g class="cls-14">
+          <g>
+            <g class="cls-13">
+              <path class="cls-6" d="m7.83,3.14c0,1.29-1.05,2.34-2.35,2.34s-2.35-1.05-2.35-2.34S4.19.79,5.48.79c1.29,0,2.35,1.05,2.35,2.35"/>
+            </g>
+            <g class="cls-11">
+              <path class="cls-4" d="m8.5,3.14c0,1.08-.88,1.95-1.96,1.95s-1.96-.88-1.96-1.95.88-1.96,1.96-1.96,1.96.88,1.96,1.96"/>
+            </g>
+            <g class="cls-12">
+              <polygon class="cls-6" points="11.43 .79 11.29 1.23 11.51 1.3 11.43 .79"/>
+            </g>
+            <g class="cls-15">
+              <polygon class="cls-6" points="11.43 .79 11.58 1.23 11.35 1.3 11.43 .79"/>
+            </g>
+            <g class="cls-99">
+              <polygon class="cls-6" points="11.88 1.11 11.41 1.11 11.41 1.35 11.88 1.11"/>
+            </g>
+            <g class="cls-104">
+              <polygon class="cls-6" points="11.88 1.11 11.5 1.39 11.36 1.2 11.88 1.11"/>
+            </g>
+            <g class="cls-98">
+              <polygon class="cls-6" points="10.99 1.11 11.37 1.39 11.51 1.2 10.99 1.11"/>
+            </g>
+            <g class="cls-97">
+              <polygon class="cls-6" points="10.99 1.11 11.46 1.11 11.46 1.35 10.99 1.11"/>
+            </g>
+            <g class="cls-96">
+              <polygon class="cls-6" points="11.71 1.64 11.57 1.19 11.34 1.26 11.71 1.64"/>
+            </g>
+            <g class="cls-100">
+              <polygon class="cls-6" points="11.71 1.64 11.33 1.36 11.47 1.17 11.71 1.64"/>
+            </g>
+            <g class="cls-102">
+              <polygon class="cls-6" points="11.16 1.64 11.54 1.36 11.4 1.17 11.16 1.64"/>
+            </g>
+            <g class="cls-101">
+              <polygon class="cls-6" points="11.16 1.64 11.3 1.19 11.53 1.26 11.16 1.64"/>
+            </g>
+            <g class="cls-105">
+              <polygon class="cls-6" points="13.31 .79 13.17 1.23 13.39 1.3 13.31 .79"/>
+            </g>
+            <g class="cls-103">
+              <polygon class="cls-6" points="13.31 .79 13.46 1.23 13.23 1.3 13.31 .79"/>
+            </g>
+            <g class="cls-18">
+              <polygon class="cls-6" points="13.76 1.11 13.29 1.11 13.29 1.35 13.76 1.11"/>
+            </g>
+            <g class="cls-19">
+              <polygon class="cls-6" points="13.76 1.11 13.38 1.39 13.24 1.2 13.76 1.11"/>
+            </g>
+            <g class="cls-22">
+              <polygon class="cls-6" points="12.87 1.11 13.25 1.39 13.39 1.2 12.87 1.11"/>
+            </g>
+            <g class="cls-21">
+              <polygon class="cls-6" points="12.87 1.11 13.33 1.11 13.33 1.35 12.87 1.11"/>
+            </g>
+            <g class="cls-20">
+              <polygon class="cls-6" points="13.59 1.64 13.44 1.19 13.22 1.26 13.59 1.64"/>
+            </g>
+            <g class="cls-23">
+              <polygon class="cls-6" points="13.59 1.64 13.21 1.36 13.35 1.17 13.59 1.64"/>
+            </g>
+            <g class="cls-47">
+              <polygon class="cls-6" points="13.04 1.64 13.42 1.36 13.28 1.17 13.04 1.64"/>
+            </g>
+            <g class="cls-45">
+              <polygon class="cls-6" points="13.04 1.64 13.18 1.19 13.41 1.26 13.04 1.64"/>
+            </g>
+            <g class="cls-46">
+              <polygon class="cls-6" points="15.2 .79 15.05 1.23 15.27 1.3 15.2 .79"/>
+            </g>
+            <g class="cls-48">
+              <polygon class="cls-6" points="15.2 .79 15.34 1.23 15.11 1.3 15.2 .79"/>
+            </g>
+            <g class="cls-56">
+              <polygon class="cls-6" points="15.64 1.11 15.17 1.11 15.17 1.35 15.64 1.11"/>
+            </g>
+            <g class="cls-58">
+              <polygon class="cls-6" points="15.64 1.11 15.26 1.39 15.12 1.2 15.64 1.11"/>
+            </g>
+            <g class="cls-55">
+              <polygon class="cls-6" points="14.75 1.11 15.12 1.39 15.27 1.2 14.75 1.11"/>
+            </g>
+            <g class="cls-54">
+              <polygon class="cls-6" points="14.75 1.11 15.22 1.11 15.22 1.35 14.75 1.11"/>
+            </g>
+            <g class="cls-49">
+              <polygon class="cls-6" points="15.47 1.64 15.32 1.19 15.1 1.26 15.47 1.64"/>
+            </g>
+            <g class="cls-50">
+              <polygon class="cls-6" points="15.47 1.64 15.09 1.36 15.22 1.17 15.47 1.64"/>
+            </g>
+            <g class="cls-51">
+              <polygon class="cls-6" points="14.92 1.64 15.3 1.36 15.16 1.17 14.92 1.64"/>
+            </g>
+            <g class="cls-52">
+              <polygon class="cls-6" points="14.92 1.64 15.06 1.19 15.29 1.26 14.92 1.64"/>
+            </g>
+            <g class="cls-57">
+              <polygon class="cls-6" points="9.55 2.66 9.41 3.11 9.63 3.18 9.55 2.66"/>
+            </g>
+            <g class="cls-53">
+              <polygon class="cls-6" points="9.55 2.66 9.7 3.11 9.48 3.18 9.55 2.66"/>
+            </g>
+            <g class="cls-26">
+              <polygon class="cls-6" points="10 2.99 9.53 2.99 9.53 3.22 10 2.99"/>
+            </g>
+            <g class="cls-28">
+              <polygon class="cls-6" points="10 2.99 9.62 3.26 9.48 3.07 10 2.99"/>
+            </g>
+            <g class="cls-27">
+              <polygon class="cls-6" points="9.11 2.99 9.49 3.26 9.62 3.07 9.11 2.99"/>
+            </g>
+            <g class="cls-30">
+              <polygon class="cls-6" points="9.11 2.99 9.58 2.99 9.58 3.22 9.11 2.99"/>
+            </g>
+            <g class="cls-24">
+              <polygon class="cls-6" points="9.83 3.51 9.68 3.07 9.46 3.14 9.83 3.51"/>
+            </g>
+            <g class="cls-25">
+              <polygon class="cls-6" points="9.83 3.51 9.45 3.24 9.59 3.05 9.83 3.51"/>
+            </g>
+            <g class="cls-31">
+              <polygon class="cls-6" points="9.28 3.51 9.66 3.24 9.52 3.05 9.28 3.51"/>
+            </g>
+            <g class="cls-29">
+              <polygon class="cls-6" points="9.28 3.51 9.42 3.07 9.65 3.14 9.28 3.51"/>
+            </g>
+            <g class="cls-32">
+              <polygon class="cls-6" points="11.43 2.66 11.29 3.11 11.51 3.18 11.43 2.66"/>
+            </g>
+            <g class="cls-33">
+              <polygon class="cls-6" points="11.43 2.66 11.58 3.11 11.35 3.18 11.43 2.66"/>
+            </g>
+            <g class="cls-70">
+              <polygon class="cls-6" points="11.88 2.99 11.41 2.99 11.41 3.22 11.88 2.99"/>
+            </g>
+            <g class="cls-71">
+              <polygon class="cls-6" points="11.88 2.99 11.5 3.26 11.36 3.07 11.88 2.99"/>
+            </g>
+            <g class="cls-72">
+              <polygon class="cls-6" points="10.99 2.99 11.37 3.26 11.51 3.07 10.99 2.99"/>
+            </g>
+            <g class="cls-68">
+              <polygon class="cls-6" points="10.99 2.99 11.46 2.99 11.46 3.22 10.99 2.99"/>
+            </g>
+            <g class="cls-69">
+              <polygon class="cls-6" points="11.71 3.51 11.57 3.07 11.34 3.14 11.71 3.51"/>
+            </g>
+            <g class="cls-73">
+              <polygon class="cls-6" points="11.71 3.51 11.33 3.24 11.47 3.05 11.71 3.51"/>
+            </g>
+            <g class="cls-74">
+              <polygon class="cls-6" points="11.16 3.51 11.54 3.24 11.4 3.05 11.16 3.51"/>
+            </g>
+            <g class="cls-75">
+              <polygon class="cls-6" points="11.16 3.51 11.3 3.07 11.53 3.14 11.16 3.51"/>
+            </g>
+            <g class="cls-76">
+              <polygon class="cls-6" points="13.31 2.66 13.17 3.11 13.39 3.18 13.31 2.66"/>
+            </g>
+            <g class="cls-84">
+              <polygon class="cls-6" points="13.31 2.66 13.46 3.11 13.23 3.18 13.31 2.66"/>
+            </g>
+            <g class="cls-16">
+              <polygon class="cls-6" points="13.76 2.99 13.29 2.99 13.29 3.22 13.76 2.99"/>
+            </g>
+            <g class="cls-78">
+              <polygon class="cls-6" points="13.76 2.99 13.38 3.26 13.24 3.07 13.76 2.99"/>
+            </g>
+            <g class="cls-80">
+              <polygon class="cls-6" points="12.87 2.99 13.25 3.26 13.39 3.07 12.87 2.99"/>
+            </g>
+            <g class="cls-86">
+              <polygon class="cls-6" points="12.87 2.99 13.33 2.99 13.33 3.22 12.87 2.99"/>
+            </g>
+            <g class="cls-79">
+              <polygon class="cls-6" points="13.59 3.51 13.44 3.07 13.22 3.14 13.59 3.51"/>
+            </g>
+            <g class="cls-85">
+              <polygon class="cls-6" points="13.59 3.51 13.21 3.24 13.35 3.05 13.59 3.51"/>
+            </g>
+            <g class="cls-87">
+              <polygon class="cls-6" points="13.04 3.51 13.42 3.24 13.28 3.05 13.04 3.51"/>
+            </g>
+            <g class="cls-82">
+              <polygon class="cls-6" points="13.04 3.51 13.18 3.07 13.41 3.14 13.04 3.51"/>
+            </g>
+            <g class="cls-81">
+              <polygon class="cls-6" points="15.2 2.66 15.05 3.11 15.27 3.18 15.2 2.66"/>
+            </g>
+            <g class="cls-17">
+              <polygon class="cls-6" points="15.2 2.66 15.34 3.11 15.11 3.18 15.2 2.66"/>
+            </g>
+            <g class="cls-88">
+              <polygon class="cls-6" points="15.64 2.99 15.17 2.99 15.17 3.22 15.64 2.99"/>
+            </g>
+            <g class="cls-92">
+              <polygon class="cls-6" points="15.64 2.99 15.26 3.26 15.12 3.07 15.64 2.99"/>
+            </g>
+            <g class="cls-90">
+              <polygon class="cls-6" points="14.75 2.99 15.12 3.26 15.27 3.07 14.75 2.99"/>
+            </g>
+            <g class="cls-83">
+              <polygon class="cls-6" points="14.75 2.99 15.22 2.99 15.22 3.22 14.75 2.99"/>
+            </g>
+            <g class="cls-94">
+              <polygon class="cls-6" points="15.47 3.51 15.32 3.07 15.1 3.14 15.47 3.51"/>
+            </g>
+            <g class="cls-89">
+              <polygon class="cls-6" points="15.47 3.51 15.09 3.24 15.22 3.05 15.47 3.51"/>
+            </g>
+            <g class="cls-95">
+              <polygon class="cls-6" points="14.92 3.51 15.3 3.24 15.16 3.05 14.92 3.51"/>
+            </g>
+            <g class="cls-93">
+              <polygon class="cls-6" points="14.92 3.51 15.06 3.07 15.29 3.14 14.92 3.51"/>
+            </g>
+            <g class="cls-91">
+              <polygon class="cls-6" points="7.68 4.54 7.53 4.99 7.75 5.06 7.68 4.54"/>
+            </g>
+            <g class="cls-77">
+              <polygon class="cls-6" points="7.68 4.54 7.82 4.99 7.6 5.06 7.68 4.54"/>
+            </g>
+            <g class="cls-40">
+              <polygon class="cls-6" points="8.12 4.87 7.65 4.87 7.65 5.1 8.12 4.87"/>
+            </g>
+            <g class="cls-37">
+              <polygon class="cls-6" points="8.12 4.87 7.74 5.14 7.6 4.95 8.12 4.87"/>
+            </g>
+            <g class="cls-42">
+              <polygon class="cls-6" points="7.23 4.87 7.61 5.14 7.75 4.95 7.23 4.87"/>
+            </g>
+            <g class="cls-38">
+              <polygon class="cls-6" points="7.23 4.87 7.7 4.87 7.7 5.1 7.23 4.87"/>
+            </g>
+            <g class="cls-34">
+              <polygon class="cls-6" points="7.95 5.39 7.81 4.95 7.58 5.02 7.95 5.39"/>
+            </g>
+            <g class="cls-39">
+              <polygon class="cls-6" points="7.95 5.39 7.57 5.12 7.71 4.93 7.95 5.39"/>
+            </g>
+            <g class="cls-36">
+              <polygon class="cls-6" points="7.4 5.39 7.78 5.12 7.64 4.93 7.4 5.39"/>
+            </g>
+            <g class="cls-41">
+              <polygon class="cls-6" points="7.4 5.39 7.54 4.95 7.77 5.02 7.4 5.39"/>
+            </g>
+            <g class="cls-35">
+              <polygon class="cls-6" points="9.55 4.54 9.41 4.99 9.63 5.06 9.55 4.54"/>
+            </g>
+            <g class="cls-44">
+              <polygon class="cls-6" points="9.55 4.54 9.7 4.99 9.48 5.06 9.55 4.54"/>
+            </g>
+            <g class="cls-65">
+              <polygon class="cls-6" points="10 4.87 9.53 4.87 9.53 5.1 10 4.87"/>
+            </g>
+            <g class="cls-63">
+              <polygon class="cls-6" points="10 4.87 9.62 5.14 9.48 4.95 10 4.87"/>
+            </g>
+            <g class="cls-66">
+              <polygon class="cls-6" points="9.11 4.87 9.49 5.14 9.62 4.95 9.11 4.87"/>
+            </g>
+            <g class="cls-61">
+              <polygon class="cls-6" points="9.11 4.87 9.58 4.87 9.58 5.1 9.11 4.87"/>
+            </g>
+            <g class="cls-62">
+              <polygon class="cls-6" points="9.83 5.39 9.68 4.95 9.46 5.02 9.83 5.39"/>
+            </g>
+            <g class="cls-59">
+              <polygon class="cls-6" points="9.83 5.39 9.45 5.12 9.59 4.93 9.83 5.39"/>
+            </g>
+            <g class="cls-64">
+              <polygon class="cls-6" points="9.28 5.39 9.66 5.12 9.52 4.93 9.28 5.39"/>
+            </g>
+            <g class="cls-67">
+              <polygon class="cls-6" points="9.28 5.39 9.42 4.95 9.65 5.02 9.28 5.39"/>
+            </g>
+            <g class="cls-43">
+              <polygon class="cls-6" points="11.43 4.54 11.29 4.99 11.51 5.06 11.43 4.54"/>
+            </g>
+            <g class="cls-60">
+              <polygon class="cls-6" points="11.43 4.54 11.58 4.99 11.35 5.06 11.43 4.54"/>
+            </g>
+            <g class="cls-117">
+              <polygon class="cls-6" points="11.88 4.87 11.41 4.87 11.41 5.1 11.88 4.87"/>
+            </g>
+            <g class="cls-123">
+              <polygon class="cls-6" points="11.88 4.87 11.5 5.14 11.36 4.95 11.88 4.87"/>
+            </g>
+            <g class="cls-118">
+              <polygon class="cls-6" points="10.99 4.87 11.37 5.14 11.51 4.95 10.99 4.87"/>
+            </g>
+            <g class="cls-119">
+              <polygon class="cls-6" points="10.99 4.87 11.46 4.87 11.46 5.1 10.99 4.87"/>
+            </g>
+            <g class="cls-122">
+              <polygon class="cls-6" points="11.71 5.39 11.57 4.95 11.34 5.02 11.71 5.39"/>
+            </g>
+            <g class="cls-116">
+              <polygon class="cls-6" points="11.71 5.39 11.33 5.12 11.47 4.93 11.71 5.39"/>
+            </g>
+            <g class="cls-125">
+              <polygon class="cls-6" points="11.16 5.39 11.54 5.12 11.4 4.93 11.16 5.39"/>
+            </g>
+            <g class="cls-120">
+              <polygon class="cls-6" points="11.16 5.39 11.3 4.95 11.53 5.02 11.16 5.39"/>
+            </g>
+            <g class="cls-124">
+              <polygon class="cls-6" points="13.31 4.54 13.17 4.99 13.39 5.06 13.31 4.54"/>
+            </g>
+            <g class="cls-121">
+              <polygon class="cls-6" points="13.31 4.54 13.46 4.99 13.23 5.06 13.31 4.54"/>
+            </g>
+            <g class="cls-109">
+              <polygon class="cls-6" points="13.76 4.87 13.29 4.87 13.29 5.1 13.76 4.87"/>
+            </g>
+            <g class="cls-108">
+              <polygon class="cls-6" points="13.76 4.87 13.38 5.14 13.24 4.95 13.76 4.87"/>
+            </g>
+            <g class="cls-107">
+              <polygon class="cls-6" points="12.87 4.87 13.25 5.14 13.39 4.95 12.87 4.87"/>
+            </g>
+            <g class="cls-106">
+              <polygon class="cls-6" points="12.87 4.87 13.33 4.87 13.33 5.1 12.87 4.87"/>
+            </g>
+            <g class="cls-111">
+              <polygon class="cls-6" points="13.59 5.39 13.44 4.95 13.22 5.02 13.59 5.39"/>
+            </g>
+            <g class="cls-110">
+              <polygon class="cls-6" points="13.59 5.39 13.21 5.12 13.35 4.93 13.59 5.39"/>
+            </g>
+            <g class="cls-112">
+              <polygon class="cls-6" points="13.04 5.39 13.42 5.12 13.28 4.93 13.04 5.39"/>
+            </g>
+            <g class="cls-113">
+              <polygon class="cls-6" points="13.04 5.39 13.18 4.95 13.41 5.02 13.04 5.39"/>
+            </g>
+            <g class="cls-114">
+              <polygon class="cls-6" points="15.2 4.54 15.05 4.99 15.27 5.06 15.2 4.54"/>
+            </g>
+            <g class="cls-115">
+              <polygon class="cls-6" points="15.2 4.54 15.34 4.99 15.11 5.06 15.2 4.54"/>
+            </g>
+            <g class="cls-129">
+              <polygon class="cls-6" points="15.64 4.87 15.17 4.87 15.17 5.1 15.64 4.87"/>
+            </g>
+            <g class="cls-130">
+              <polygon class="cls-6" points="15.64 4.87 15.26 5.14 15.12 4.95 15.64 4.87"/>
+            </g>
+            <g class="cls-126">
+              <polygon class="cls-6" points="14.75 4.87 15.12 5.14 15.27 4.95 14.75 4.87"/>
+            </g>
+            <g class="cls-131">
+              <polygon class="cls-6" points="14.75 4.87 15.22 4.87 15.22 5.1 14.75 4.87"/>
+            </g>
+            <g class="cls-132">
+              <polygon class="cls-6" points="15.47 5.39 15.32 4.95 15.1 5.02 15.47 5.39"/>
+            </g>
+            <g class="cls-128">
+              <polygon class="cls-6" points="15.47 5.39 15.09 5.12 15.22 4.93 15.47 5.39"/>
+            </g>
+            <g class="cls-127">
+              <polygon class="cls-6" points="14.92 5.39 15.3 5.12 15.16 4.93 14.92 5.39"/>
+            </g>
+            <g class="cls-133">
+              <polygon class="cls-6" points="14.92 5.39 15.06 4.95 15.29 5.02 14.92 5.39"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

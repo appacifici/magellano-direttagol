@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        stroke-width: 0px;
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-12 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-3 {
+        fill: #48982f;
+      }
+
+      .cls-4 {
+        fill: #1e2f80;
+      }
+
+      .cls-5 {
+        fill: #c0003b;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-7 {
+        fill: #f5cd28;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="C.A.R">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-4" width="33.56" height="4.9"/>
+        </g>
+        <g class="cls-8">
+          <rect class="cls-6" y="4.9" width="33.56" height="4.89"/>
+        </g>
+        <g class="cls-11">
+          <rect class="cls-3" y="9.79" width="33.56" height="4.9"/>
+        </g>
+        <g class="cls-10">
+          <rect class="cls-7" y="14.68" width="33.56" height="4.9"/>
+        </g>
+        <g class="cls-9">
+          <rect class="cls-5" x="14.33" width="4.9" height="19.58"/>
+        </g>
+        <g class="cls-12">
+          <polygon class="cls-7" points="5.76 .46 6.25 1.98 7.85 1.98 6.56 2.92 7.05 4.44 5.76 3.5 4.46 4.44 4.96 2.92 3.66 1.98 5.26 1.98 5.76 .46"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

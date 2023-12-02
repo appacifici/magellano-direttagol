@@ -3,7 +3,7 @@ import mongoose, { Document, Schema, Model, ObjectId } from 'mongoose';
 interface StandingType {
     competitionId: number;
     drawn: number;
-    form: Array<'W' | 'L' | 'D'>;
+    form: Array<'W' | 'L' | 'D' | ''>;
     goalDiff: number;
     goalsConceded: number;
     goalsScored: number;
@@ -29,7 +29,7 @@ type StandingArrayWithIdType = StandingWithIdType[];
 const StandingSchema = new Schema<IStanding & Document>({
     competitionId: { type: Number, required: true },
     drawn: { type: Number, required: true },
-    form: [{ type: String, enum: ['W', 'L', 'D'] }],
+    form: [{ type: String, enum: ['W', 'L', 'D', ''] }],
     goalDiff: { type: Number, required: true },
     goalsConceded: { type: Number, required: true },
     goalsScored: { type: Number, required: true },
@@ -47,6 +47,6 @@ const StandingSchema = new Schema<IStanding & Document>({
     won: { type: Number, required: true }
 });
 
-StandingSchema.index({ competitionId: 1, groupId: 1 }, { unique: true });
+StandingSchema.index({ competitionId: 1, groupId: 1, name:1 }, { unique: true });
 const Standing: Model<IStanding> = mongoose.model<IStanding>('Standing', StandingSchema);
 export { Standing, StandingType, StandingArrayWithIdType, StandingWithIdType, IStanding, StandingSchema };

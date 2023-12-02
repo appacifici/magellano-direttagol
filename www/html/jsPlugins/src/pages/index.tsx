@@ -88,7 +88,7 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 			props: {
                 'nationsCompetitions': nationsCompetitions,
                 'competitionsTop': competitionsTopJSON
-            },
+            }            
 		};
 	}
 );
@@ -109,11 +109,12 @@ const getMenuCompetitions = async () => {
                     country: {
                         id: country._id,
                         name: country.name,
+                        img: country.img,
                         competitions: competitionsObj
                     }
                 };
             });
-        })).then(() => response);
+        })).then(() => response); 
     });
 }
 

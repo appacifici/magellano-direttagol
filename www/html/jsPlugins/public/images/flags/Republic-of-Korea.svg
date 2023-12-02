@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath-6);
+      }
+
+      .cls-12 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-4 {
+        fill: #1e3476;
+      }
+
+      .cls-5 {
+        fill: #b50037;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g class="cls-1">
+        <rect class="cls-6" width="33.56" height="19.58"/>
+      </g>
+      <rect class="cls-3" x="22.08" y="3.29" width=".82" height="2.24" transform="translate(1.32 13.2) rotate(-33.63)"/>
+      <rect class="cls-3" x="23.56" y="5.48" width=".82" height="2.24" transform="translate(.37 14.42) rotate(-33.74)"/>
+      <rect class="cls-3" x="23.84" y="2.38" width=".82" height="4.9" transform="translate(1.39 14.26) rotate(-33.68)"/>
+      <rect class="cls-3" x="24.12" y="1.9" width=".82" height="2.25" transform="translate(2.43 14.09) rotate(-33.64)"/>
+      <g class="cls-7">
+        <polygon class="cls-3" points="25.72 4.08 26.96 5.95 26.28 6.4 25.04 4.53 25.72 4.08"/>
+      </g>
+      <rect class="cls-3" x="9.92" y="11.62" width=".82" height="4.89" transform="translate(-6.07 8.1) rotate(-33.7)"/>
+      <rect class="cls-3" x="8.19" y="12.57" width=".82" height="2.24" transform="translate(-6.15 7.07) rotate(-33.69)"/>
+      <rect class="cls-3" x="9.65" y="14.76" width=".82" height="2.24" transform="translate(-7.12 8.23) rotate(-33.66)"/>
+      <rect class="cls-3" x="7.88" y="13" width=".82" height="4.89" transform="translate(-7.18 7.19) rotate(-33.68)"/>
+      <rect class="cls-3" x="7.89" y="5.07" width="4.89" height=".82" transform="translate(.05 11.04) rotate(-56.32)"/>
+      <rect class="cls-3" x="6.87" y="4.39" width="4.9" height=".82" transform="translate(.16 9.9) rotate(-56.32)"/>
+      <rect class="cls-3" x="5.85" y="3.75" width="4.9" height=".82" transform="translate(.24 8.76) rotate(-56.34)"/>
+      <rect class="cls-3" x="21.4" y="14.77" width="2.24" height=".82" transform="translate(-2.61 25.48) rotate(-56.27)"/>
+      <rect class="cls-3" x="22.83" y="12.59" width="2.25" height=".81" transform="translate(-.14 25.74) rotate(-56.36)"/>
+      <rect class="cls-3" x="22.4" y="15.45" width="2.24" height=".82" transform="translate(-2.72 26.64) rotate(-56.32)"/>
+      <g class="cls-10">
+        <polygon class="cls-3" points="24.02 14.37 25.27 12.5 25.95 12.96 24.7 14.82 24.02 14.37"/>
+      </g>
+      <rect class="cls-3" x="23.43" y="16.13" width="2.24" height=".82" transform="translate(-2.84 27.76) rotate(-56.25)"/>
+      <rect class="cls-3" x="24.89" y="13.92" width="2.24" height=".81" transform="translate(-.34 28.04) rotate(-56.34)"/>
+      <g class="cls-9">
+        <g>
+          <g class="cls-8">
+            <path class="cls-5" d="m12.71,7.07s-.04.05-.05.08c.02-.03.03-.06.05-.08"/>
+          </g>
+          <g class="cls-12">
+            <path class="cls-5" d="m19.5,5.71c-2.25-1.5-5.29-.89-6.79,1.36-.75,1.12-.45,2.64.68,3.39,1.12.75,2.64.45,3.39-.68s2.27-1.43,3.39-.68c1.13.75,1.43,2.27.68,3.39,1.5-2.25.89-5.29-1.36-6.79"/>
+          </g>
+          <g class="cls-11">
+            <path class="cls-4" d="m12.71,7.07c-.75,1.12-.45,2.64.68,3.39,1.12.75,2.64.45,3.39-.68s2.27-1.43,3.39-.68c1.13.75,1.43,2.27.68,3.39-1.5,2.25-4.54,2.86-6.79,1.36s-2.86-4.54-1.36-6.79"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

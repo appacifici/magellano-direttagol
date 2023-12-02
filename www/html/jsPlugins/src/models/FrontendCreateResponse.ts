@@ -87,6 +87,7 @@ class FrontendCreateResponse {
                 competition: {
                     name:   match.competitionId.name,
                     nation: match.competitionId.countryId.name,
+                    img:    this.sanitizeString(match.competitionId.countryId.name),
                     id:     match.competitionId._id.toString(),
                     matches: {}
                 }             
@@ -97,6 +98,16 @@ class FrontendCreateResponse {
 
     get objResponse():MatchesInterface {
         return this.socketResponse;
+    }
+
+    private sanitizeString(str:string) {
+        // Elimina i caratteri speciali eccetto lo spazio
+        let sanitizedString = str.replace(/[^a-zA-Z0-9 ]/g, "");
+    
+        // Sostituisce gli spazi con il simbolo -
+        sanitizedString = sanitizedString.replace(/\s+/g, "-");
+    
+        return sanitizedString;
     }
 }
 

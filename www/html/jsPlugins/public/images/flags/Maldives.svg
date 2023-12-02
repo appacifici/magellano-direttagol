@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-3 {
+        fill: #347f3d;
+      }
+
+      .cls-4 {
+        fill: #c0003b;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="MALDIVES">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-4" width="33.56" height="19.58"/>
+        </g>
+        <g class="cls-6">
+          <rect class="cls-3" x="4.89" y="4.89" width="23.78" height="9.79"/>
+        </g>
+        <g class="cls-9">
+          <g>
+            <g class="cls-8">
+              <path class="cls-5" d="m18,6.53c1.8,0,3.26,1.46,3.26,3.27s-1.46,3.26-3.26,3.26-3.27-1.46-3.27-3.26c0-1.8,1.46-3.27,3.27-3.27"/>
+            </g>
+            <g class="cls-7">
+              <path class="cls-3" d="m19.23,6.53c1.8,0,3.27,1.46,3.27,3.27s-1.46,3.26-3.27,3.26-3.26-1.46-3.26-3.26c0-1.8,1.46-3.27,3.26-3.27"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

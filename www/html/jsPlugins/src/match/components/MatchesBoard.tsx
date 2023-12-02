@@ -34,8 +34,7 @@ const MatchesBoard = () => {
         window.location.href = "/?date="+format(date, 'yyyy-MM-dd');
     }
 
-    const getMatchesComponent = (matches:any) => {
-        console.log(matches);
+    const getMatchesComponent = (matches:any) => {        
         if( matches != null ) {
             return <>
                 {Object.keys(matches).map( (key:any) => <>

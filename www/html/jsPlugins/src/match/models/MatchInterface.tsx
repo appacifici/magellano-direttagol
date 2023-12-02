@@ -20,6 +20,7 @@ export type MatchInterface = {
 export type CompetitionInterface = {
     name: string;
     nation: string;
+    img: string;
     id: number;
     countryName: string
     matches: {

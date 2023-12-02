@@ -14,6 +14,7 @@ interface CountryData {
     country: {
         id: string;
         name: string;
+        img: string;
         competitions: { [key: string]: Competition };
     };
 }
@@ -25,6 +26,7 @@ interface NationsCompetitions {
 function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
 
 	const data:NationsCompetitions = JSON.parse(nationsCompetitions);
+    console.log(data);
     return (
         <>      
             <Nav className="flex-grow-1 pt-3 ps-3 pe-0">
@@ -37,6 +39,7 @@ function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
                     {
 						Object.keys(data).map(key => {
 							const nationName = data[key].country?.name;
+							const img       = sanitizeString(data[key].country?.name);
 							const competitions = data[key].country?.competitions;							
 
 							if (!nationName || !competitions) {
@@ -49,6 +52,7 @@ function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
 									<Col className="mb-2 pb-lg-0 pb-1 border-lg-0 col-12">                                            
 										<Championships 
 											nation={nationName} 
+											img={img} 
 											competitions={competitions}
 										/>
 									</Col>
@@ -62,5 +66,15 @@ function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
     );
 }
 
+
+const sanitizeString = (str:string) => {
+    // Elimina i caratteri speciali eccetto lo spazio
+    let sanitizedString = str.replace(/[^a-zA-Z0-9 ]/g, "");
+
+    // Sostituisce gli spazi con il simbolo -
+    sanitizedString = sanitizedString.replace(/\s+/g, "-");
+
+    return sanitizedString;
+}
 
 export default Nations;

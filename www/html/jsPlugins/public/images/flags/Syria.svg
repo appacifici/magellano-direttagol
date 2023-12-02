@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-4 {
+        fill: #429e61;
+      }
+
+      .cls-5 {
+        fill: #bc0030;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="SYRIA">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-6" width="33.56" height="19.58"/>
+        </g>
+        <g class="cls-7">
+          <rect class="cls-5" width="33.56" height="6.53"/>
+        </g>
+        <g class="cls-10">
+          <polygon class="cls-4" points="22.65 7.67 23.13 9.14 24.67 9.14 23.43 10.04 23.9 11.51 22.65 10.6 21.41 11.51 21.88 10.04 20.64 9.14 22.18 9.14 22.65 7.67"/>
+        </g>
+        <g class="cls-9">
+          <polygon class="cls-4" points="10.91 7.67 11.38 9.14 12.92 9.14 11.68 10.04 12.15 11.51 10.91 10.6 9.66 11.51 10.14 10.04 8.89 9.14 10.43 9.14 10.91 7.67"/>
+        </g>
+        <g class="cls-8">
+          <rect class="cls-3" y="13.05" width="33.56" height="6.53"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

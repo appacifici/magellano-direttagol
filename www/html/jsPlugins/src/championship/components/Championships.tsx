@@ -2,6 +2,7 @@ import React 		from 'react';
 import Nav 			from 'react-bootstrap/Nav';
 import Row 			from 'react-bootstrap/Row';
 import Accordion 	from 'react-bootstrap/Accordion';
+import { Image } from 'react-bootstrap';
 
 interface Competition {
     name: string;
@@ -12,6 +13,7 @@ interface CountryData {
     country: {
         id: string;
         name: string;
+        img: string;
         competitions: { [key: string]: Competition };
     };
 }
@@ -22,15 +24,17 @@ interface NationsCompetitions {
 
 interface ChampionshipsProps {
     nation: string;
+    img: string;
     competitions: { [key: string]: Competition };
 }
 
-function Championships({ nation, competitions }: ChampionshipsProps) {	
+function Championships({ nation, competitions, img }: ChampionshipsProps) {	
 	return (		
         <>      
             <Accordion>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>
+                        <Image src={`/images/flags/${img}.svg`} className="float-start border border-lg-0 me-1" />
                         {nation}
                     </Accordion.Header>
                     <Accordion.Body>

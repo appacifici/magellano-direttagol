@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        stroke-width: 0px;
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-12 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-13 {
+        clip-path: url(#clippath-7);
+      }
+
+      .cls-14 {
+        clip-path: url(#clippath-8);
+      }
+
+      .cls-15 {
+        clip-path: url(#clippath-6);
+      }
+
+      .cls-16 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-4 {
+        fill: #1f189b;
+      }
+
+      .cls-5 {
+        fill: #d03033;
+      }
+
+      .cls-6 {
+        fill: #32784c;
+      }
+
+      .cls-7 {
+        fill: #f2b126;
+      }
+
+      .cls-8 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-8">
+      <rect class="cls-2" width="33.56" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="SOUTH_AFRICA" data-name="SOUTH AFRICA">
+      <g>
+        <rect id="SVGID" class="cls-8" width="33.56" height="19.58"/>
+        <g class="cls-1">
+          <polygon class="cls-5" points="5.88 0 15.67 6.52 33.56 6.52 33.56 0 5.88 0"/>
+        </g>
+        <g class="cls-9">
+          <polygon class="cls-8" points="17.63 7.83 33.56 7.83 33.56 6.52 15.67 6.52 17.63 7.83"/>
+        </g>
+        <g class="cls-12">
+          <polygon class="cls-8" points="15.67 13.05 33.56 13.05 33.56 11.75 17.63 11.75 15.67 13.05"/>
+        </g>
+        <g class="cls-11">
+          <polygon class="cls-4" points="15.67 13.05 5.88 19.58 33.56 19.58 33.56 13.05 15.67 13.05"/>
+        </g>
+        <g class="cls-10">
+          <polygon class="cls-3" points="0 6.52 3.9 6.52 0 3.92 0 6.52"/>
+        </g>
+        <g class="cls-16">
+          <polygon class="cls-3" points="0 6.52 0 13.05 3.9 13.05 8.8 9.79 3.9 6.52 0 6.52"/>
+        </g>
+        <g class="cls-15">
+          <polygon class="cls-3" points="0 13.05 0 15.66 3.9 13.05 0 13.05"/>
+        </g>
+        <g class="cls-13">
+          <polygon class="cls-7" points="0 3.92 8.8 9.79 0 15.66 0 17.22 11.15 9.79 0 2.35 0 3.92"/>
+        </g>
+        <g class="cls-14">
+          <polygon class="cls-6" points="0 0 0 2.35 11.15 9.79 0 17.22 0 19.58 3.53 19.58 15.27 11.75 33.56 11.75 33.56 7.83 15.27 7.83 3.53 0 0 0"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

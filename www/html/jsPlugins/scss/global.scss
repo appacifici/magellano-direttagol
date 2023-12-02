@@ -7,6 +7,7 @@ $body-bg: #111215;
 $accordion-bg: transparent;
 $offcanvas-padding-y: 5px;
 $btn-close-color: #38a9ff;
+$table-color-state: #fff;
 
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.61 19.65">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #55b563;
+      }
+
+      .cls-3 {
+        fill: #ff2424;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="LIBYA">
+      <g>
+        <g>
+          <rect class="cls-1" y="4.84" width="33.61" height="9.68"/>
+          <rect class="cls-3" width="33.61" height="5.13"/>
+          <rect class="cls-2" y="13.95" width="33.61" height="5.7"/>
+        </g>
+        <g>
+          <polygon class="cls-4" points="19.51 8 20.17 9.13 21.3 8.75 20.57 9.82 21.23 10.94 20.12 10.48 19.4 11.55 19.44 10.2 18.34 9.74 19.47 9.36 19.51 8"/>
+          <path class="cls-4" d="m17.54,11.88c-1.07,0-1.94-.94-1.94-2.09s.87-2.09,1.94-2.09c.41,0,.79.13,1.11.37-.4-.52-.99-.84-1.64-.84-1.22,0-2.21,1.15-2.21,2.57s.99,2.57,2.21,2.57c.66,0,1.25-.34,1.66-.87-.32.24-.7.39-1.12.39Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

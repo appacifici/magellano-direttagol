@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 15.73 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-3 {
+        fill: #22368f;
+      }
+
+      .cls-4 {
+        fill: #bc0030;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="15.73" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="15.73" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="15.73" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="15.73" height="19.58"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-2" width="15.73" height="19.58"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="NEPAL">
+      <g>
+        <g class="cls-1">
+          <path class="cls-3" d="m.74,1.34l12.24,7.66H3.55l9.83,9.83H.74V1.34h0ZM0,0v19.58h15.17L5.34,9.75h10.23L0,0Z"/>
+        </g>
+        <g class="cls-6">
+          <polygon class="cls-4" points=".37 .67 .37 19.21 14.27 19.21 4.45 9.38 14.27 9.38 .37 .67"/>
+        </g>
+        <g class="cls-9">
+          <g>
+            <g class="cls-8">
+              <path class="cls-5" d="m3.85,8.88c1.53,0,2.77-1.24,2.77-2.77-.24.61-.68,1.12-1.24,1.47l-.24-.18.47-.35-.56-.14h0l.29-.5-.58.08.08-.57-.5.3h0l-.14-.56-.35.47-.35-.47-.14.56h0l-.5-.3.08.57-.58-.08.3.5h0l-.57.14.47.35-.24.18c-.56-.34-1-.85-1.24-1.47,0,1.52,1.24,2.77,2.77,2.77"/>
+            </g>
+            <g class="cls-7">
+              <polygon class="cls-5" points="5.67 14.78 5.67 14.78 6.82 14.29 5.67 13.8 5.67 13.8 6.42 12.8 5.18 12.96 5.33 11.72 4.34 12.47 4.34 12.47 3.85 11.32 3.36 12.47 3.36 12.47 2.36 11.72 2.51 12.96 1.27 12.8 2.03 13.8 2.03 13.8 .87 14.29 2.03 14.78 2.03 14.78 1.27 15.78 2.51 15.63 2.51 15.63 2.51 15.63 2.36 16.87 3.36 16.11 3.36 16.11 3.85 17.27 4.34 16.11 4.34 16.11 5.33 16.87 5.18 15.63 6.42 15.78 5.67 14.78"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

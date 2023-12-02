@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 33.56 19.57">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-4 {
+        fill: #f4c638;
+      }
+
+      .cls-5 {
+        fill: #c9152c;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="33.56" height="19.57"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" width="33.56" height="19.57"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-2" width="33.56" height="19.57"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-2" width="33.56" height="19.57"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="EAST_TIMOR" data-name="EAST TIMOR">
+      <g>
+        <g class="cls-1">
+          <rect class="cls-5" width="33.56" height="19.57"/>
+        </g>
+        <g class="cls-7">
+          <polygon class="cls-4" points="0 0 0 19.57 19.58 9.79 0 0"/>
+        </g>
+        <g class="cls-9">
+          <polygon class="cls-3" points="0 0 0 19.57 13.05 9.79 0 0"/>
+        </g>
+        <g class="cls-8">
+          <polygon class="cls-6" points="7.28 7.28 6.19 9.47 8.01 11.11 5.51 10.84 4.42 13.02 3.96 10.66 1.46 10.38 3.68 9.19 3.23 6.82 5.06 8.45 7.28 7.28"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

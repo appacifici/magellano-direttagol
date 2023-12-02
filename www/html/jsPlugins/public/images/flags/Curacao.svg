@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.56 19.58">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f9e814;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #002b7f;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <rect class="cls-3" width="33.56" height="19.58"/>
+    <path class="cls-1" d="m0,13.96h33.56v2.79H0v-2.79Z"/>
+    <g id="s">
+      <g id="f">
+        <g id="t">
+          <path id="o" class="cls-2" d="m7.45,4.96l-.77,2.36,1.18.38-.41-2.74Z"/>
+          <path id="o-2" data-name="o" class="cls-2" d="m7.45,4.96l.77,2.36-1.18.38.41-2.74Z"/>
+        </g>
+        <g id="t-2" data-name="t">
+          <path id="o-3" data-name="o" class="cls-2" d="m9.81,6.68h-2.48v1.24l2.48-1.24Z"/>
+          <path id="o-4" data-name="o" class="cls-2" d="m9.81,6.68l-2.01,1.46-.73-1,2.74-.45Z"/>
+        </g>
+      </g>
+      <g id="t-3" data-name="t">
+        <path id="o-5" data-name="o" class="cls-2" d="m5.09,6.68l2.01,1.46.73-1-2.74-.45Z"/>
+        <path id="o-6" data-name="o" class="cls-2" d="m5.09,6.68h2.48v1.24l-2.48-1.24Z"/>
+      </g>
+      <g id="f-2" data-name="f">
+        <g id="t-4" data-name="t">
+          <path id="o-7" data-name="o" class="cls-2" d="m8.91,9.46l-.77-2.36-1.18.38,1.95,1.98Z"/>
+          <path id="o-8" data-name="o" class="cls-2" d="m8.91,9.46l-2.01-1.46.73-1,1.28,2.46Z"/>
+        </g>
+        <g id="t-5" data-name="t">
+          <path id="o-9" data-name="o" class="cls-2" d="m5.99,9.46l2.01-1.46-.73-1-1.28,2.46Z"/>
+          <path id="o-10" data-name="o" class="cls-2" d="m5.99,9.46l.77-2.36,1.18.38-1.95,1.98Z"/>
+        </g>
+      </g>
+    </g>
+    <g id="s-2" data-name="s">
+      <g id="f-3" data-name="f">
+        <g id="t-6" data-name="t">
+          <path id="o-11" data-name="o" class="cls-2" d="m3.72,1.86l-.58,1.77.89.29-.31-2.06Z"/>
+          <path id="o-12" data-name="o" class="cls-2" d="m3.72,1.86l.58,1.77-.89.29.31-2.06Z"/>
+        </g>
+        <g id="t-7" data-name="t">
+          <path id="o-13" data-name="o" class="cls-2" d="m5.49,3.15h-1.86v.93l1.86-.93Z"/>
+          <path id="o-14" data-name="o" class="cls-2" d="m5.49,3.15l-1.51,1.09-.55-.75,2.05-.34Z"/>
+        </g>
+      </g>
+      <g id="t-8" data-name="t">
+        <path id="o-15" data-name="o" class="cls-2" d="m1.95,3.15l1.51,1.09.55-.75-2.05-.34Z"/>
+        <path id="o-16" data-name="o" class="cls-2" d="m1.95,3.15h1.86v.93l-1.86-.93Z"/>
+      </g>
+      <g id="f-4" data-name="f">
+        <g id="t-9" data-name="t">
+          <path id="o-17" data-name="o" class="cls-2" d="m4.82,5.23l-.58-1.77-.89.29,1.46,1.48Z"/>
+          <path id="o-18" data-name="o" class="cls-2" d="m4.82,5.23l-1.51-1.09.55-.75.96,1.85Z"/>
+        </g>
+        <g id="t-10" data-name="t">
+          <path id="o-19" data-name="o" class="cls-2" d="m2.63,5.23l1.51-1.09-.55-.75-.96,1.85Z"/>
+          <path id="o-20" data-name="o" class="cls-2" d="m2.63,5.23l.58-1.77.89.29-1.46,1.48Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
