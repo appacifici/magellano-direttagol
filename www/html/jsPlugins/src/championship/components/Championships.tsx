@@ -2,10 +2,12 @@ import React 		from 'react';
 import Nav 			from 'react-bootstrap/Nav';
 import Row 			from 'react-bootstrap/Row';
 import Accordion 	from 'react-bootstrap/Accordion';
-import { Image } from 'react-bootstrap';
+import Link         from 'next/link';
+import { Image }    from 'react-bootstrap';
 
 interface Competition {
     name: string;
+    id: number;
     // ... any other properties of a competition
 }
 
@@ -42,7 +44,8 @@ function Championships({ nation, competitions, img }: ChampionshipsProps) {
                             <Row className="w-100">
 							{
 								Object.keys(competitions).map(key => {
-									const name = competitions[key]?.name;															
+									const name = competitions[key]?.name;	
+                                    const link = `/standing/${competitions[key]?.id}`;														
 
 									if (!name) {
 										// Handle the case where data is missing
@@ -51,7 +54,11 @@ function Championships({ nation, competitions, img }: ChampionshipsProps) {
 
 									return (
 										<React.Fragment key={key}>                                            
-											<h4 key={name} className="float-start ms-2">{name}</h4>
+											<h4 key={name} className="float-start ms-2">
+                                                <Link href={link}>
+                                                    {name}
+                                                </Link>
+                                            </h4>
 										</React.Fragment>
 									);
 								})

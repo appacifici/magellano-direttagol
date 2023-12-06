@@ -2,15 +2,14 @@ import axios                                from "axios";
 import { Command }                          from 'commander';
 import moment                               from "moment";
 
-import { FeedType as FeedTypeMongo }        from "../../../database/mongodb/models/Feed";
+import BaseApi                              from "../BaseApi";
 import { GenericApiResponse }               from "../../interface/API/GlobalInterface";
+import * as MatchApiResponse                from "../../interface/API/MatchInterface";
+import { FeedType as FeedTypeMongo }        from "../../../database/mongodb/models/Feed";
 import * as MatchMongo                      from "../../../database/mongodb/models/Match";
 import * as CompetitionMongo                from "../../../database/mongodb/models/Competition";
 import * as TeamMongo                       from "../../../database/mongodb/models/Team";
-import * as MatchApiResponse                from "../../interface/API/MatchInterface";
 import FrontendCreateResponse               from "../../../models/FrontendCreateResponse";
-import BaseApi                              from "../BaseApi";
-
 import SocketToClient                       from "../../../services/SocketToClient";
 
 class ImportLiveMacth extends BaseApi {    
@@ -20,7 +19,7 @@ class ImportLiveMacth extends BaseApi {
     constructor() {
         super();          
         this.frontendCreateResponse = new FrontendCreateResponse();
-        this.socketToClient         = new SocketToClient(3004);
+        this.socketToClient         = new SocketToClient(3001);
         this.socketToClient.connectClientSocket();
         
         const that = this;

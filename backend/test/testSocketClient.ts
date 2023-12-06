@@ -15,7 +15,7 @@ class TestSocketClick {
         this.numMaxClient = 1;
         this.numClient = 1;
         this.timeInterval = 1;
-        this.host = 'ws://79.23.219.60:3001';
+        this.host = 'ws://79.53.22.202:3001';
 
         process.argv.forEach((val) => {
             const param = val.split('=');
@@ -55,6 +55,7 @@ class TestSocketClick {
     }
 
     private connectClient(client: number): void {
+        console.info('eccomi: ');
         let clientNumber = this.numConnectedClient;
         if (this.numConnectedClient >= this.numMaxClient) {
             // clearInterval(this.interval as unknown as number);

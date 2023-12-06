@@ -102,7 +102,7 @@ const getMenuCompetitions = async () => {
             return Competition.find({ countryId: country._id }).sort({ name: 1 }).then(competitions => {
                 let competitionsObj:any = {};
                 competitions.forEach(comp => {
-                    competitionsObj[comp._id] = { name: comp.name };
+                    competitionsObj[comp._id] = { name: comp.name, id: comp._id.toString() };
                 });
 
                 response[country._id] = {
@@ -122,7 +122,7 @@ function MatchesBoardPage(data:any) {
     const dispatch = useDispatch();
     let lastHidden = false;
 
-    const host = 'ws://79.23.219.60:3001';
+    const host = 'ws://79.53.22.202:3001';
     const socket: Socket = socketIOClient(host);
     socket.on('connect', () => {
         console.info('Client connesso');
