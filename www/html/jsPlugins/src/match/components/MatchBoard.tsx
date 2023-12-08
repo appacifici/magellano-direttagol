@@ -21,7 +21,7 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
             matchStatus = currentTime+minuteSymbol;
         break;
         case 'next':
-            matchStatus = time;
+            matchStatus = currentTime.substring(0, 5);
         break;
         case 'ended':
             matchStatus = 'Finale';

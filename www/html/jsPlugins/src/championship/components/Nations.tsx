@@ -47,17 +47,26 @@ function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
 								return null;
 							}
 
+                            const count = Object.keys(competitions).length;
+
 							return (
-								<React.Fragment key={key}>
-									<Col className="mb-2 pb-lg-0 pb-1 border-lg-0 col-12">                                            
-										<Championships 
-											nation={nationName} 
-											permalink={permalink} 
-											img={img} 
-											competitions={competitions}
-										/>
-									</Col>
-								</React.Fragment>
+                                <>
+                                    {count > 0 ? (
+                                        <React.Fragment key={key}>
+                                            <Col className="mb-2 pb-lg-0 pb-1 border-lg-0 col-12">                                            
+                                                <Championships 
+                                                    nation={nationName} 
+                                                    permalink={permalink} 
+                                                    img={img} 
+                                                    competitions={competitions}
+                                                />
+                                            </Col>
+                                        </React.Fragment>
+                                    ) : (
+                                        // Altrimenti puoi mostrare un messaggio alternativo o nulla
+                                        <></>
+                                    )}
+                                </>
 							);
 						})
 					}                 

@@ -77,7 +77,7 @@ const getMenuCompetitions = async () => {
     });
 }
 
-const initData = async(store:any, dateMatches:string|string[], competition?:any):Promise<InitDataReturnType> => {
+const initData = async(store:any, dateMatches:string | string[] | (() => string), competition?:any):Promise<InitDataReturnType> => {
     const frontendCreateResponse = new FrontendCreateResponse();
 
     let nationsCompetitions:any = {};
@@ -126,9 +126,19 @@ const initData = async(store:any, dateMatches:string|string[], competition?:any)
     };
 }
 
+const currentDate = ():string => {
+    const currentDate:Date = new Date();
+    const year:number      = currentDate.getFullYear();
+    const month:string     = String(currentDate.getMonth() + 1).padStart(2, '0'); // Aggiunge uno a getMonth() perché i mesi partono da 0
+    const day:string       = String(currentDate.getDate()).padStart(2, '0');
+
+    const formattedDate:string = `${year}-${month}-${day}`;
+    return formattedDate;
+}
+
 type InitDataReturnType = {
-        nationsCompetitions: string; // Il tipo dovrebbe essere corretto se nationsCompetitions è una stringa JSON
-        competitionsTop: string; // Il tipo dovrebbe essere corretto se competitionsTop è una stringa JSON
+    nationsCompetitions: string; // Il tipo dovrebbe essere corretto se nationsCompetitions è una stringa JSON
+    competitionsTop: string; // Il tipo dovrebbe essere corretto se competitionsTop è una stringa JSON
 };
 
 type DateMatchFilter = {
@@ -139,5 +149,5 @@ type DateMatchFilter = {
     competitionId?:any
 };
 
-export {connectMongoDB,connectSocket,initData,getMenuCompetitions};
+export {connectMongoDB,connectSocket,initData,getMenuCompetitions,currentDate};
 export type {InitDataReturnType};

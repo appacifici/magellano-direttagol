@@ -6,6 +6,7 @@ export type MatchInterface = {
     home_team_img?: string;
     away_team_img?: string;
     time?: string;
+    timeMatch?: string;
     home_score?: string;
     away_score?: string;
     first_half_away_score?: string;

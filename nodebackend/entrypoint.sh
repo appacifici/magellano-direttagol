@@ -6,7 +6,7 @@ init() {
 	npm cache clean -f			
 	#npm install
 	cd /home/node/app 
-	npx ts-node src/liveScoreApi/api/matches/ImportLiveMacth.ts
+	#npx ts-node src/liveScoreApi/api/matches/ImportLiveMacth.ts
 }
 
 

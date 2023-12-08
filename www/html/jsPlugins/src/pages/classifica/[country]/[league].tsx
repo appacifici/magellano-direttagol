@@ -24,7 +24,7 @@ import Competition,
 import { Team, TeamSchema }             from '../../../dbService/models/Team';
 
 import StandingTable                    from '../../../standing/components/standing';
-import { connectMongoDB, connectSocket, getMenuCompetitions, initData, InitDataReturnType }          from '../../../services/global';
+import { connectMongoDB, connectSocket, getMenuCompetitions, initData, InitDataReturnType, currentDate }          from '../../../services/globalNext';
 
 export const getServerSideProps = wrapperMatch.getServerSideProps(
     (store) => async (context) => {     	        
@@ -35,16 +35,9 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
         const scountry               = Array.isArray(country) ? country[0] : country;        
         const sleague                = Array.isArray(league) ? league[0] : league;       
         
-        const countryMongo           = await CountryMongo.Country.findOne({ permalink:scountry }).lean().exec();
-        
-
+        const countryMongo           = await CountryMongo.Country.findOne({ permalink:scountry }).lean().exec();        
         const competition            = await Competition.findOne({ permalink:sleague, countryId:countryMongo }).lean().exec();
-
-
-        
-        console.log(competition);
-
-        const dateMatches            = date != undefined ? date : '2023-12-08';
+        const dateMatches = date != undefined ? date : currentDate();
                 
         let nationsCompetitions:any  = {};
         let dataStandings:StandingMongo.StandingArrayWithIdType;
