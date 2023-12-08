@@ -7,13 +7,14 @@ import styles from '../../../scss/aside.module.scss';
 
 interface Competition {
     name: string;
-    // ... any other properties of a competition
+    permalink: string;
 }
 
 interface CountryData {
     country: {
         id: string;
-        name: string;
+        name: string;        
+        permalink: string;        
         img: string;
         competitions: { [key: string]: Competition };
     };
@@ -24,9 +25,7 @@ interface NationsCompetitions {
 }
 
 function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
-
-	const data:NationsCompetitions = JSON.parse(nationsCompetitions);
-    console.log(data);
+	const data:NationsCompetitions = JSON.parse(nationsCompetitions);    
     return (
         <>      
             <Nav className="flex-grow-1 pt-3 ps-3 pe-0">
@@ -38,8 +37,9 @@ function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
 
                     {
 						Object.keys(data).map(key => {
-							const nationName = data[key].country?.name;
-							const img       = sanitizeString(data[key].country?.name);
+							const nationName   = data[key].country?.name;
+							const permalink   = data[key].country?.permalink;
+							const img          = sanitizeString(data[key].country?.name);
 							const competitions = data[key].country?.competitions;							
 
 							if (!nationName || !competitions) {
@@ -52,6 +52,7 @@ function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
 									<Col className="mb-2 pb-lg-0 pb-1 border-lg-0 col-12">                                            
 										<Championships 
 											nation={nationName} 
+											permalink={permalink} 
 											img={img} 
 											competitions={competitions}
 										/>

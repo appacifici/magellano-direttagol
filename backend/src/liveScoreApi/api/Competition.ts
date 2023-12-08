@@ -92,6 +92,7 @@ class CompetitionProcessor extends BaseApi  {
                 externalId:         Number(competition.id),
                 countryId:          countryId,
                 name:               competition.name,                
+                permalink:          StringUtility.sanitizeString(competition.name),
                 active:             Number(competition.active),
                 hasGroups:          Number(competition.has_groups),
                 isLeague:           Number(competition.is_league),

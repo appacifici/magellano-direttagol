@@ -57,20 +57,22 @@ class CountryProcessor extends BaseApi  {
             if (apiResponse.success) {
                 const transform = (country: CountryApiInterface.Country): CountryMongo.CountryType => ({
                     externalId: Number(country.id),
-                    name: country.name,
-                    isReal: Number(country.is_real),
-                    isTop: 0,
-                    img: StringUtility.sanitizeString(country.name)
+                    name:       country.name,
+                    permalink:  StringUtility.sanitizeString(country.name),
+                    isReal:     Number(country.is_real),
+                    isTop:      0,
+                    img:        StringUtility.sanitizeString(country.name)
                 });
                                 
                 const resultArray = this.transformAPIResponseToArray(apiResponse, 'country', transform);      
 
                 resultArray.push({
                     externalId: 999,
-                    name: 'Coppe',
-                    isReal: 0,
-                    isTop: 0,
-                    img: 'coppe'
+                    name:       'Coppe',
+                    permalink:  'Coppe',
+                    isReal:     0,
+                    isTop:      0,
+                    img:        'coppe'
                 });
 
                 CountryMongo.Country.insertMany(resultArray)

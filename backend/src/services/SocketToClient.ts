@@ -3,9 +3,9 @@ import { Server as SocketIOServer, Socket } from 'socket.io';
 
 class SocketToClient {
     private aliveSockets: { [key: string]: any };
-    private app: HTTPServer;
-    private io: SocketIOServer;
-    public isConnected: boolean;
+    private app:         HTTPServer;
+    private io:          SocketIOServer;
+    public  isConnected: boolean;
 
     constructor(port: number) {
         this.aliveSockets = {};
@@ -98,7 +98,6 @@ class SocketToClient {
                 authorized = true;
                 break;
         }
-    
         return true;
     }
         

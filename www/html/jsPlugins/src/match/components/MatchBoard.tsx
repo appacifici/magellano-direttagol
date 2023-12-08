@@ -37,9 +37,9 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
 }
 
 const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competitionId:string, nation:string}) => {
-    const dispatch = useDispatch();
+    const dispatch  = useDispatch();
     const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
-    let matches      = useTypedSelector( state => state.matches.tab ); //riceve lo stato dallo store   
+    let matches     = useTypedSelector( state => state.matches.tab ); //riceve lo stato dallo store   
 
     const [stateGetFollowed, setStateGetFollowed]   = useState('');
     const [minuteSymbol, setMinuteSymbol]           = useState('');

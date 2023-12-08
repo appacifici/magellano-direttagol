@@ -11,6 +11,7 @@ type CompetitionType = {
     externalId:         number;
     countryId?:         ObjectId;    
     name:               string;
+    permalink:          string;
     active:             number;
     hasGroups:          number;
     isLeague:           number;
@@ -38,6 +39,11 @@ const CompetitionSchema   = new Schema({
         required: true 
     },
     name: { 
+        type:       String, 
+        required:   true, 
+        maxlength:  255 
+    },
+    permalink: { 
         type:       String, 
         required:   true, 
         maxlength:  255 

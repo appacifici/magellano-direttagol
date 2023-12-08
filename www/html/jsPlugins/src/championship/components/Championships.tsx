@@ -7,7 +7,7 @@ import { Image }    from 'react-bootstrap';
 
 interface Competition {
     name: string;
-    id: number;
+    permalink: string;
     // ... any other properties of a competition
 }
 
@@ -26,11 +26,12 @@ interface NationsCompetitions {
 
 interface ChampionshipsProps {
     nation: string;
+    permalink: string;
     img: string;
     competitions: { [key: string]: Competition };
 }
 
-function Championships({ nation, competitions, img }: ChampionshipsProps) {	
+function Championships({ nation, permalink, competitions, img }: ChampionshipsProps) {	
 	return (		
         <>      
             <Accordion>
@@ -45,7 +46,7 @@ function Championships({ nation, competitions, img }: ChampionshipsProps) {
 							{
 								Object.keys(competitions).map(key => {
 									const name = competitions[key]?.name;	
-                                    const link = `/standing/${competitions[key]?.id}`;														
+                                    const link = `/standing/${permalink}/${competitions[key]?.permalink}`;														
 
 									if (!name) {
 										// Handle the case where data is missing

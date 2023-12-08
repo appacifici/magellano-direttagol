@@ -5,6 +5,7 @@ import Col          from 'react-bootstrap/Col';
 import AsideList    from '../championship/components/AsideList';
 
 const Main = ( { nationsCompetitions,competitionsTop,MatchBoard }:{nationsCompetitions:any,competitionsTop:any,MatchBoard:any} ) => {
+    
     return( 
         <Container>  
             <Row>

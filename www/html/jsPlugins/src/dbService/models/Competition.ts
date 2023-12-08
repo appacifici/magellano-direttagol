@@ -11,6 +11,7 @@ type CompetitionType = {
     externalId:         number;
     countryId:          ObjectId;    
     name:               string;
+    permalink:          string;
     active:             number;
     hasGroups:          number;
     isLeague:           number;
@@ -37,6 +38,11 @@ const CompetitionSchema   = new Schema({
         required: true 
     },
     name: { 
+        type:       String, 
+        required:   true, 
+        maxlength:  255 
+    },    
+    permalink: { 
         type:       String, 
         required:   true, 
         maxlength:  255 
@@ -87,6 +93,6 @@ const CompetitionSchema   = new Schema({
 
 CompetitionSchema.index({ externalId: 1, countryId:1 }, { unique: true });
 const Competition = mongoose.models.Competition || mongoose.model('Competition', CompetitionSchema);
-export type {ICompetition,CompetitionType};
+export type {ICompetition,CompetitionType, CompetitionWithIdType};
 export {CompetitionSchema};
 export default Competition;
