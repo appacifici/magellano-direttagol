@@ -23,7 +23,7 @@ import { connectMongoDB, connectSocket, getMenuCompetitions, initData, InitDataR
 export const getServerSideProps = wrapperMatch.getServerSideProps(
     (store) => async (context) => {     	        
         const { date } = context.query;    
-        const dateMatches = date != undefined ? date : '2023-11-28';		
+        const dateMatches = date != undefined ? date : '2023-12-09';		
 
 		await connectMongoDB();        
         const data:InitDataReturnType = await initData(store, dateMatches );

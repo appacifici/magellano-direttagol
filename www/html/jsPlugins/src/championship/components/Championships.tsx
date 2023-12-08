@@ -46,7 +46,7 @@ function Championships({ nation, permalink, competitions, img }: ChampionshipsPr
 							{
 								Object.keys(competitions).map(key => {
 									const name = competitions[key]?.name;	
-                                    const link = `/standing/${permalink}/${competitions[key]?.permalink}`;														
+                                    const link = `/classifica/${permalink}/${competitions[key]?.permalink}`;														
 
 									if (!name) {
 										// Handle the case where data is missing

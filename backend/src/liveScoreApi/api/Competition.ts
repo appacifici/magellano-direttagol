@@ -29,7 +29,7 @@ class CompetitionProcessor extends BaseApi  {
         }
     }
 
-    private importAllCompetition(byFeed:string) :void {
+    private importAllCompetition(byFeed:string) :void {        
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('competitions');
         feed.then( (feed) => {
             if (this.isValidDataType(feed)) {
@@ -46,7 +46,7 @@ class CompetitionProcessor extends BaseApi  {
                         elements = Promise.resolve(undefined);
                         break;
                 }
-                   
+                
                 elements.then( (element) => {
                     if (this.isValidDataType(element)) {
                         this.fetchCountriesData(element, feed, byFeed);

@@ -35,29 +35,13 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
         const scountry               = Array.isArray(country) ? country[0] : country;        
         const sleague                = Array.isArray(league) ? league[0] : league;       
         
-        //TODO: fixa questa query
-        console.log(scountry);
-        // const competition2            = await Competition.aggregate([
-        //     {
-        //       $lookup: {
-        //         from: 'Country', // The name of the collection you're joining with
-        //         localField: 'countryId', // The field in the Player model
-        //         foreignField: '_id', // The field in the Team model
-        //         as: 'country',
-        //       },
-        //     },
-        //     {
-        //       $match: {
-        //         'country.permalink': scountry, // Filter based on the joined field
-        //       },
-        //     },
-        // ]).exec();
+        const countryMongo           = await CountryMongo.Country.findOne({ permalink:scountry }).lean().exec();
+        
 
-        const competition            = await Competition.findOne({ externalId:1 }).populate({
-            path: 'countryId',
-            match: { permalink: scountry },
-            model: 'Country',
-        }).lean().exec();
+        const competition            = await Competition.findOne({ permalink:sleague, countryId:countryMongo }).lean().exec();
+
+
+        
         console.log(competition);
 
         const dateMatches            = date != undefined ? date : '2023-12-08';
