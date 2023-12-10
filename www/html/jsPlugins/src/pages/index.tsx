@@ -53,9 +53,7 @@ function MatchesBoardPage(data:any) {
         console.info('Client connesso');
         
     });
-    socket.on('dataLive', (data) => {
-        console.log(JSON.parse(data));
-
+    socket.on('dataLive', (data) => {        
         dispatch(updateMatches(JSON.parse(data)));
     });    
 

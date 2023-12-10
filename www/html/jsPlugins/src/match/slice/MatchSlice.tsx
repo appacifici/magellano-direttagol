@@ -9,6 +9,11 @@ interface FollowMatchState {
     matchId: string
 }
 
+interface UpdateMatchStateKeys {
+    competitionId: string,
+    matchId: string
+}
+
 export const matchSlice = createSlice({
     name: 'matches',
     initialState: {},
@@ -19,10 +24,9 @@ export const matchSlice = createSlice({
         },       
 
         updateMatches(state: MatchesInterface, action: PayloadAction<MatchesInterface>): MatchesInterface {                    
-            Object.keys(action.payload).forEach(competitionId => {
-                console.log(competitionId);
+            Object.keys(action.payload).forEach(competitionId => {                
                 const matches = action.payload[competitionId]?.competition;
-                if (matches != null) {
+                if (matches != null) {                    
                     Object.keys(action.payload[competitionId].competition.matches).forEach(matchId => {
                         const {
                             match_id,
@@ -30,7 +34,8 @@ export const matchSlice = createSlice({
                             home_score,
                             away_score,
                             current_time,
-                            status
+                            status,
+                            newGoal
                         } = action.payload[competitionId].competition.matches[matchId];
         
                         const match = state[competitionId]?.competition?.matches[matchId];
@@ -50,6 +55,9 @@ export const matchSlice = createSlice({
                             if( last_goal != undefined ) {
                                 state[competitionId].competition.matches[matchId].last_goal     = last_goal;
                             }
+                            if( newGoal != undefined ) {
+                                state[competitionId].competition.matches[matchId].newGoal       = newGoal;
+                            }
                         }
                     });
                 }
@@ -61,6 +69,17 @@ export const matchSlice = createSlice({
         getMatches(state:MatchesInterface, action:PayloadAction<MatchesInterface>):MatchesInterface {               
             return state;
         },       
+
+        setNewGoalMatch(state:MatchesInterface, action:PayloadAction<UpdateMatchStateKeys>):MatchesInterface {      
+            const { competitionId, matchId } = action.payload;
+            
+            const match = state[competitionId]?.competition?.matches[matchId];
+            if( match != null ){
+                state[competitionId].competition.matches[matchId].newGoal = false;
+            }  
+            
+            return state;
+        },
 
         addFollowMatch(state:MatchesInterface, action:PayloadAction<FollowMatchState>):MatchesInterface {      
             const { competitionId, matchId } = action.payload;
@@ -93,6 +112,6 @@ export const matchSlice = createSlice({
 });
 
 const {actions, reducer} = matchSlice;
-export const {setMatches,getMatches,updateMatches,addFollowMatch,removeFollowMatch} = actions;
-export type {FollowMatchState};
+export const {setMatches,getMatches,updateMatches,addFollowMatch,removeFollowMatch,setNewGoalMatch} = actions;
+export type {FollowMatchState,UpdateMatchStateKeys};
 export default reducer;

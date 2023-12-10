@@ -35,7 +35,7 @@ class TestImportLiveMacth extends BaseApi {
             if (that.currentIteration > 10) { // Reset if it exceeds 10
                 that.currentIteration = 1;
             }
-        }, 20000);                
+        }, 10000);                
     }
 
     private async fetchData(): Promise<void> {
@@ -176,6 +176,7 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
         diff['competitionId'] = competitionId;
     }
 
+    diff['newGoal'] = false;
     if( mongoMatch.score != apiDataMatch.score ) {
         const [homeTeamScoreMongo, awayTeamScoreMongo]  = mongoMatch.score.split('-');
         const [homeTeamScoreApi, awayTeamScoreApi]      = apiDataMatch.score.split('-');
@@ -188,9 +189,7 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
             diff['lastGoal'] = 'away';
         }
 
-        if( mongoMatch._id == '6564d39873e13f2e4a4e9d7c') {
-            console.log(diff['lastGoal']);
-        }
+        diff['newGoal'] = true;
     }
     return diff;
 }

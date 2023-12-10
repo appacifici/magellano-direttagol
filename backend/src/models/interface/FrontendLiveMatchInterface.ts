@@ -13,6 +13,7 @@ export type FrontendLiveMatchInterface = {
     last_goal?: "home" | "away";
     status?: string;
     current_time?: string;
+    newGoal?: string;
   }
   
 export type CompetitionInterface = {

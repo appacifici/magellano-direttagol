@@ -13,6 +13,8 @@ class FrontendCreateResponse {
         const fullScore     = match.score?.split('-');
         const halfTimeScore = match.halfTimeScore?.split('-');       
 
+        liveMatch.newGoal = match.newGoal;
+
         if( typeof match.lastGoal != undefined ) {
             liveMatch.last_goal = match.lastGoal;
         }      

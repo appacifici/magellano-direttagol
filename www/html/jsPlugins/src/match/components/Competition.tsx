@@ -8,7 +8,8 @@ import { checkStatusMatchInTabStatus } from '../../services/status';
 const Competition = ({matches, tabStatusMatch}:{matches:MatchesInterface, tabStatusMatch:string}) => {
     const getMatches = ( matches:any, competitionId:string, nation:string ) => {          
         return Object.keys(matches).map( (key: any) => <>                
-            { (checkStatusMatchInTabStatus(matches[key].status, tabStatusMatch) || tabStatusMatch == 'all' || ( matches[key].follow == true && tabStatusMatch == 'follow' ) ) && <MatchBoard key={matches.match_id} match={matches[key]} competitionId={competitionId} nation={nation}/>}
+            { 
+            (checkStatusMatchInTabStatus(matches[key].status, tabStatusMatch) || tabStatusMatch == 'all' || ( matches[key].follow == true && tabStatusMatch == 'follow' ) ) && <MatchBoard key={matches.match_id} match={matches[key]} competitionId={competitionId} nation={nation}/>}
         </> );
     }
 

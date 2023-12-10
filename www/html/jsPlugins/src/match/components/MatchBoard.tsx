@@ -10,7 +10,7 @@ import {
 import stlMatchBoard            from '../../../scss/matchBoard.module.scss';
 import { MatchInterface }       from '../models/MatchInterface';
 import { addFollowMatch, 
-    removeFollowMatch, FollowMatchState } 	    from '../../match/slice/MatchSlice';
+    removeFollowMatch, FollowMatchState, setNewGoalMatch, UpdateMatchStateKeys } 	    from '../../match/slice/MatchSlice';
 import { clickTabMatch } from '../slice/TabMatchSlice';
 
 const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:string ):string => {
@@ -43,6 +43,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
 
     const [stateGetFollowed, setStateGetFollowed]   = useState('');
     const [minuteSymbol, setMinuteSymbol]           = useState('');
+    const [newGoal, setNewGoal]                     = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {         
@@ -52,12 +53,35 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                 //setMinuteSymbol("'");
             }            
         }, 1000);
-        setInitialFollow();     
-        
+        setInitialFollow();            
         return () => {
-            clearInterval(interval);
+            clearInterval(interval);            
         };
     }, [minuteSymbol]);
+
+    useEffect(() => {
+        console.log('evccolloo');
+     
+         
+    },[newGoal] );
+
+
+    const newGoalClass = (newGoal:boolean):string => {
+        
+        if( newGoal ) {
+            const timeoutId = setTimeout(() => {
+                const matchState:UpdateMatchStateKeys = {competitionId:competitionId, matchId:match.keyMatch};
+
+                dispatch(setNewGoalMatch(matchState));
+            }, 5000);
+        }
+
+        const newGoalClass = newGoal == true ? stlMatchBoard.newGoal : '';
+        const rowClasses = `${stlMatchBoard.match} ${newGoalClass}`;
+        return rowClasses;
+    }
+    
+
 
     //Gestisce i match seguiti iniziali dell'utente salvati nel local storage e li setta nello store
     const setInitialFollow = () => {
@@ -131,7 +155,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
         return <></>;
     }
 
-    function getColProps(className:string, status:string):object {        
+    const getColProps = (className:string, status:string):object => {        
         let xs = 2;
         let md = 1;
       
@@ -150,11 +174,11 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
         }
       
         return { className, xs, md };
-      }
+    }
     
     return( 
         <>            
-            <Row className={stlMatchBoard.match} key={match.match_id} data-id={match.match_id}>                
+            <Row className={newGoalClass(match.newGoal)} key={match.match_id} data-id={match.match_id}>                
                 <Col xs={1} md={1}>
                     <span className='pt-2'>
                         <i className={getMatchIsFollowed(match.keyMatch)} id={match.keyMatch} onClick={manageClickFollow}></i>{match.follow}

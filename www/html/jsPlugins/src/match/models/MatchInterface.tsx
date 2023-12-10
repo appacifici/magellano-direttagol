@@ -16,6 +16,7 @@ export type MatchInterface = {
     current_time?:          string;
     follow?:                boolean;
     keyMatch?:              string;
+    newGoal?:               boolean;
   }
   
 export type CompetitionInterface = {
