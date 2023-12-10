@@ -2,6 +2,7 @@
 import { createSlice, PayloadAction }       from "@reduxjs/toolkit";
 import { HYDRATE }                          from "next-redux-wrapper";
 import { MatchesInterface }                 from "../models/MatchInterface";
+import { wrapStatusName }                   from "../../services/status";
 
 interface FollowMatchState {
     competitionId: string,
@@ -44,7 +45,10 @@ export const matchSlice = createSlice({
                                 state[competitionId].competition.matches[matchId].current_time  = current_time;
                             }
                             if( status != undefined ) {
-                                state[competitionId].competition.matches[matchId].status        = status;
+                                state[competitionId].competition.matches[matchId].status        = wrapStatusName(status);
+                            }
+                            if( last_goal != undefined ) {
+                                state[competitionId].competition.matches[matchId].last_goal     = last_goal;
                             }
                         }
                     });

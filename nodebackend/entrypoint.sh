@@ -7,6 +7,7 @@ init() {
 	#npm install
 	cd /home/node/app 
 	#npx ts-node src/liveScoreApi/api/matches/ImportLiveMacth.ts
+	cd test &&	npx ts-node testImportLiveMacth.ts
 }
 
 

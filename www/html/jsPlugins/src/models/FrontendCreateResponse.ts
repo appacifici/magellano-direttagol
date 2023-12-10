@@ -1,35 +1,13 @@
 // import { FrontendLiveMatchInterface, MatchesInterface }   from "./interface/FrontendLiveMatchInterface";
-import { MatchInterface, MatchesInterface } from "../match/models/MatchInterface";
+import { MatchInterface, MatchesInterface, CompetitionInterface } from "../match/models/MatchInterface";
+import { wrapStatusName } from "../services/status";
 
 class FrontendCreateResponse {
     private socketResponse:MatchesInterface;
 
     constructor() {
         this.socketResponse = {};
-    }
-
-    public wrapStatusName( status:string ):MatchInterface['status'] {
-        let wStatus: MatchInterface['status']; // dichiarazione esplicita del tipo
-        switch (status) {
-            case 'IN PLAY':
-                wStatus = "live";
-                break;
-            case 'FINISHED':
-                wStatus = "ended";
-                break;
-            case 'HALF TIME BREAK':
-                wStatus = "interval";
-                break;
-            case "ADDED TIME":
-                wStatus = "added_time";
-                break;
-            default:
-                wStatus = "next";
-                break;
-        }
-
-        return wStatus;
-    }
+    }    
 
     public addLiveMatch(match:any, matchId:string) {
         const liveMatch: MatchInterface = {};
@@ -51,7 +29,7 @@ class FrontendCreateResponse {
         }    
 
         if( typeof match.status != undefined ) {
-            liveMatch.status = this.wrapStatusName(match.status); 
+            liveMatch.status = wrapStatusName(match.status); 
         }                      
         
         if( typeof match.timeMatch != undefined ) {
@@ -89,10 +67,11 @@ class FrontendCreateResponse {
                     nation: match.competitionId.countryId.name,
                     img:    this.sanitizeString(match.competitionId.countryId.name),
                     id:     match.competitionId._id.toString(),
-                    matches: {}
+                    countryName: match.competitionId?.countryName ?? '',
+                    matches: {}, // Aggiungi questa proprietà
                 }             
             }
-        }                
+        }              
         this.socketResponse[match.competitionId._id].competition.matches[matchNumber] = liveMatch;
     }
 

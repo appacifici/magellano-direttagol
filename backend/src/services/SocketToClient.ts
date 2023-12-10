@@ -45,8 +45,9 @@ class SocketToClient {
         }, 5000); // 1 second
     }
 
-    connectClientSocket(): void {
+    connectClientSocket(): void {        
         this.io.on('connection', (socket: Socket) => {
+            console.log('connectClientSocket');
             if (!this.authorizedReferer(socket)) {
                 socket.disconnect();
                 return false;

@@ -1,5 +1,6 @@
 import React, { useEffect }             from 'react';
 import { useDispatch }                  from 'react-redux';
+import { Socket, io as socketIOClient } from 'socket.io-client';
 
 import mongoose, { Model } 				from 'mongoose';
 import * as MatchMongo 			        from '../dbService/models/Match';
@@ -40,7 +41,32 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 
 
 function MatchesBoardPage(data:any) {    
-    //connectSocket();
+    const frontendCreateResponse = new FrontendCreateResponse();
+
+    let lastHidden          = false;
+    const dispatch          = useDispatch();
+    const host              = 'ws://79.42.216.11:3001';
+    const socket: Socket    = socketIOClient(host);
+    console.info('Client socketIOClient');
+
+    socket.on('connect', () => {
+        console.info('Client connesso');
+        
+    });
+    socket.on('dataLive', (data) => {
+        console.log(JSON.parse(data));
+
+        dispatch(updateMatches(JSON.parse(data)));
+    });    
+
+    socket.on('ping', function() {    
+        let isMobile  = 1;
+        // let nowHidden = isMobile == 1 ? document.hidden : false;
+        let nowHidden = false;
+        socket.emit('pongSocket', {'hidden': nowHidden, 'lastHidden' : lastHidden });            
+//                console.log('ping socketLCS:' +document.hidden);  
+        //lastHidden = window.document.hidden;
+    });
     return(  
         <>                                                        
             <Header/>            

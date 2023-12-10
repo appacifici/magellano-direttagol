@@ -130,6 +130,27 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
         }
         return <></>;
     }
+
+    function getColProps(className:string, status:string):object {        
+        let xs = 2;
+        let md = 1;
+      
+        switch (match.status) {
+          case 'live':
+            className += ` ${stlMatchBoard.liveMatch}`;
+            break;
+          case 'added_time':
+            className += ` ${stlMatchBoard.liveMatch}`;
+            break;
+          case 'interval':
+            className += ` ${stlMatchBoard.liveMatch}`;
+            break;
+          default:
+            break;
+        }
+      
+        return { className, xs, md };
+      }
     
     return( 
         <>            
@@ -139,7 +160,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                         <i className={getMatchIsFollowed(match.keyMatch)} id={match.keyMatch} onClick={manageClickFollow}></i>{match.follow}
                     </span>
                 </Col>                
-                <Col className={"pt-2 text-center "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')} xs={2} md={1}>
+                <Col {...getColProps("pt-2 text-center",match.status)}>
                     {getStatus(match.status, match.time, match.current_time, minuteSymbol)}
                 </Col>                
                 <Col xs={6} md={8} className='text-left'>
@@ -157,15 +178,15 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                     </Row>   
                 </Col>
                 <Col xs={2} md={1}>
-                    <Row>                            
-                        <Col xs={6} md={6} className={"position-relative "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')}>
+                    <Row>                                                    
+                        <Col {...getColProps("position-relative",match.status)}>
                             {match.last_goal == 'home' && <div className={stlMatchBoard.lastGoal}></div>}
                             {match.status != 'next' && match.home_score}
                         </Col>                            
                         <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_away_score,match.status)}</Col>                            
                     </Row>    
                     <Row>                            
-                        <Col xs={6} md={6} className={"position-relative "+ (match.status == 'live' ? stlMatchBoard.liveMatch : '')}>
+                    <Col {...getColProps("position-relative",match.status)}>
                             {match.last_goal == 'away' && <div className={stlMatchBoard.lastGoal}></div>}
                             {match.status != 'next' && match.away_score}
                         </Col>
