@@ -88,3 +88,4 @@ MatchSchema.index({ competitionId: 1, teamHome: 1, teamAway: 1 });
 const Match:Model<IMatch> = mongoose.models.Match || mongoose.model<IMatch>('Match', MatchSchema);
 
 export {Match,MatchSchema};
+export type {MatchArrayWithIdType};

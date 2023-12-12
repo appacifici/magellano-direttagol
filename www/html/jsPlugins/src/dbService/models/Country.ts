@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Model, ObjectId, Types } from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
 type CountryType = {    
     externalId: number;
@@ -8,7 +8,7 @@ type CountryType = {
     isReal:     number;
     isTop:      number;
 }
-type CountryArrayType       = CountryType[];
+//type CountryArrayType       = CountryType[];
 
 interface ICountry extends Document, Omit<CountryType, '_id'> {}
 type CountryWithIdType      = CountryType & { _id: Document['_id'] };

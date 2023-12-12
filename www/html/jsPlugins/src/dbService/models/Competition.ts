@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Model, ObjectId } from 'mongoose';
+import mongoose, { Document, Schema, ObjectId } from 'mongoose';
 
 type CompetitionSeasonType = {
     id:         number;
@@ -93,6 +93,6 @@ const CompetitionSchema   = new Schema({
 
 CompetitionSchema.index({ externalId: 1, countryId:1 }, { unique: true });
 const Competition = mongoose.models.Competition || mongoose.model('Competition', CompetitionSchema);
-export type {ICompetition,CompetitionType, CompetitionWithIdType};
+export type {ICompetition,CompetitionType, CompetitionWithIdType,CompetitionArrayWithIdType};
 export {CompetitionSchema};
 export default Competition;

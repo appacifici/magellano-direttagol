@@ -29,7 +29,6 @@ export const matchSlice = createSlice({
                 if (matches != null) {                    
                     Object.keys(action.payload[competitionId].competition.matches).forEach(matchId => {
                         const {
-                            match_id,
                             last_goal,
                             home_score,
                             away_score,
@@ -40,22 +39,22 @@ export const matchSlice = createSlice({
         
                         const match = state[competitionId]?.competition?.matches[matchId];
                         if (match != null) {                            
-                            if( home_score != undefined ) {
+                            if( home_score !== undefined ) {
                                 state[competitionId].competition.matches[matchId].home_score    = home_score;
                             }
-                            if( away_score != undefined ) {
+                            if( away_score !== undefined ) {
                                 state[competitionId].competition.matches[matchId].away_score    = away_score;
                             }
-                            if( current_time != undefined ) {
+                            if( current_time !== undefined ) {
                                 state[competitionId].competition.matches[matchId].current_time  = current_time;
                             }
-                            if( status != undefined ) {
+                            if( status !== undefined ) {
                                 state[competitionId].competition.matches[matchId].status        = wrapStatusName(status);
                             }
-                            if( last_goal != undefined ) {
+                            if( last_goal !== undefined ) {
                                 state[competitionId].competition.matches[matchId].last_goal     = last_goal;
                             }
-                            if( newGoal != undefined ) {
+                            if( newGoal !== undefined ) {
                                 state[competitionId].competition.matches[matchId].newGoal       = newGoal;
                             }
                         }

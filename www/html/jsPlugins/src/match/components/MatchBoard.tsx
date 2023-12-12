@@ -2,16 +2,15 @@ import React                    from 'react';
 import Row				        from 'react-bootstrap/Row';
 import Col				        from 'react-bootstrap/Col';
 import Image				    from 'react-bootstrap/Image';
-import { useState, useEffect }  from 'react';
-import { 
-	useDispatch, 
-	TypedUseSelectorHook, 
-	useSelector } 			    from 'react-redux';
+import { useEffect }            from 'react';
+import { useDispatch } 			from 'react-redux';
 import stlMatchBoard            from '../../../scss/matchBoard.module.scss';
 import { MatchInterface }       from '../models/MatchInterface';
 import { addFollowMatch, 
-    removeFollowMatch, FollowMatchState, setNewGoalMatch, UpdateMatchStateKeys } 	    from '../../match/slice/MatchSlice';
-import { clickTabMatch } from '../slice/TabMatchSlice';
+    removeFollowMatch, 
+    FollowMatchState, 
+    setNewGoalMatch, 
+    UpdateMatchStateKeys } 	    from '../../match/slice/MatchSlice';
 
 const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:string ):string => {
     let matchStatus:string = '';
@@ -37,46 +36,22 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
 }
 
 const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competitionId:string, nation:string}) => {
-    const dispatch  = useDispatch();
-    const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
-    let matches     = useTypedSelector( state => state.matches.tab ); //riceve lo stato dallo store   
-
-    const [stateGetFollowed, setStateGetFollowed]   = useState('');
-    const [minuteSymbol, setMinuteSymbol]           = useState('');
-    const [newGoal, setNewGoal]                     = useState(false);
-
-    useEffect(() => {
-        const interval = setInterval(() => {         
-            if( minuteSymbol == "'" ) {
-                //setMinuteSymbol("");
-            } else {
-                //setMinuteSymbol("'");
-            }            
-        }, 1000);
-        setInitialFollow();            
-        return () => {
-            clearInterval(interval);            
-        };
-    }, [minuteSymbol]);
-
-    useEffect(() => {
-        console.log('evccolloo');
-     
-         
-    },[newGoal] );
-
-
-    const newGoalClass = (newGoal:boolean):string => {
-        
+    const dispatch  = useDispatch();    
+    useEffect(() => {        
+        setInitialFollow();                    
+    });
+    
+    const newGoalClass = (newGoal:boolean):string => {    
         if( newGoal ) {
             const timeoutId = setTimeout(() => {
                 const matchState:UpdateMatchStateKeys = {competitionId:competitionId, matchId:match.keyMatch};
 
                 dispatch(setNewGoalMatch(matchState));
+                clearTimeout(timeoutId);
             }, 5000);
         }
 
-        const newGoalClass = newGoal == true ? stlMatchBoard.newGoal : '';
+        const newGoalClass = newGoal === true ? stlMatchBoard.newGoal : '';
         const rowClasses = `${stlMatchBoard.match} ${newGoalClass}`;
         return rowClasses;
     }
@@ -117,7 +92,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
             dispatch( addFollowMatch(followState) );
 
             let followedMatches = localStorage.getItem('followMatches');
-            if( followedMatches == undefined ) {
+            if( followedMatches === undefined ) {
                 followedMatches = `[${JSON.stringify(followState)}]`;
                 localStorage.setItem('followMatches', followedMatches);
             } else {
@@ -149,7 +124,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
     }
 
     const getHalfTimeScore = (score:string|void,status:string) => {        
-        if( score != undefined  && score != '' && status != 'next' ) {
+        if( score !== undefined  && score !== '' && status !== 'next' ) {
             return <>({score})</>
         }
         return <></>;
@@ -185,7 +160,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                     </span>
                 </Col>                
                 <Col {...getColProps("pt-2 text-center",match.status)}>
-                    {getStatus(match.status, match.time, match.current_time, minuteSymbol)}
+                    {getStatus(match.status, match.time, match.current_time, '`')}
                 </Col>                
                 <Col xs={6} md={8} className='text-left'>
                     <Row>
@@ -204,15 +179,15 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                 <Col xs={2} md={1}>
                     <Row>                                                    
                         <Col {...getColProps("position-relative",match.status)}>
-                            {match.last_goal == 'home' && <div className={stlMatchBoard.lastGoal}></div>}
-                            {match.status != 'next' && match.home_score}
+                            {match.last_goal === 'home' && <div className={stlMatchBoard.lastGoal}></div>}
+                            {match.status !== 'next' && match.home_score}
                         </Col>                            
                         <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_away_score,match.status)}</Col>                            
                     </Row>    
                     <Row>                            
                     <Col {...getColProps("position-relative",match.status)}>
-                            {match.last_goal == 'away' && <div className={stlMatchBoard.lastGoal}></div>}
-                            {match.status != 'next' && match.away_score}
+                            {match.last_goal === 'away' && <div className={stlMatchBoard.lastGoal}></div>}
+                            {match.status !== 'next' && match.away_score}
                         </Col>
                         <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_home_score,match.status)}</Col>                            
                     </Row>    

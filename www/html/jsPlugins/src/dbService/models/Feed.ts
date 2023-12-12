@@ -1,5 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
-import connectMongoDB from '../connect';
+import mongoose, { Schema } from 'mongoose';
 
 // Definizione delle costanti di classe
 const FORMAT_FEED = {
@@ -55,4 +54,5 @@ FeedSchema.methods.checkBySource = function(source:string) {
   
 const Feed = mongoose.model('Feed', FeedSchema);
 
-export {Feed,FORMAT_FEED,SOURCE_FEED,FeedType,FeedArrayType};
+export {Feed,FORMAT_FEED,SOURCE_FEED};
+export type {FeedType,FeedArrayType};

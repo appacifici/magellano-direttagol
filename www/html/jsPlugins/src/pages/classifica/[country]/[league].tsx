@@ -1,30 +1,18 @@
-import React, { useContext }            from 'react';
-import { useDispatch }                  from 'react-redux';
-import { Socket, io as socketIOClient } from 'socket.io-client';
-import { useRouter }                    from 'next/router';
-
-import mongoose, { Model } 				from 'mongoose';
-import * as MatchMongo 			        from '../../../dbService/models/Match';
-import * as TeamMongo                   from "../../../dbService/models/Team";
+import React                            from 'react';
 import * as CountryMongo                from '../../../dbService/models/Country';
 import * as StandingMongo               from '../../../dbService/models/Standing';
-import FrontendCreateResponse 	        from '../../../models/FrontendCreateResponse';
 
 import Header                           from '../../../container/Header';
 import Footer                           from '../../../container/Footer';
 import MainStanding                     from '../../../container/MainStanding';
 import MatchesBoard                     from '../../../match/components/MatchesBoard';
-import { setMatches,
-         updateMatches } 	            from '../../../match/slice/MatchSlice';
+
 import { wrapperMatch }                 from '../../../match/store/MatchStore';
-import { MatchesInterface }             from '../../../match/models/MatchInterface';
 
-import Competition,
-{ CompetitionSchema, ICompetition, CompetitionWithIdType }     from '../../../dbService/models/Competition';
-import { Team, TeamSchema }             from '../../../dbService/models/Team';
 
-import StandingTable                    from '../../../standing/components/standing';
-import { connectMongoDB, connectSocket, getMenuCompetitions, initData, InitDataReturnType, currentDate }          from '../../../services/globalNext';
+import Competition, {CompetitionType}                     from '../../../dbService/models/Competition';
+
+import { connectMongoDB, initData, InitDataReturnType, currentDate }          from '../../../services/globalNext';
 
 export const getServerSideProps = wrapperMatch.getServerSideProps(
     (store) => async (context) => {     	        
@@ -36,10 +24,9 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
         const sleague                = Array.isArray(league) ? league[0] : league;       
         
         const countryMongo           = await CountryMongo.Country.findOne({ permalink:scountry }).lean().exec();        
-        const competition            = await Competition.findOne({ permalink:sleague, countryId:countryMongo }).lean().exec();
-        const dateMatches = date != undefined ? date : currentDate();
+        const competition:CompetitionType            = await Competition.findOne({ permalink:sleague, countryId:countryMongo }).exec();
+        const dateMatches            = date !== undefined ? date : currentDate();
                 
-        let nationsCompetitions:any  = {};
         let dataStandings:StandingMongo.StandingArrayWithIdType;
         let standings:StandingMongo.StandingArrayWithIdType
         try {
@@ -65,9 +52,7 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 );
 
 
-function MatchesBoardPage(data:any) {    
-    //connectSocket();
-
+function MatchesBoardPage(data:any) {        
     return(  
         <>                                                        
             <Header/>                                        

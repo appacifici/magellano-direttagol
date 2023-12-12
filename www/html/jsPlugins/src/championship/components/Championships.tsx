@@ -11,18 +11,18 @@ interface Competition {
     // ... any other properties of a competition
 }
 
-interface CountryData {
-    country: {
-        id: string;
-        name: string;
-        img: string;
-        competitions: { [key: string]: Competition };
-    };
-}
+// interface CountryData {
+//     country: {
+//         id: string;
+//         name: string;
+//         img: string;
+//         competitions: { [key: string]: Competition };
+//     };
+// }
 
-interface NationsCompetitions {
-    [key: string]: CountryData;
-}
+// interface NationsCompetitions {
+//     [key: string]: CountryData;
+// }
 
 interface ChampionshipsProps {
     nation: string;

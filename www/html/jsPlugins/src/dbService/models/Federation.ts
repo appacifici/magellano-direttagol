@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Model, ObjectId, Types } from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
 
 type FederationType = {    
     externalId: number;
@@ -33,4 +33,5 @@ FederationSchema.methods.checkBySource = function(source:string) {
 
 const Federation:      Model<IFederation>     = mongoose.model<IFederation>('federations', FederationSchema);
 
-export {Federation,IFederation,FederationType,FederationArrayType,FederationArrayWithIdType,FederationWithIdType,FederationSchema};
+export {Federation,FederationSchema};
+export type {FederationArrayWithIdType,FederationArrayType};

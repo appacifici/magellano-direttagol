@@ -1,6 +1,4 @@
-import mongoose, { Model } 				from 'mongoose';
-import { Socket, io as socketIOClient } from 'socket.io-client';
-import { useDispatch }                  from 'react-redux';
+import mongoose                 		from 'mongoose';
 
 import * as TeamMongo                   from "../dbService/models/Team";
 import * as CountryMongo                from '../dbService/models/Country';
@@ -8,16 +6,14 @@ import Competition,
 { CompetitionSchema, ICompetition }     from '../dbService/models/Competition';
 import * as MatchMongo 			        from '../dbService/models/Match';
 import FrontendCreateResponse 	        from '../models/FrontendCreateResponse';
-import { setMatches,
-    updateMatches } 	                from '../match/slice/MatchSlice';
+import { setMatches } 	                from '../match/slice/MatchSlice';
 
-import dotenv                           from 'dotenv';
 
 const connectMongoDB = async () => {	
     try {        
-        const Competition:Model<ICompetition>       = mongoose.models.Competition || mongoose.model<ICompetition>('Competition', CompetitionSchema);
-		const Team:Model<TeamMongo.ITeam>           = mongoose.models.Team || mongoose.model<TeamMongo.ITeam>('Team',TeamMongo.TeamSchema);
-        const Country:Model<CountryMongo.ICountry>  = mongoose.models.Team || mongoose.model<CountryMongo.ICountry>('Country',CountryMongo.CountrySchema);
+        mongoose.models.Competition || mongoose.model<ICompetition>('Competition', CompetitionSchema);
+		mongoose.models.Team || mongoose.model<TeamMongo.ITeam>('Team',TeamMongo.TeamSchema);
+        mongoose.models.Team || mongoose.model<CountryMongo.ICountry>('Country',CountryMongo.CountrySchema);
         await mongoose.connect(`mongodb://${process.env.NEXT_PUBLIC_MONGO_DB_HOST}:27017/livescore`, {
             
         });
@@ -28,29 +24,29 @@ const connectMongoDB = async () => {
     }
 };
 
-const connectSocket = () => {
-    let lastHidden          = false;
-    const dispatch          = useDispatch();
-    const host              = process.env.NEXT_PUBLIC_WS_HOST;
-    const socket: Socket    = socketIOClient(host);
-    socket.on('connect', () => {
-        console.info('Client connesso: '+process.env.NEXT_PUBLIC_WS_HOST);
+// const connectSocket = () => {
+//     let lastHidden          = false;
+//     const dispatch          = useDispatch();
+//     const host              = process.env.NEXT_PUBLIC_WS_HOST;
+//     const socket: Socket    = socketIOClient(host);
+//     socket.on('connect', () => {
+//         console.info('Client connesso: '+process.env.NEXT_PUBLIC_WS_HOST);
         
-    });
-    socket.on('dataLive', (data) => {
-        // console.info('Client Riceve data' + data);
-        dispatch(updateMatches(JSON.parse(data)));
-    });    
+//     });
+//     socket.on('dataLive', (data) => {
+//         // console.info('Client Riceve data' + data);
+//         dispatch(updateMatches(JSON.parse(data)));
+//     });    
 
-    socket.on('ping', function() {    
-        let isMobile  = 1;
-        // let nowHidden = isMobile == 1 ? document.hidden : false;
-        let nowHidden = false;
-        socket.emit('pongSocket', {'hidden': nowHidden, 'lastHidden' : lastHidden });            
-//                console.log('ping socketLCS:' +document.hidden);  
-        //lastHidden = window.document.hidden;
-    });
-}
+//     socket.on('ping', function() {    
+//         //let isMobile  = 1;
+//         // let nowHidden = isMobile == 1 ? document.hidden : false;
+//         let nowHidden = false;
+//         socket.emit('pongSocket', {'hidden': nowHidden, 'lastHidden' : lastHidden });            
+// //                console.log('ping socketLCS:' +document.hidden);  
+//         //lastHidden = window.document.hidden;
+//     });
+// }
 
 const getMenuCompetitions = async () => {
     // Sorting countries first by isTop (descending) and then by name (ascending)
@@ -98,7 +94,7 @@ const initData = async(store:any, dateMatches:string | string[] | (() => string)
         },        
     };
 
-    if( competition != undefined ) {
+    if( competition !== undefined ) {
         filter.competitionId = competition;
     }
     
@@ -150,5 +146,5 @@ type DateMatchFilter = {
     competitionId?:any
 };
 
-export {connectMongoDB,connectSocket,initData,getMenuCompetitions,currentDate};
+export {connectMongoDB,initData,getMenuCompetitions,currentDate};
 export type {InitDataReturnType};

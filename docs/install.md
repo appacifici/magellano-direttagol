@@ -84,7 +84,7 @@ sudo apt install mongodb-org
 #Avvia e Abilita MongoDB: Una volta installato, devi avviare il servizio MongoDB e abilitarlo a partire automaticamente all'avvio del sistema
 sudo systemctl start mongod
 sudo systemctl enable mongod
-````
+```
 
 ## Configurazione Mongo
 ```bash
@@ -98,7 +98,7 @@ net:
 
 #Riavvia mongo
 sudo systemctl restart mongod
-````
+```
 
 ## Settaggi next
 ```bash
@@ -110,4 +110,37 @@ npx next telemetry status
 #Risposta: Status: Disabled
 
 npm install
+```
+
+## Reverse Proxy con Nginx o Apache
+```bash
+sudo apt install nginx
+sudo nano /etc/nginx/sites-available/diretta.conf
+```
+```bash
+server {
+    listen 80;
+
+    server_name example.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+```bash
+sudo ln -s /etc/nginx/sites-available/diretta.conf /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
+
+```
+
+## Build 
+```bash
+npx next lint
 ```

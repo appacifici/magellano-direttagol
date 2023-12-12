@@ -1,10 +1,11 @@
 // components/StandingTable.js
-import React, { useState, useEffect } from 'react';
-import { StandingArrayWithIdType, StandingWithIdType } from '../../dbService/models/Standing';
-import { Container } from 'react-bootstrap';
-import Table from 'react-bootstrap/Table';
+import React                        from 'react';
+import { Container }                from 'react-bootstrap';
+import Table                        from 'react-bootstrap/Table';
+import { StandingArrayWithIdType, 
+    StandingWithIdType }            from '../../dbService/models/Standing';
 
-import stlStanding    from '../../../scss/standing.module.scss';
+import stlStanding                  from '../../../scss/standing.module.scss';
 
 const StandingTable = ({ standings }:{ standings:StandingArrayWithIdType }) => {
     console.log(standings);

@@ -33,7 +33,15 @@ export type CompetitionInterface = {
 //TODO: Verifica se con la linea commentata funziona tutto ugualmente
 export interface MatchesInterface {
     [competitionId: string]: {
-      // matches(matches: any): unknown;           
+      //matches(matches: any): unknown;           
       competition: CompetitionInterface;
+      name?:         string;
+      nation?:       string;
+      img?:          string;
+      id?:           number;
+      countryName?:  string;
+      matches?: {
+          [matchId: string]: MatchInterface;
+      };
     };
 }
