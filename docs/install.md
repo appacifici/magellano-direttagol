@@ -65,7 +65,7 @@ npx next telemetry status
 npm install
 ```
 
-## Installazione Mondo
+## Installazione Mongo
 ```bash 
 #Aggiorna i Pacchetti del Sistema
 sudo apt update
@@ -84,7 +84,10 @@ sudo apt install mongodb-org
 #Avvia e Abilita MongoDB: Una volta installato, devi avviare il servizio MongoDB e abilitarlo a partire automaticamente all'avvio del sistema
 sudo systemctl start mongod
 sudo systemctl enable mongod
+````
 
+## Configurazione Mongo
+```bash
 #Configura MongoDB (Opzionale)
 nano /etc/mongod.conf
 
@@ -95,8 +98,10 @@ net:
 
 #Riavvia mongo
 sudo systemctl restart mongod
+````
 
-
+## Settaggi next
+```bash
 cd magellano-direttagol
 cd backend/
 #Per disabilitare il traggiamento di next in maniera anonima 

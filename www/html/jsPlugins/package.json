@@ -9,8 +9,8 @@
     "build2": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "next build",
-    "dev": "NODE_ENV=development next dev -p 80",
-    "start": "NODE_ENV=production next start -p 80"
+    "dev": "NODE_ENV=development next dev",
+    "start": "NODE_ENV=production next start"
   },
   "keywords": [],
   "author": "",
