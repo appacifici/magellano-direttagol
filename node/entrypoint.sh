@@ -3,7 +3,9 @@
 
 init() {				
 	cd /home/node/app && npm install		
-	npm run dev
+	#npm run build
+	npm run start
+	#npm run dev
 	cd /var/www/html/project #&& ln -s /var/www/html/jsPlugins .
 }
 
