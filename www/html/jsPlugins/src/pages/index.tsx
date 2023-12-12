@@ -1,11 +1,11 @@
 import React, { useEffect }             from 'react';
 import { useDispatch }                  from 'react-redux';
 import { Socket, io as socketIOClient } from 'socket.io-client';
-
+import dotenv                           from 'dotenv';
 import mongoose, { Model } 				from 'mongoose';
+
 import * as MatchMongo 			        from '../dbService/models/Match';
 import FrontendCreateResponse 	        from '../models/FrontendCreateResponse';
-
 import Header                           from '../container/Header';
 import Footer                           from '../container/Footer';
 import Main                             from '../container/Main';
@@ -23,9 +23,14 @@ import { connectMongoDB, connectSocket, getMenuCompetitions, initData, InitDataR
 
 export const getServerSideProps = wrapperMatch.getServerSideProps(
     (store) => async (context) => {     	        
+        const result = dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
+        if (result.error) {
+            console.log( result.error );
+        }
+        
         const { date } = context.query;    
-        const dateMatches = date != undefined ? date : currentDate();		
-
+        const dateMatches = date != undefined ? date : currentDate();		        
+        
 		await connectMongoDB();        
         const data:InitDataReturnType = await initData(store, dateMatches );
 
@@ -45,9 +50,13 @@ function MatchesBoardPage(data:any) {
 
     let lastHidden          = false;
     const dispatch          = useDispatch();
-    const host              = 'ws://79.42.216.11:3001';
+    const host              = process.env.NEXT_PUBLIC_WS_HOST;
     const socket: Socket    = socketIOClient(host);
-    console.info('Client socketIOClient');
+    console.info('Tentativo connessione: '+process.env.NEXT_PUBLIC_WS_HOST);
+    socket.on('connect', () => {
+        console.info('Client connesso: '+process.env.NEXT_PUBLIC_WS_HOST);
+        
+    });
 
     socket.on('connect', () => {
         console.info('Client connesso');

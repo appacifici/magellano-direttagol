@@ -2,6 +2,7 @@ import '../../scss/global.scss';
 import { createWrapper } from 'next-redux-wrapper';
 import {wrapperMatch}  from "../match/store/MatchStore";
 import { Provider } from 'react-redux';
+import dotenv                           from 'dotenv';
 
 
 function MyApp({ Component, ...rest }:{ Component:any, pageProps:any }) {    

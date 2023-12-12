@@ -88,6 +88,15 @@ sudo systemctl enable mongod
 #Configura MongoDB (Opzionale)
 nano /etc/mongod.conf
 
+#Imposta bindIp per autorizzare connessioni esterne da specifici IP
+net:
+  port: 27017
+  bindIp: 127.0.0.1,149.202.70.74,149.202.70.56
+
+#Riavvia mongo
+sudo systemctl restart mongod
+
+
 cd magellano-direttagol
 cd backend/
 #Per disabilitare il traggiamento di next in maniera anonima 

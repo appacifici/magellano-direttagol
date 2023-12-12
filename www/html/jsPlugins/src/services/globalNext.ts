@@ -9,18 +9,19 @@ import Competition,
 import * as MatchMongo 			        from '../dbService/models/Match';
 import FrontendCreateResponse 	        from '../models/FrontendCreateResponse';
 import { setMatches,
-    updateMatches } 	            from '../match/slice/MatchSlice';
+    updateMatches } 	                from '../match/slice/MatchSlice';
 
-const connectMongoDB = async () => {
-	console.log('Mongoose connected to MongoDB');
-    try {
-		const Competition:Model<ICompetition>       = mongoose.models.Competition || mongoose.model<ICompetition>('Competition', CompetitionSchema);
+import dotenv                           from 'dotenv';
+
+const connectMongoDB = async () => {	
+    try {        
+        const Competition:Model<ICompetition>       = mongoose.models.Competition || mongoose.model<ICompetition>('Competition', CompetitionSchema);
 		const Team:Model<TeamMongo.ITeam>           = mongoose.models.Team || mongoose.model<TeamMongo.ITeam>('Team',TeamMongo.TeamSchema);
         const Country:Model<CountryMongo.ICountry>  = mongoose.models.Team || mongoose.model<CountryMongo.ICountry>('Country',CountryMongo.CountrySchema);
-        await mongoose.connect('mongodb://mongodb:27017/livescore', {
+        await mongoose.connect(`mongodb://${process.env.NEXT_PUBLIC_MONGO_DB_HOST}:27017/livescore`, {
             
         });
-        console.log('Mongoose connected to MongoDB');
+        console.log(`Mongoose connected to MongoDB: mongodb://${process.env.NEXT_PUBLIC_MONGO_DB_HOST}:27017/livescore` );
     } catch (err) {
         console.error('Error connecting to MongoDB');        
         process.exit(1);
@@ -30,10 +31,10 @@ const connectMongoDB = async () => {
 const connectSocket = () => {
     let lastHidden          = false;
     const dispatch          = useDispatch();
-    const host              = 'ws://79.53.22.202:3001';
+    const host              = process.env.NEXT_PUBLIC_WS_HOST;
     const socket: Socket    = socketIOClient(host);
     socket.on('connect', () => {
-        console.info('Client connesso');
+        console.info('Client connesso: '+process.env.NEXT_PUBLIC_WS_HOST);
         
     });
     socket.on('dataLive', (data) => {
