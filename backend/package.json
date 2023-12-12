@@ -5,7 +5,8 @@
     "importAllCountries": "npx ts-node src/liveScoreApi/api/Country.ts -a importAllCountries",
     "importAllTeam": "npx ts-node src/liveScoreApi/api/Team.ts -a importAllTeam",
     "importCompetition": "npx ts-node src/liveScoreApi/api/Competition.ts -a importAllCompetition",
-    "importFixtureMatch": "npx ts-node src/liveScoreApi/api/matches/importFixtureMatch.ts"
+    "importFixtureMatch": "npx ts-node src/liveScoreApi/api/matches/importFixtureMatch.ts",
+    "testImportLiveMacth": "npx ts-node test/testImportLiveMacth.ts"
   },
   "dependencies": {
     "@types/deep-diff": "^1.0.5",
