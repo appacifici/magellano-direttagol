@@ -20,9 +20,7 @@ class SocketToClient {
             transports: ['websocket', 'polling']
         });
 
-        this.app.listen(port, '0.0.0.0', () => {
-            console.log(`Server in ascolto sulla porta ${port}`);
-        });
+        this.app.listen(port);
         this.isConnected = false;
 
         setInterval(() => {
@@ -71,11 +69,6 @@ class SocketToClient {
                     delete this.aliveSockets[socket.id];
                 }
             });
-
-            socket.on('error', (error) => {
-                console.error('Errore Socket:', error);
-            });
-
         });
     }
 
