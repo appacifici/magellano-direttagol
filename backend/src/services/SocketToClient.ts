@@ -71,6 +71,11 @@ class SocketToClient {
                     delete this.aliveSockets[socket.id];
                 }
             });
+
+            socket.on('error', (error) => {
+                console.error('Errore Socket:', error);
+            });
+
         });
     }
 
