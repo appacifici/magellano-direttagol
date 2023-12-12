@@ -20,7 +20,7 @@ class SocketToClient {
             transports: ['websocket', 'polling']
         });
 
-        this.app.listen(port, '0.0.0.0', () => {
+        this.app.listen(port, '*.*.*.*', () => {
             console.log(`Server in ascolto sulla porta ${port}`);
         });
         this.isConnected = false;
