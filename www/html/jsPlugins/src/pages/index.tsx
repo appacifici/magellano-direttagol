@@ -50,7 +50,7 @@ function MatchesBoardPage(data:any) {
         
     });
 
-    socket.on('connect', () => {
+    socket.on('error', () => {
         console.info('Client connesso');
         
     });

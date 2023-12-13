@@ -50,7 +50,7 @@ const connectMongoDB = async () => {
 
 const getMenuCompetitions = async () => {
     // Sorting countries first by isTop (descending) and then by name (ascending)
-    return CountryMongo.Country.find().sort({ isTop: -1 }).then((countries:CountryMongo.CountryArrayWithIdType) => {
+    return CountryMongo.Country.find().sort({ isTop: 1 }).then((countries:CountryMongo.CountryArrayWithIdType) => {
         let response:any = {};
 
         return Promise.all(countries.map((country:CountryMongo.CountryWithIdType) => {

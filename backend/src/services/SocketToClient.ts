@@ -21,6 +21,7 @@ class SocketToClient {
         });
 
         this.app.listen(port);
+        console.log('connessione socket');
         this.isConnected = false;
 
         setInterval(() => {

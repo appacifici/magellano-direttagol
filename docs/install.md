@@ -98,6 +98,10 @@ net:
 
 #Riavvia mongo
 sudo systemctl restart mongod
+
+mongodump --db livescore --out /home/ubuntu/livescoreDump
+mongorestore --db livescore /home/ubuntu/livescoreDump/livescore
+
 ```
 
 ## Settaggi next
