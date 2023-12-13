@@ -51,6 +51,10 @@ npx next telemetry status
 
 npm install
 npm run dev
+npm install forever -g
+cd /home/ubuntu/site/magellano-direttagol/www/html/jsPlugins
+forever start startFrontend.js
+
 ```
 
 ## Installazione Backend
@@ -63,6 +67,10 @@ npx next telemetry status
 #Risposta: Status: Disabled
 
 npm install
+npm install forever -g
+cd /home/ubuntu/site/magellano-direttagol/backend
+forever start socketLiveMacth.js
+
 ```
 
 ## Installazione Mongo
@@ -147,4 +155,11 @@ sudo systemctl restart nginx
 ## Build 
 ```bash
 npx next lint
+npm run build ( build per la produzione )
+npm run start ( produzione )
+```
+
+## Installazione cron
+```bash
+0 1 * * * cd /home/ubuntu/site/magellano-direttagol/backend/ && NODE_ENV=production npx ts-node src/liveScoreApi/api/matches/ImportFixtureMatch.ts
 ```
