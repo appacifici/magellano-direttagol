@@ -46,10 +46,10 @@ class FrontendCreateResponse {
             liveMatch.first_half_home_score = halfTimeScore[1]?.trim();
         }
         if( match.teamHome !== undefined && match.teamHome !== null ) {
-            liveMatch.away_team = match.teamHome.name;            
+            liveMatch.away_team = match.teamAway.name;            
         }
         if( match.teamAway !== undefined && match.teamAway !== null ) {
-            liveMatch.home_team = match.teamAway.name;            
+            liveMatch.home_team = match.teamHome.name;            
         }
 
         liveMatch.away_team_img = match.competitionId.name;

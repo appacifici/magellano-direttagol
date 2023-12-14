@@ -100,23 +100,22 @@ class ImportLiveMacth extends BaseApi {
 
         const resultMatch:MatchMongo.MatchWithIdType|boolean = await this.getMatch(match.id);
         if (typeof resultMatch === 'object') {                         
-            const differences = findDiff(dataMatch, resultMatch);
-            console.log(differences);
+            const differences = findDiff(dataMatch, resultMatch);            
             
-            if( JSON.stringify(differences) !== '{}' ) {                
+            if( JSON.stringify(differences) !== '{}' ) {         
+                console.log(differences);       
                 if( differences.lastGoal != '' ) {
                     dataMatch.lastGoal = differences.lastGoal;
                 }
                 this.frontendCreateResponse.addLiveMatch(differences, resultMatch._id);
-            }
-
-            MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
-            .then(result => {
-                
-            })
-            .catch(err => {
-                console.error(err);
-            });
+                MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
+                .then(result => {
+                    
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+            }            
             //console.log('update: '+match.id);
         } else {
             console.log('insert');
