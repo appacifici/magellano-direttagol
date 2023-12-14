@@ -34,7 +34,7 @@ class ImportFixtureMatch extends BaseApi  {
     private async fetchData(competitions: CompetitionMongo.CompetitionArrayWithIdType, feed: FeedTypeMongo): Promise<void> {
         try {
             for (let competition of competitions) {
-                let tomorrow = moment().add(1, 'days');
+                let tomorrow = moment().add(0, 'days');
                 await this.getPage(`${feed.endPoint}?date=${tomorrow.format('YYYY-MM-DD')}&competition_id=${competition.externalId}&key=Ch8ND10XDfUlV77V&secret=fYiWw9pN8mi6dMyQ4GDHIEFlUAHPHOKX`, competition);
             }        
         } catch (error) {
