@@ -17,7 +17,7 @@ function TopChampionship({ competitionsTop }:{competitionsTop:any} )  {
 					{topCompetitios.map((comp:any) => (
 						<Col key={comp._id} className="mb-2 pb-lg-0 pb-1 border-lg-0 col-12">																					
 							<h3 className={"float-start ms-2 border-lg-0 bg-transparent"}>								
-								<Image src={`/images/flags/${comp.countryId}.svg`} className="float-start border border-lg-0" />
+								<Image src={`/images/flags/${comp.img}.svg`} className="float-start border border-lg-0" />
 								{comp.name}
 							</h3>
 						</Col>
