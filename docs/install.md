@@ -55,6 +55,13 @@ npm install forever -g
 cd /home/ubuntu/site/magellano-direttagol/www/html/jsPlugins
 forever start startFrontend.js
 
+sudo apt-get install ufw
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw deny 3000
+sudo ufw enable
+sudo ufw status numbered
+
 ```
 
 ## Installazione Backend
@@ -70,6 +77,12 @@ npm install
 npm install forever -g
 cd /home/ubuntu/site/magellano-direttagol/backend
 forever start socketLiveMacth.js
+
+sudo apt-get install ufw
+sudo ufw allow 22
+sudo ufw allow 3001
+sudo ufw enable
+sudo ufw status numbered
 
 ```
 
@@ -92,6 +105,19 @@ sudo apt install mongodb-org
 #Avvia e Abilita MongoDB: Una volta installato, devi avviare il servizio MongoDB e abilitarlo a partire automaticamente all'avvio del sistema
 sudo systemctl start mongod
 sudo systemctl enable mongod
+
+#Firewall
+
+sudo ufw status numbered
+sudo ufw allow from 149.202.70.56 to any port 27017
+sudo ufw allow from 193.70.46.74 to any port 27017
+sudo ufw status numbered
+sudo ufw allow 22
+
+#Per verificare se blocca correttamente
+tail -f /var/log/ufw.log #Sul server con ufw
+telnet 149.202.70.56 27017 #Da server non autorizzato
+
 ```
 
 ## Configurazione Mongo
@@ -151,6 +177,7 @@ sudo ln -s /etc/nginx/sites-available/diretta.conf /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
 
 ```
+
 
 ## Build 
 ```bash
