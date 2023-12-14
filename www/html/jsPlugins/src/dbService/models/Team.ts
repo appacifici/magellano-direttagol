@@ -3,6 +3,7 @@ import mongoose, { Document, Schema, Model, ObjectId } from 'mongoose';
 type TeamType = {    
     externalId:         number;
     name:               string;
+    img?:               string;
     stadium?:           string;
     countryId:          ObjectId;    
 }
@@ -17,6 +18,11 @@ const TeamSchema   = new Schema({
         required:   true 
     },
     name: { 
+        type:       String, 
+        required:   true, 
+        maxlength:  255 
+    },
+    img: { 
         type:       String, 
         required:   true, 
         maxlength:  255 

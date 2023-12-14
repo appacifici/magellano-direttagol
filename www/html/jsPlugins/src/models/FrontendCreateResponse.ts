@@ -1,6 +1,7 @@
 // import { FrontendLiveMatchInterface, MatchesInterface }   from "./interface/FrontendLiveMatchInterface";
 import { MatchInterface, MatchesInterface } from "../match/models/MatchInterface";
 import { wrapStatusName } from "../services/status";
+import { sanitizeString } from "../services/globalNext";
 
 class FrontendCreateResponse {
     private socketResponse:MatchesInterface;
@@ -52,8 +53,16 @@ class FrontendCreateResponse {
             liveMatch.away_team = match.teamAway.name;            
         }        
 
-        liveMatch.away_team_img = match.competitionId.name;
-        liveMatch.home_team_img = match.competitionId.name;
+
+        
+        liveMatch.home_team_img     = match.competitionId.name;        
+        liveMatch.away_team_img     = match.competitionId.name;     
+
+        // console.log(match.competitionId.img );  
+        const compImg = this.sanitizeString(match.competitionId.name);
+
+        liveMatch.home_team_img  = match.teamHome.countryId.isTop === 1 ? match.teamHome.img : (match.competitionId.isTop === 1 ? compImg: match.teamHome.countryId.img);   
+        liveMatch.away_team_img  = match.teamAway.countryId.isTop === 1 ? match.teamAway.img : (match.competitionId.isTop === 1 ? compImg : match.teamAway.countryId.img);      
         liveMatch.follow = false;        
         
 
@@ -62,8 +71,8 @@ class FrontendCreateResponse {
             this.socketResponse[match.competitionId._id.toString()] = {
                 competition: {
                     name:   match.competitionId.name,
-                    nation: match.competitionId.countryId.name,
-                    img:    this.sanitizeString(match.competitionId.countryId.name),
+                    nation: (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionId.countryId.name)),
+                    img:    (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionId.countryId.name)),
                     id:     match.competitionId._id.toString(),
                     countryName: match.competitionId?.countryName ?? '',
                     matches: {}, // Aggiungi questa proprietà

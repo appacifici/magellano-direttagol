@@ -1,6 +1,7 @@
 import React            from 'react';
 import Menu             from './Menu';
 import Image            from 'react-bootstrap/Image';
+import Link         	from 'next/link';
 import headerStyle      from '../../scss/header.module.scss';
 
 function Header() {
@@ -8,12 +9,12 @@ function Header() {
         <>
             <header>
                 <div className={headerStyle.topBar}>
-                    <Image src="/images/logodirettagol.png" rounded />
+                    <Link href='/'>
+                        <Image src="/images/logodirettagol.png" rounded />
+                    </Link>
                 </div>
-                <div className={headerStyle.searchBar}></div>
-                
-                    <Menu/>
-                
+                <div className={headerStyle.searchBar}></div>                
+                <Menu/>                
             </header>
         </>
     );

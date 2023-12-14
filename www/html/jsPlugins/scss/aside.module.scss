@@ -19,12 +19,18 @@ aside {
     }
     .navbar-nav {
         img {
-            width: 50px;                
+            width: 50px;    
+            margin-right: 2px;            
         }
         a {
             text-decoration: none;
+            color: #fff;
         }
     }
+    a {
+            text-decoration: none;
+            color: #fff;
+        }
     .bgNone {
         background: transparent;
     }
@@ -46,6 +52,7 @@ aside {
             width: 22px;
             margin-top: 1px;
             max-height: 15px!important;
+            margin-right: 5px;
         }
         span {
             font-size: 12px;

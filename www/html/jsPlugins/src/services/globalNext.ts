@@ -98,14 +98,32 @@ const initData = async(store:any, dateMatches:string | string[] | (() => string)
         filter.competitionId = competition;
     }
     
-    const matches 		= await MatchMongo.Match.find(filter).populate({
+    const matches = await MatchMongo.Match.find(filter)
+    .populate({
         path: 'competitionId',
         model: 'Competition',
         populate: {
             path: 'countryId',
             model: 'Country'
         }
-        }).populate('teamHome').populate('teamAway').exec();
+    })
+    .populate({
+        path: 'teamHome',
+        model: 'Team',
+        populate: {
+            path: 'countryId',
+            model: 'Country'
+        }
+    })
+    .populate({
+        path: 'teamAway',
+        model: 'Team',
+        populate: {
+            path: 'countryId',
+            model: 'Country'
+        }
+    })
+    .exec();
     
     for (let match of matches) {   
         // Processa ogni 'match' come necessario            
@@ -114,7 +132,10 @@ const initData = async(store:any, dateMatches:string | string[] | (() => string)
     
     store.dispatch(setMatches(frontendCreateResponse.objResponse));   
 
-    const competitionsTop = await Competition.find({ isTop: 1 }).lean().exec();
+    const competitionsTop = await Competition.find({ isTop: 1 }).populate({
+        path: 'countryId',
+        model: 'Country'        
+    }).lean().exec();
     const competitionsTopJSON = JSON.stringify(competitionsTop);
     
     return {        
@@ -133,6 +154,16 @@ const currentDate = ():string => {
     return formattedDate;
 }
 
+const sanitizeString = (str:string) => {
+    // Elimina i caratteri speciali eccetto lo spazio
+    let sanitizedString = str.replace(/[^a-zA-Z0-9 ]/g, "");
+
+    // Sostituisce gli spazi con il simbolo -
+    sanitizedString = sanitizedString.replace(/\s+/g, "-");
+
+    return sanitizedString;
+}
+
 type InitDataReturnType = {
     nationsCompetitions: string; // Il tipo dovrebbe essere corretto se nationsCompetitions è una stringa JSON
     competitionsTop: string; // Il tipo dovrebbe essere corretto se competitionsTop è una stringa JSON
@@ -146,5 +177,5 @@ type DateMatchFilter = {
     competitionId?:any
 };
 
-export {connectMongoDB,initData,getMenuCompetitions,currentDate};
+export {connectMongoDB,initData,getMenuCompetitions,currentDate,sanitizeString};
 export type {InitDataReturnType};

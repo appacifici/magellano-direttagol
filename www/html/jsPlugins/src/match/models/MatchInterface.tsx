@@ -5,6 +5,8 @@ export type MatchInterface = {
     away_team?:             string;
     home_team_img?:         string;
     away_team_img?:         string;
+    home_country_img?:      string;
+    away_country_img?:      string;
     time?:                  string;
     timeMatch?:             string;
     home_score?:            string;

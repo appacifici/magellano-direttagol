@@ -3,6 +3,7 @@ import Container 			from 'react-bootstrap/Container';
 import Navbar 				from 'react-bootstrap/Navbar';
 import Image 				from 'react-bootstrap/Image';
 import Offcanvas 			from 'react-bootstrap/Offcanvas';
+import Link         		from 'next/link';
 import TopChampionship 		from './TopChampionship';
 import Nations 				from './Nations';
 import styles 				from '../../../scss/aside.module.scss'; 
@@ -21,7 +22,9 @@ function AsideList({ nationsCompetitions,competitionsTop }:{nationsCompetitions:
 								<Offcanvas.Title id={`offcanvasAsideLabel-expand-${expand}`}></Offcanvas.Title>
 							</Offcanvas.Header>
 							<Offcanvas.Body className={styles.asideOffcanvas}>
-								<Image src="/images/logodirettagol.png" rounded className={`${styles.logo} d-lg-none`} />									
+								<Link href='/'>
+									<Image src="/images/logodirettagol.png" rounded className={`${styles.logo} d-lg-none`} />									
+								</Link>
 								<TopChampionship competitionsTop={competitionsTop}/>
 								<Nations nationsCompetitions={nationsCompetitions}/>
 							</Offcanvas.Body>
