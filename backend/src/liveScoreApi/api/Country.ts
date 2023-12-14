@@ -91,7 +91,7 @@ class CountryProcessor extends BaseApi  {
 
     private setTopCountries() {
         CountryMongo.Country.updateMany(
-            { name: { $in: ['Italy', 'Spain'] } }, // Criterio di selezione
+            { name: { $in: ['Italy', 'Spain', 'Germany', 'England', 'France', 'Netherlands'] } }, // Criterio di selezione
             { $set: { isTop: 1 } }                 // Aggiornamento
         )
         .then(result => {

@@ -2,7 +2,7 @@
 
 header { 
     .topBar {
-        height: 50px;
+        height: 90px;
         background-color: $boxBgColor;
         text-align: center;
         img {
@@ -26,6 +26,22 @@ header {
         }    
         .navbar-toggler {
             background-color: #fff;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    
+    header { 
+        .topBar {
+            height: 50px;
+            background-color: $boxBgColor;
+            text-align: center;
+            img {
+                height: 65px;
+                margin-top: -14px;
+                padding-top: 5px;
+            }
         }
     }
 }

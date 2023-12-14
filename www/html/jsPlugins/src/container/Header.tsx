@@ -8,7 +8,7 @@ function Header() {
         <>
             <header>
                 <div className={headerStyle.topBar}>
-                    <Image src="/images/logo2.png" rounded />
+                    <Image src="/images/logodirettagol.png" rounded />
                 </div>
                 <div className={headerStyle.searchBar}></div>
                 
