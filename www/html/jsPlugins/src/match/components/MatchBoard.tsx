@@ -20,7 +20,11 @@ const getStatus = (status:string, time:string, currentTime:string, minuteSymbol:
             matchStatus = currentTime+minuteSymbol;
         break;
         case 'next':
-            matchStatus = currentTime.substring(0, 5);
+            const date: Date = new Date();    
+            const [hours, minutes]: string[] = currentTime.split(':');
+            date.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
+            date.setHours(date.getHours() + 1);
+            matchStatus = date.getHours()+':'+date.getMinutes().toString().padStart(2, '0');
         break;
         case 'ended':
             matchStatus = 'Finale';

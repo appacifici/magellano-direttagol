@@ -26,7 +26,7 @@ class ImportLiveMacth extends BaseApi {
         that.importAll();
         setInterval(() => {
             that.importAll();
-        }, 20000);                
+        }, 1000);                
     }
 
     private async importAll():Promise<void> {

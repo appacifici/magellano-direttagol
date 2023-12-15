@@ -65,8 +65,8 @@ class FrontendCreateResponse {
         // console.log(match.competitionId.img );  
         const compImg = this.sanitizeString(match.competitionId.name);
 
-        liveMatch.home_team_img  = match.teamHome.countryId.isTop === 1 ? match.teamHome.img : (match.competitionId.isTop === 1 ? compImg: match.teamHome.countryId.img);   
-        liveMatch.away_team_img  = match.teamAway.countryId.isTop === 1 ? match.teamAway.img : (match.competitionId.isTop === 1 ? compImg : match.teamAway.countryId.img);      
+        liveMatch.home_team_img  = match.homeCountry.isTop === 1 ? match.teamHome.img : (match.competitionId.isTop === 1 ? compImg: match.homeCountry.img);   
+        liveMatch.away_team_img  = match.awayCountry.isTop === 1 ? match.teamAway.img : (match.competitionId.isTop === 1 ? compImg : match.awayCountry.img);      
         liveMatch.follow = false;        
         
 
@@ -75,10 +75,10 @@ class FrontendCreateResponse {
             this.socketResponse[match.competitionId._id.toString()] = {
                 competition: {
                     name:   match.competitionId.name,
-                    nation: (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionId.countryId.name)),
-                    img:    (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionId.countryId.name)),
+                    nation: (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionCountry.name)),
+                    img:    (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionCountry.name)),
                     id:     match.competitionId._id.toString(),
-                    countryName: match.competitionId?.countryName ?? '',
+                    countryName: match.competitionCountry.name ?? '',
                     matches: {}, // Aggiungi questa proprietà
                 }             
             }

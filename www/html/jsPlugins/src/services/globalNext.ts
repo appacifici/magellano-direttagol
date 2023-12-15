@@ -50,11 +50,11 @@ const connectMongoDB = async () => {
 
 const getMenuCompetitions = async () => {
     // Sorting countries first by isTop (descending) and then by name (ascending)
-    return CountryMongo.Country.find().sort({ isTop: 1 }).then((countries:CountryMongo.CountryArrayWithIdType) => {
+    return CountryMongo.Country.find().sort({ isTop: -1 }).then((countries:CountryMongo.CountryArrayWithIdType) => {
         let response:any = {};
 
         return Promise.all(countries.map((country:CountryMongo.CountryWithIdType) => {
-            return Competition.find({ countryId: country._id }).sort({ name: 1 }).then(competitions => {
+            return Competition.find({ countryId: country._id }).sort({ name: -1 }).then(competitions => {
                 let competitionsObj:any = {};
                 competitions.forEach(comp => {
                     competitionsObj[comp._id] = { name: comp.name, permalink: comp.permalink };
@@ -97,42 +97,108 @@ const initData = async(store:any, dateMatches:string | string[] | (() => string)
     if( competition !== undefined ) {
         filter.competitionId = competition;
     }
+        
+
+    // const matches = await MatchMongo.Match.find(filter)
+    // .populate({
+    //     path: 'competitionId',
+    //     model: 'Competition',        
+    //     populate: {
+    //         path: 'countryId',
+    //         model: 'Country'
+    //     },        
+    // })
+    // .populate({
+    //     path: 'teamHome',
+    //     model: 'Team',
+    //     populate: {
+    //         path: 'countryId',
+    //         model: 'Country'
+    //     }
+    // })
+    // .populate({
+    //     path: 'teamAway',
+    //     model: 'Team',
+    //     populate: {
+    //         path: 'countryId',
+    //         model: 'Country'
+    //     }
+    // })
+    // .exec();
     
-    const matches = await MatchMongo.Match.find(filter)
-    .populate({
-        path: 'competitionId',
-        model: 'Competition',
-        populate: {
-            path: 'countryId',
-            model: 'Country'
+    const matches = await MatchMongo.Match.aggregate([
+        { $match: filter },
+        { 
+            $lookup: {
+                from: 'competitions', // nome della collezione 'Competition'
+                localField: 'competitionId',
+                foreignField: '_id',
+                as: 'competitionId'
+            }
+        },
+        { $unwind: '$competitionId' },
+        { 
+            $lookup: {
+                from: 'countries', // nome della collezione 'Country' per la competizione
+                localField: 'competitionId.countryId',
+                foreignField: '_id',
+                as: 'competitionCountry'
+            }
+        },
+        { $unwind: '$competitionCountry' },
+        { 
+            $lookup: {
+                from: 'teams', // nome della collezione 'Team' per il team di casa
+                localField: 'teamHome',
+                foreignField: '_id',
+                as: 'teamHome'
+            }
+        },
+        { $unwind: '$teamHome' },
+        { 
+            $lookup: {
+                from: 'countries', // nome della collezione 'Country' per il team di casa
+                localField: 'teamHome.countryId',
+                foreignField: '_id',
+                as: 'homeCountry'
+            }
+        },
+        { $unwind: '$homeCountry' },
+        { 
+            $lookup: {
+                from: 'teams', // nome della collezione 'Team' per il team ospite
+                localField: 'teamAway',
+                foreignField: '_id',
+                as: 'teamAway'
+            }
+        },
+        { $unwind: '$teamAway' },
+        { 
+            $lookup: {
+                from: 'countries', // nome della collezione 'Country' per il team ospite
+                localField: 'teamAway.countryId',
+                foreignField: '_id',
+                as: 'awayCountry'
+            }
+        },
+        { $unwind: '$awayCountry' },
+        { 
+            $sort: { 
+                'competitionId.isTop': -1,
+                'competitionCountry.isTop': -1 
+            }
         }
-    })
-    .populate({
-        path: 'teamHome',
-        model: 'Team',
-        populate: {
-            path: 'countryId',
-            model: 'Country'
-        }
-    })
-    .populate({
-        path: 'teamAway',
-        model: 'Team',
-        populate: {
-            path: 'countryId',
-            model: 'Country'
-        }
-    })
-    .exec();
+    ]);
     
-    for (let match of matches) {   
+
+    for (let match of matches) {           
         // Processa ogni 'match' come necessario            
         frontendCreateResponse.addLiveMatch(match, match._id.toString());
     };
     
     store.dispatch(setMatches(frontendCreateResponse.objResponse));   
 
-    const competitionsTop = await Competition.find({ isTop: 1 }).populate({
+    const competitionsTop = await Competition.find({ isTop: -1 }).populate({
         path: 'countryId',
         model: 'Country'        
     }).lean().exec();
