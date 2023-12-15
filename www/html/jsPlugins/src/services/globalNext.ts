@@ -198,7 +198,7 @@ const initData = async(store:any, dateMatches:string | string[] | (() => string)
     
     store.dispatch(setMatches(frontendCreateResponse.objResponse));   
 
-    const competitionsTop = await Competition.find({ isTop: -1 }).populate({
+    const competitionsTop = await Competition.find({ isTop: 1 }).populate({
         path: 'countryId',
         model: 'Country'        
     }).lean().exec();
