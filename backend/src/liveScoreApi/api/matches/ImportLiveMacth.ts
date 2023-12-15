@@ -26,7 +26,7 @@ class ImportLiveMacth extends BaseApi {
         that.importAll();
         setInterval(() => {
             that.importAll();
-        }, 1000);                
+        }, 10000);                
     }
 
     private async importAll():Promise<void> {
@@ -78,6 +78,7 @@ class ImportLiveMacth extends BaseApi {
             console.log('Skip match not valid competition:', match);   
             return null;
         }
+        
 
         const dateMatch = moment().format('YYYY-MM-DD')+' '+match.scheduled;
         const dataMatch:MatchMongo.MatchType = {
@@ -102,11 +103,12 @@ class ImportLiveMacth extends BaseApi {
         if (typeof resultMatch === 'object') {                         
             const differences = findDiff(dataMatch, resultMatch);            
             
-            if( JSON.stringify(differences) !== '{}' ) {                            
+            if( JSON.stringify(differences) !== '{}' ) {         
+                console.log(differences);
                 if( differences.lastGoal != '' ) {
                     dataMatch.lastGoal = differences.lastGoal;
                 }
-                this.frontendCreateResponse.addLiveMatch(differences, resultMatch._id);
+                this.frontendCreateResponse.addLiveMatch(differences, resultMatch);
                 MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
                 .then(result => {
                     
@@ -162,15 +164,13 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
     if (JSON.stringify(diff) !== '{}' && competitionId != '') {
         diff['competitionId'] = competitionId;
     }
-
     
-
     const scoreMondoSplit   = mongoMatch.score.replace(/\s/g, '');
     const scoreApiSplit     = apiDataMatch.score.replace(/\s/g, '');    
     const [homeTeamScoreMongo, awayTeamScoreMongo]  = scoreMondoSplit.split('-');
     const [homeTeamScoreApi, awayTeamScoreApi]      = scoreApiSplit.split('-');
 
-    diff['newGoal'] = false;
+    
     if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?'  ) {    
 
         if (homeTeamScoreMongo !== homeTeamScoreApi) {

@@ -12,6 +12,7 @@ const connectMongoDB = async () => {
             
         });
         console.log('Mongoose connected to MongoDB');
+        console.log(`mongodb://${process.env.MONGO_DB_HOST}:27017/livescore`);
     } catch (err) {
         console.error('Error connecting to MongoDB');        
         process.exit(1);

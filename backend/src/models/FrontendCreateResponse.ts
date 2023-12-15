@@ -7,7 +7,7 @@ class FrontendCreateResponse {
         this.socketResponse = {};
     }
 
-    public addLiveMatch(match:any, matchId:number) {
+    public addLiveMatch(match:any, resultMatch:any) {
         const liveMatch: FrontendLiveMatchInterface = {};
 
         const fullScore     = match.score?.split('-');
@@ -43,22 +43,23 @@ class FrontendCreateResponse {
             liveMatch.home_team = match.home_team;
         }
 
-        const compImg = this.sanitizeString(match.competitionId.name);
+        // const compImg = this.sanitizeString(match.competitionId.name);
+        const compImg = '';
 
-        const matchNumber = matchId;
-        if (!this.socketResponse[match.competitionId._id]) {
-            this.socketResponse[match.competitionId._id] = {
+        const matchNumber = resultMatch._id;
+        if (!this.socketResponse[resultMatch.competitionId._id]) {    
+            this.socketResponse[resultMatch.competitionId._id] = {
                 competition: {
-                    name:   match.competitionId.name,
-                    nation: (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionId.countryId.name)),
-                    img:    (match.competitionId.isTop === 1 ? compImg : this.sanitizeString(match.competitionId.countryId.name)),
-                    id:     match.competitionId._id.toString(),
-                    countryName: match.competitionId?.countryName ?? '',
+                    name:   resultMatch.competitionId.name,
+                    nation: '',
+                    img:    '',
+                    id:     resultMatch.competitionId._id.toString(),
+                    countryName: resultMatch.competitionId?.countryName ?? '',
                     matches: {}, // Aggiungi questa proprietà
                 }             
             }
         }                
-        this.socketResponse[match.competitionId._id].competition.matches[matchNumber] = liveMatch;
+        this.socketResponse[resultMatch.competitionId._id].competition.matches[matchNumber] = liveMatch;
     }
 
     private sanitizeString(str:string) {
