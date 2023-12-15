@@ -164,21 +164,26 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
         diff['competitionId'] = competitionId;
     }
 
-    if( mongoMatch.score != apiDataMatch.score ) {
-        const [homeTeamScoreMongo, awayTeamScoreMongo]  = mongoMatch.score.split('-');
-        const [homeTeamScoreApi, awayTeamScoreApi]      = apiDataMatch.score.split('-');
+    
+
+    const scoreMondoSplit   = mongoMatch.score.replace(/\s/g, '');
+    const scoreApiSplit     = apiDataMatch.score.replace(/\s/g, '');    
+    const [homeTeamScoreMongo, awayTeamScoreMongo]  = scoreMondoSplit.split('-');
+    const [homeTeamScoreApi, awayTeamScoreApi]      = scoreApiSplit.split('-');
+
+    diff['newGoal'] = false;
+    if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?'  ) {    
 
         if (homeTeamScoreMongo !== homeTeamScoreApi) {
             diff['lastGoal'] = 'home';
         }
 
+        console.log(awayTeamScoreMongo+'!=='+awayTeamScoreApi);
         if (awayTeamScoreMongo !== awayTeamScoreApi) {
             diff['lastGoal'] = 'away';
         }
 
-        if( mongoMatch._id == '6564d39873e13f2e4a4e9d7c') {
-            console.log(diff['lastGoal']);
-        }
+        diff['newGoal'] = true;
     }
     return diff;
 }

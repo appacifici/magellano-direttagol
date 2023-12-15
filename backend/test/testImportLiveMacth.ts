@@ -23,8 +23,7 @@ class TestImportLiveMacth extends BaseApi {
         this.frontendCreateResponse = new FrontendCreateResponse();
         
         this.socketToClient = new SocketToClient(3001);
-        this.socketToClient.connectClientSocket();
-        console.log('eccomi');
+        this.socketToClient.connectClientSocket();        
         this.currentIteration = 1; // Initialize the iteration
         
         const that = this;
@@ -176,15 +175,19 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
         diff['competitionId'] = competitionId;
     }
 
+    const scoreMondoSplit   = mongoMatch.score.replace(/\s/g, '');
+    const scoreApiSplit     = apiDataMatch.score.replace(/\s/g, '');    
+    const [homeTeamScoreMongo, awayTeamScoreMongo]  = scoreMondoSplit.split('-');
+    const [homeTeamScoreApi, awayTeamScoreApi]      = scoreApiSplit.split('-');
+
     diff['newGoal'] = false;
-    if( mongoMatch.score != apiDataMatch.score ) {
-        const [homeTeamScoreMongo, awayTeamScoreMongo]  = mongoMatch.score.split('-');
-        const [homeTeamScoreApi, awayTeamScoreApi]      = apiDataMatch.score.split('-');
+    if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?'  ) {    
 
         if (homeTeamScoreMongo !== homeTeamScoreApi) {
             diff['lastGoal'] = 'home';
         }
 
+        console.log(awayTeamScoreMongo+'!=='+awayTeamScoreApi);
         if (awayTeamScoreMongo !== awayTeamScoreApi) {
             diff['lastGoal'] = 'away';
         }

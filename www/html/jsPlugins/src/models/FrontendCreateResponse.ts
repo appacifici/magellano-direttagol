@@ -17,6 +17,10 @@ class FrontendCreateResponse {
 
         liveMatch.keyMatch = matchId;  
 
+        if( typeof match.newGoal !== "undefined") {
+            liveMatch.newGoal  = match.newGoal;
+        }
+
         if( typeof match.time !== "undefined" ) {
             const hours    = match.dateMatch.getHours().toString().padStart(2, '0');
             const minutes  = match.dateMatch.getMinutes().toString().padStart(2, '0');     
