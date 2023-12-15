@@ -1,16 +1,21 @@
-import { createServer, Server as HTTPServer } from 'http';
+import { createServer, Server as HTTPSServer } from 'https';
 import { Server as SocketIOServer, Socket } from 'socket.io';
+import { readFileSync } from 'fs';
 
 class SocketToClient {
     private aliveSockets: { [key: string]: any };
-    private app:         HTTPServer;
+    private app:         HTTPSServer;
     private io:          SocketIOServer;
     public  isConnected: boolean;
 
     constructor(port: number) {
         this.aliveSockets = {};
 
-        this.app = createServer();
+        const privateKey  = readFileSync('/etc/letsencrypt/live/direttagol.it/fullchain.pem', 'utf8');
+        const certificate = readFileSync('/etc/letsencrypt/live/direttagol.it/privkey.pem', 'utf8');
+        const credentials = { key: privateKey, cert: certificate };
+
+        this.app = createServer(credentials);
 
         this.io = new SocketIOServer(this.app, {
             cors: {
