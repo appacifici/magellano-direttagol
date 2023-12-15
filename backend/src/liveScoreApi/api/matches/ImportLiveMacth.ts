@@ -102,8 +102,7 @@ class ImportLiveMacth extends BaseApi {
         if (typeof resultMatch === 'object') {                         
             const differences = findDiff(dataMatch, resultMatch);            
             
-            if( JSON.stringify(differences) !== '{}' ) {         
-                console.log(differences);       
+            if( JSON.stringify(differences) !== '{}' ) {                            
                 if( differences.lastGoal != '' ) {
                     dataMatch.lastGoal = differences.lastGoal;
                 }
@@ -178,7 +177,6 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
             diff['lastGoal'] = 'home';
         }
 
-        console.log(awayTeamScoreMongo+'!=='+awayTeamScoreApi);
         if (awayTeamScoreMongo !== awayTeamScoreApi) {
             diff['lastGoal'] = 'away';
         }
