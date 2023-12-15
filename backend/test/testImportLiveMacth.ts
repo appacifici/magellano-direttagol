@@ -109,7 +109,7 @@ class TestImportLiveMacth extends BaseApi {
             lastChanged:        new Date(match.last_changed)
         }  
 
-        const resultMatch:MatchMongo.MatchWithIdType|boolean = await this.getMatch(match.id);
+        const resultMatch:MatchMongo.MatchWithIdType|boolean = await this.getMatch(Number(match.fixture_id));
         if (typeof resultMatch === 'object') {                         
             const differences = findDiff(dataMatch, resultMatch);
             console.log(differences);
@@ -140,9 +140,9 @@ class TestImportLiveMacth extends BaseApi {
         }        
     }
 
-    private async getMatch(matchId:number): Promise<MatchMongo.MatchWithIdType|boolean> {
+    private async getMatch(fixtureId:number): Promise<MatchMongo.MatchWithIdType|boolean> {
         try {
-            const filter:object = {extMatchId:matchId};
+            const filter:object = {fixtureId:fixtureId};
             const match:MatchMongo.MatchWithIdType|null = await MatchMongo.Match.findOne(filter).populate('competitionId').populate('teamHome').populate('teamAway').exec()
             if( this.isValidDataType(match)) {
                 return match;

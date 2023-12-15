@@ -34,16 +34,16 @@ class FrontendCreateResponse {
         if( typeof match.timeMatch !== "undefined" ) {
             liveMatch.current_time = match.timeMatch;
         }        
-        if( fullScore !== undefined && fullScore[0] !== null ) {
+        if( fullScore !== undefined && fullScore[0] !== null && fullScore[0] !== undefined ) {
             liveMatch.home_score = fullScore[0]?.trim();
         }      
-        if( fullScore !== undefined && fullScore[0] !== null ) {
+        if( fullScore !== undefined && fullScore[1] !== null && fullScore[1] !== undefined ) {
             liveMatch.away_score = fullScore[1]?.trim();        
         }
-        if( halfTimeScore !== undefined && halfTimeScore[0] !== null ) {
+        if( halfTimeScore !== undefined && halfTimeScore[0] !== null && halfTimeScore[0] !== undefined ) {
             liveMatch.first_half_away_score = halfTimeScore[0]?.trim();
         } 
-        if( halfTimeScore !== undefined && halfTimeScore[1] !== null ) {
+        if( halfTimeScore !== undefined && halfTimeScore[1] !== null && halfTimeScore[1] !== undefined ) {
             liveMatch.first_half_home_score = halfTimeScore[1]?.trim();
         }
         if( match.teamHome !== undefined && match.teamHome !== null ) {
