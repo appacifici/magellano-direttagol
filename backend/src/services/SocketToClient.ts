@@ -50,6 +50,7 @@ class SocketToClient {
         this.io.on('connection', (socket: Socket) => {
             console.log('connectClientSocket');
             if (!this.authorizedReferer(socket)) {
+                console.log('disconnect authorizedReferer');
                 socket.disconnect();
                 return false;
             }
@@ -58,6 +59,7 @@ class SocketToClient {
 
             socket.on('forceDisconnect', () => {
                 socket.disconnect();
+                console.log('disconnect forceDisconnect');
                 delete this.aliveSockets[socket.id];
             });
 
@@ -66,6 +68,7 @@ class SocketToClient {
             socket.on('pongSocket', (data: any) => {
                 this.aliveSockets[socket.id].lastPong = new Date().getTime() / 1000;
                 if (data.hidden) {
+                    console.log('disconnect data.hidden');
                     socket.disconnect();
                     delete this.aliveSockets[socket.id];
                 }
