@@ -12,7 +12,7 @@ class SocketToClient {
         this.aliveSockets = {};
 
         const privateKey  = readFileSync('/etc/letsencrypt/live/direttagol.it/fullchain.pem', 'utf8');
-        const certificate = readFileSync('/etc/letsencrypt/live/direttagol.it/privkey.pem', 'utf8');
+        const certificate = readFileSync('/etc/letsencrypt/live/direttagol.it/privkey.pem', 'utf8'); 
         const credentials = { key: privateKey, cert: certificate };
 
         this.app = createServer(credentials);
