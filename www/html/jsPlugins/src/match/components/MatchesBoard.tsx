@@ -14,14 +14,11 @@ import { MatchesInterface }                     from '../models/MatchInterface';
 import "react-datepicker/dist/react-datepicker.css";
 
 
-const MatchesBoard = ({initMatches}:{initMatches:MatchesInterface}) => {        
+const MatchesBoard = () => {        
     const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
     const router            = useRouter();
     const date              = router.query.date
     const dateInit          =  date !== undefined ? date : moment().format('YYYY-MM-DD');
-
-    console.log(initMatches);
-    //let matches = initMatches;
 
     let tabStatusMatch      = useTypedSelector( state => state.tabMatch.tab ); //riceve lo stato dallo store    
     let matches             = useTypedSelector( state => state.matches ); //riceve lo stato dallo store
