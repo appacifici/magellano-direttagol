@@ -55,6 +55,7 @@ services:
       - 3001
     volumes:
       - ./backend:/home/node/app/:cache #per sharare i file compilati da webpack a php e nginx
+      - ./nodebackend/ssl:/etc/ssl
     volumes_from: #volume condiviso
       - app-data
     env_file:

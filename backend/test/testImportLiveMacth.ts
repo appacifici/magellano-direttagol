@@ -40,7 +40,7 @@ class TestImportLiveMacth extends BaseApi {
     private async fetchData(): Promise<void> {
         try {
             
-            const filePath = `./data/matchDataJson_${this.currentIteration}.json`; // Use currentIteration       
+            const filePath = `./test/data/matchDataJson_${this.currentIteration}.json`; // Use currentIteration       
             console.log(filePath); 
             const fileData = await this.readJsonFile(filePath);
             if (fileData) {
@@ -117,7 +117,7 @@ class TestImportLiveMacth extends BaseApi {
                 if( differences.lastGoal != '' ) {
                     dataMatch.lastGoal = differences.lastGoal;
                 }
-                this.frontendCreateResponse.addLiveMatch(differences, resultMatch._id);
+                this.frontendCreateResponse.addLiveMatch(differences, resultMatch);
             }
 
             MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )

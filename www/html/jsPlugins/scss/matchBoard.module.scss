@@ -39,6 +39,7 @@
             margin-top: 3px;
             float: right!important;
             max-height: 16px;
+            border: none!important;
         }        
         .lastGoal {
             border-left: 8px solid #38a9ff;
@@ -70,4 +71,26 @@
         text-align: center;
         margin-top: 10px;
     }
+}
+
+@media (max-width: 450px) {
+    .matchBoard {        
+        padding: 5px 0;
+        margin-top: 0!important;
+        padding-top: 11px;
+        .biStar {
+            margin-left: 5px;
+        }
+    }    
+}
+
+@media (max-width: 375px) {
+    .matchBoard .scoreHT {
+        font-size: 12px;
+        width: 14px;
+        padding-left: 2px;
+        .biStar {
+            margin-left: 2px;
+        }
+    }    
 }

@@ -46,7 +46,7 @@ class ImportLiveMacth extends BaseApi {
             const response = await axios.get(endPoint);
             const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
             await this.eachFixture(apiResponse).then((result) => {         
-                //console.log(JSON.stringify(this.frontendCreateResponse.objResponse));       
+                console.log(JSON.stringify(this.frontendCreateResponse.objResponse));       
                 this.socketToClient.sendDataLive(JSON.stringify(this.frontendCreateResponse.objResponse));
             })
         } catch (error) {
@@ -67,7 +67,7 @@ class ImportLiveMacth extends BaseApi {
         const competition:  CompetitionMongo.CompetitionWithIdType | null | undefined  = await this.getOneCompetitionByFilter({externalId:match.competition_id});
 
         if( !this.isValidDataType(homeTeam) ) {
-            console.log('Skip match not valid homeTeam:', match);   
+            console.log('Skip match not valid homeTeam:', match);    
             return null;
         }
         if(!this.isValidDataType(awayTeam)) {
@@ -104,7 +104,7 @@ class ImportLiveMacth extends BaseApi {
             const differences = findDiff(dataMatch, resultMatch);            
             
             if( JSON.stringify(differences) !== '{}' ) {         
-                console.log(differences);
+                //console.log(differences);
                 if( differences.lastGoal != '' ) {
                     dataMatch.lastGoal = differences.lastGoal;
                 }

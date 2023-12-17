@@ -40,18 +40,18 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 
 function MatchesBoardPage(data:any) {        
 
-    let lastHidden          = false;
+    let lastHidden          = false;    
     const dispatch          = useDispatch();
     const host              = process.env.NEXT_PUBLIC_WS_HOST;
-    const socket: Socket    = socketIOClient(host, { secure: true });
+    const socket: Socket    = socketIOClient(host, { secure: true, rejectUnauthorized: false });
     console.info('Tentativo connessione: '+process.env.NEXT_PUBLIC_WS_HOST);
     socket.on('connect', () => {
         console.info('Client connesso: '+process.env.NEXT_PUBLIC_WS_HOST);
         
     });
 
-    socket.on('error', () => {
-        console.info('Client connesso');
+    socket.on('error', (error) => {
+        console.error('Errore di connessione', error); // Modifica per riflettere l'errore
         
     });
     socket.on('dataLive', (data) => {        

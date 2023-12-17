@@ -1,4 +1,7 @@
 import React                            from 'react';
+import { useDispatch }                  from 'react-redux';
+import { Socket, io as socketIOClient } from 'socket.io-client';
+import dotenv                           from 'dotenv';
 import * as CountryMongo                from '../../../dbService/models/Country';
 import * as StandingMongo               from '../../../dbService/models/Standing';
 
@@ -6,7 +9,7 @@ import Header                           from '../../../container/Header';
 import Footer                           from '../../../container/Footer';
 import MainStanding                     from '../../../container/MainStanding';
 import MatchesBoard                     from '../../../match/components/MatchesBoard';
-
+import { updateMatches }                from '../../../match/slice/MatchSlice';
 import { wrapperMatch }                 from '../../../match/store/MatchStore';
 
 
@@ -16,19 +19,24 @@ import { connectMongoDB, initData, InitDataReturnType, currentDate }          fr
 
 export const getServerSideProps = wrapperMatch.getServerSideProps(
     (store) => async (context) => {     	        
-        const { date, country, league }     = context.query;
+        const result = dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
+        if (result.error) {
+            console.log( result.error );
+        }
 
+        const { date, country, league }     = context.query;
         await connectMongoDB();        
         
-        const scountry               = Array.isArray(country) ? country[0] : country;        
-        const sleague                = Array.isArray(league) ? league[0] : league;       
+        const scountry                               = Array.isArray(country) ? country[0] : country;        
+        const sleague                                = Array.isArray(league) ? league[0] : league;       
         
-        const countryMongo           = await CountryMongo.Country.findOne({ permalink:scountry }).lean().exec();        
+        const countryMongo                           = await CountryMongo.Country.findOne({ permalink:scountry }).lean().exec();        
         const competition:CompetitionType            = await Competition.findOne({ permalink:sleague, countryId:countryMongo }).exec();
-        const dateMatches            = date !== undefined ? date : currentDate();
+        const dateMatches                            = date !== undefined ? date : currentDate();
                 
         let dataStandings:StandingMongo.StandingArrayWithIdType;
         let standings:StandingMongo.StandingArrayWithIdType
+
         try {
             dataStandings = await StandingMongo.Standing.find({ competitionId: competition.externalId }).sort({ rank: 1 }).lean().exec();    
             standings = dataStandings.map(doc => ({
@@ -38,7 +46,7 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
         } catch (error) {
             console.error("Errore durante la query:", error);
         }                
-		
+		        
 		const data:InitDataReturnType = await initData(store, dateMatches, competition );
         
 		return {
@@ -53,6 +61,33 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
 
 
 function MatchesBoardPage(data:any) {        
+    let lastHidden          = false;    
+    const dispatch          = useDispatch();
+    const host              = process.env.NEXT_PUBLIC_WS_HOST;
+    const socket: Socket    = socketIOClient(host, { secure: true, rejectUnauthorized: false });
+    console.info('Tentativo connessione: '+process.env.NEXT_PUBLIC_WS_HOST);
+    socket.on('connect', () => {
+        console.info('Client connesso: '+process.env.NEXT_PUBLIC_WS_HOST);
+        
+    });
+
+    socket.on('error', (error) => {
+        console.error('Errore di connessione', error); // Modifica per riflettere l'errore
+        
+    });
+    socket.on('dataLive', (data) => {        
+        dispatch(updateMatches(JSON.parse(data)));
+    });    
+
+    socket.on('ping', function() {    
+        //let isMobile  = 1;
+        // let nowHidden = isMobile == 1 ? document.hidden : false;
+        let nowHidden = false;
+        socket.emit('pongSocket', {'hidden': nowHidden, 'lastHidden' : lastHidden });            
+//                console.log('ping socketLCS:' +document.hidden);  
+        //lastHidden = window.document.hidden;
+    });
+
     return(  
         <>                                                        
             <Header/>                                        

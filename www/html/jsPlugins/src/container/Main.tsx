@@ -12,7 +12,7 @@ const Main = ( { nationsCompetitions,competitionsTop,MatchBoard }:{nationsCompet
                 <Col xs={6} lg={3}>
                     <AsideList nationsCompetitions={nationsCompetitions} competitionsTop={competitionsTop}></AsideList>
                 </Col>
-                <Col xs={12} lg={7}>
+                <Col xs={12} lg={7} className="p-1">
                     {MatchBoard}
                 </Col>                
             </Row>        

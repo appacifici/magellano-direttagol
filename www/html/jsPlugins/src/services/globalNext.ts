@@ -93,11 +93,10 @@ const initData = async(store:any, dateMatches:string | string[] | (() => string)
             $lte: endOfDay
         },        
     };
-
+    
     if( competition !== undefined ) {
-        filter.competitionId = competition;
-    }
-        
+        filter.competitionId = competition._id;
+    }    
 
     // const matches = await MatchMongo.Match.find(filter)
     // .populate({

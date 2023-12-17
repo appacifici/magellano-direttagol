@@ -7,7 +7,7 @@ init() {
 	#npm install
 	cd /home/node/app 
 	#NODE_ENV=development npx ts-node src/liveScoreApi/api/matches/ImportLiveMacth.ts
-	#cd test &&	npx ts-node testImportLiveMacth.ts
+	NODE_ENV=development  npx ts-node test/testImportLiveMacth.ts
 }
 
 

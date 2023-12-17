@@ -9,19 +9,24 @@ import DatePicker                               from "react-datepicker";
 import Competition                              from './Competition';
 import stlMatchBoard                            from '../../../scss/matchBoard.module.scss';
 import { checkStatusMatchInTabStatus }          from '../../services/status';
+import { MatchesInterface }                     from '../models/MatchInterface';
 
 import "react-datepicker/dist/react-datepicker.css";
 
 
-const MatchesBoard = () => {        
+const MatchesBoard = ({initMatches}:{initMatches:MatchesInterface}) => {        
     const useTypedSelector: TypedUseSelectorHook<any> = useSelector;
     const router            = useRouter();
     const date              = router.query.date
     const dateInit          =  date !== undefined ? date : moment().format('YYYY-MM-DD');
+
+    console.log(initMatches);
+    //let matches = initMatches;
+
     let tabStatusMatch      = useTypedSelector( state => state.tabMatch.tab ); //riceve lo stato dallo store    
     let matches             = useTypedSelector( state => state.matches ); //riceve lo stato dallo store
     const [startDate, setStartDate] = useState(new Date(`${dateInit}T00:00:00Z`));
-    const [hasMatchesInAnyCompetition, setHasMatchesInAnyCompetition] = useState(false);
+    const [hasMatchesInAnyCompetition, setHasMatchesInAnyCompetition] = useState(true);
 
     const checkForMatches = useCallback((matches:any) => {
         let hasMatch = false;
@@ -43,7 +48,7 @@ const MatchesBoard = () => {
 
     const changeCalendar = (date:any) => {
         setStartDate(new Date(date));        
-        window.location.href = "/?date="+format(date, 'yyyy-MM-dd');
+        window.location.href = "?date="+format(date, 'yyyy-MM-dd');
     }
 
     const getMatchesComponent = (matches:any) => {        

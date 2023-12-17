@@ -27,7 +27,6 @@ export const tabMatchSlice = createSlice({
 });
 
 // come crea le azioni:  todos/addTodo {type: 'todos/addTodo', payload: quello passato nella chiamata della funzione}
-console.log(initTabMatch);
 const {actions, reducer} = tabMatchSlice; //Destrutturiamo dalla slice azioni e reducer
 export const {clickTabMatch} = actions; //Esportiamo le azioni
 export type {TabMatchState};

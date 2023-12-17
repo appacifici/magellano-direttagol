@@ -33,19 +33,19 @@ function Menu() {
 					<Container fluid="md">												
 						<Nav className="justify-content-center flex-grow-1 pe-3">
 							<Row>
-								<Col className="mb-lg-0 pb-lg-0 border-lg-0 w-25">
+								<Col className={`mb-lg-0 pb-lg-0 border-lg-0 w-25 ${stlHeader.colXsAuto}`}>
 									<Badge id="all" onClick={manageClick} role="button" bg={tabStatusMatch === 'all' && primary} className="float-end ms-2 mt-1 w-100">Tutte</Badge>									
 								</Col>
-								<Col className="mb-lg-0 pb-lg-0 border-lg-0 w-25">
+								<Col className={`mb-lg-0 pb-lg-0 border-lg-0 w-25 ${stlHeader.colXsAuto}`}>
 									<Badge id="live" onClick={manageClick} role="button" bg={tabStatusMatch === 'live' && primary} className="float-end ms-2 mt-1 w-100">Live</Badge>
 								</Col>
-								<Col className="mb-lg-0 pb-lg-0 border-lg-0 w-25">
+								<Col className={`mb-lg-0 pb-lg-0 border-lg-0 w-25 ${stlHeader.colXsAuto}`}>
 									<Badge id="ended" onClick={manageClick} role="button" bg={tabStatusMatch === 'ended' && primary} className="float-end ms-2 mt-1 w-100">Concluse</Badge>
 								</Col>
-								<Col className="mb-lg-0 pb-lg-0 border-lg-0 w-25">
+								<Col className={`mb-lg-0 pb-lg-0 border-lg-0 w-25 ${stlHeader.colXsAuto}`}>
 									<Badge id="next" onClick={manageClick} role="button" bg={tabStatusMatch === 'next' && primary} className="float-end ms-2 mt-1 w-100">Prossime</Badge>
 								</Col>
-								<Col className="mb-lg-0 pb-lg-0 border-lg-0 w-25">
+								<Col className={`mb-lg-0 pb-lg-0 border-lg-0 w-25 ${stlHeader.colXsAuto}`}>
 									<Badge id="follow" onClick={manageClick} role="button" bg={tabStatusMatch === 'follow' && primary} className="float-end ms-2 mt-1 w-100">Seguite</Badge>
 								</Col>
 							</Row>

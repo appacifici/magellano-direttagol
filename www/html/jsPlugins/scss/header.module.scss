@@ -46,3 +46,9 @@ header {
         }
     }
 }
+
+@media (max-width: 450px) {
+    .colXsAuto {
+        width: 20%!important;
+    }
+}

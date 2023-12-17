@@ -9,7 +9,6 @@ import styles 		from '../../../scss/aside.module.scss';
 function TopChampionship({ competitionsTop }:{competitionsTop:any} )  {
 	const topCompetitios = JSON.parse(competitionsTop);	
 
-	console.log(topCompetitios);
 	return (
 		<>			
 			<Nav className="pt-3 ps-3 pe-0">

@@ -12,6 +12,14 @@ $table-color-state: #fff;
 @import "~bootstrap/scss/mixins/banner";
 @include bsBanner("");
 
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
 
 // scss-docs-start import-stack
 // Configuration
@@ -51,7 +59,7 @@ body {
 .react-datepicker-wrapper {
     display: block!important;
     width: 200px!important;
-    margin: 0 auto!important;
+    margin: 0px auto 10px !important;
 }
 
 .accordion {

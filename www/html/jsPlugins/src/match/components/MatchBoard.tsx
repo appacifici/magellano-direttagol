@@ -158,15 +158,15 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
     return( 
         <>            
             <Row className={newGoalClass(match.newGoal)} key={match.match_id} data-id={match.match_id}>                
-                <Col xs={1} md={1}>
+                <Col xs={1} md={1} className='p-0 p-sm-2'>
                     <span className='pt-2'>
                         <i className={getMatchIsFollowed(match.keyMatch)} id={match.keyMatch} onClick={manageClickFollow}></i>{match.follow}
                     </span>
                 </Col>                
-                <Col {...getColProps("pt-2 text-center",match.status)}>
+                <Col {...getColProps("pt-2 text-center p-0 p-sm-2",match.status)} >
                     {getStatus(match.status, match.time, match.current_time, '`')}
                 </Col>                
-                <Col xs={6} md={8} className='text-left'>
+                <Col xs={7} md={8} className='text-left'>
                     <Row>
                         <Col xs={2} md={1} className='p-0'>
                             <Image src={"/images/flags/"+match.home_team_img+".svg"} className="float-start border border-lg-0" />
@@ -186,14 +186,14 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
                             {match.last_goal === 'home' && <div className={stlMatchBoard.lastGoal}></div>}
                             {match.status !== 'next' && match.home_score}
                         </Col>                            
-                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_away_score,match.status)}</Col>                            
+                        <Col className={stlMatchBoard.scoreHT} xs={6} md={6}>{getHalfTimeScore(match.first_half_away_score,match.status)}</Col>                            
                     </Row>    
                     <Row>                            
                     <Col {...getColProps("position-relative",match.status)}>
                             {match.last_goal === 'away' && <div className={stlMatchBoard.lastGoal}></div>}
                             {match.status !== 'next' && match.away_score}
                         </Col>
-                        <Col xs={6} md={6}>{getHalfTimeScore(match.first_half_home_score,match.status)}</Col>                            
+                        <Col className={stlMatchBoard.scoreHT} xs={6} md={6}>{getHalfTimeScore(match.first_half_home_score,match.status)}</Col>                            
                     </Row>    
                 </Col>                                             
             </Row>

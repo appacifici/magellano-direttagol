@@ -1,6 +1,12 @@
-import { createServer, Server as HTTPSServer } from 'https';
-import { Server as SocketIOServer, Socket } from 'socket.io';
-import { readFileSync } from 'fs';
+import { createServer, Server as HTTPSServer }  from 'https';
+import { Server as SocketIOServer, Socket }     from 'socket.io';
+import { readFileSync }                         from 'fs';
+import dotenv                                   from 'dotenv';
+
+const result = dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
+if (result.error) {
+    console.log( result.error );
+}
 
 class SocketToClient {
     private aliveSockets: { [key: string]: any };
@@ -11,8 +17,8 @@ class SocketToClient {
     constructor(port: number) {
         this.aliveSockets = {};
 
-        const privateKey  = readFileSync('/etc/letsencrypt/live/direttagol.it/privkey.pem', 'utf8');
-        const certificate = readFileSync('/etc/letsencrypt/live/direttagol.it/fullchain.pem', 'utf8'); 
+        const privateKey  = readFileSync(`${process.env.WS_SSL_PRIVATE_KEY}`, 'utf8');
+        const certificate = readFileSync(`${process.env.WS_SSL_CREDENTIALS}`, 'utf8'); 
         const credentials = { key: privateKey, cert: certificate };
 
         this.app = createServer(credentials);
