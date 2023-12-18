@@ -60,7 +60,7 @@ CountrySchema.methods.checkBySource = function(source:string) {
     return mongoose.model('country').find({ source: this.source }, source);
 };
 
-const Country:Model<ICountry> = mongoose.models.Competition || mongoose.model<ICountry>('Country', CountrySchema);
+const Country:Model<ICountry> = mongoose.models.Country || mongoose.model<ICountry>('Country', CountrySchema);
 
 export {Country,CountrySchema};
 export type {ICountry,CountryArrayWithIdType,CountryWithIdType,CountryType};

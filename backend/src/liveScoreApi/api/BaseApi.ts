@@ -2,13 +2,15 @@ import connectMongoDB       from "../../database/mongodb/connect";
 import { GenericApiResponse } from "../interface/API/GlobalInterface";
 import { Feed as FeedMongo, 
     FeedType as FeedTypeMongo }             from "../../database/mongodb/models/Feed";
-    
+
 import Country                    from "../../database/mongodb/models/Country";
 import {ICountry,CountryArrayWithIdType,CountryWithIdType,CountryType} from "../../database/mongodb/models/Country";
 
 import Competition                          from "../../database/mongodb/models/Competition";
 import type { ICompetition, CompetitionType, CompetitionWithIdType, CompetitionArrayWithIdType } from "../../database/mongodb/models/Competition";
 import * as TeamMongo                       from "../../database/mongodb/models/Team";
+
+import Federation, { FederationArrayWithIdType } from "../../database/mongodb/models/Federation";
 
 type TransformFunction<T, U> = (input: T) => U;
 
@@ -37,9 +39,20 @@ class BaseApi {
     public async retrieveAndProcessCountries(): Promise<CountryArrayWithIdType|null|undefined> {
         try {
             const countries:CountryArrayWithIdType|null = await Country.find({}).exec()
+            console.log(countries);
             return countries;             
         } catch (error) {
             console.error('Errore durante la ricerca del country:', error);
+        }
+    }
+
+    public async retrieveAndProcessFederations(): Promise<FederationArrayWithIdType|null|undefined> {
+        try {
+            const federations:FederationArrayWithIdType|null = await Federation.find({}).exec()
+            console.log(federations);
+            return federations;             
+        } catch (error) {
+            console.error('Errore durante la ricerca del federations:', error);
         }
     }
    

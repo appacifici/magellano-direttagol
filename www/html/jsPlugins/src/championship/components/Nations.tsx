@@ -25,7 +25,8 @@ interface NationsCompetitions {
 }
 
 function Nations({ nationsCompetitions }: { nationsCompetitions: string }) {
-	const data:NationsCompetitions = JSON.parse(nationsCompetitions);    
+	const data:NationsCompetitions = JSON.parse(nationsCompetitions);   
+ 
     return (
         <>      
             <Nav className="flex-grow-1 pt-3 ps-3 pe-0">

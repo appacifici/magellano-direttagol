@@ -27,6 +27,6 @@ NODE_ENV=production npx ts-node src/liveScoreApi/api/Competition.ts -a importAll
 NODE_ENV=production npx ts-node src/liveScoreApi/api/Competition.ts -a setTopCompetition
 NODE_ENV=production npx ts-node src/liveScoreApi/api/Team.ts -a importAllTeam
 NODE_ENV=production npx ts-node src/liveScoreApi/api/Standing.ts -a importAllStandings
-NODE_ENV=production npx ts-node src/liveScoreApi/api/matches/ImportFixtureMatch.ts ** 1 Volta al giorno alle 2 di notte **
+NODE_ENV=production npx ts-node src/liveScoreApi/api/matches/ImportFixtureMatch.ts --day=30 ** 1 Volta al giorno alle 2 di notte **
 NODE_ENV=production npx ts-node src/liveScoreApi/api/matches/ImportLiveMacth.ts ** Ogni 1 secondo**
     

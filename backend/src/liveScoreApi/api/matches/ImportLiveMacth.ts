@@ -178,21 +178,22 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
     const [homeTeamScoreApi, awayTeamScoreApi]      = scoreApiSplit.split('-');
 
     
-    if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?' && Number(homeTeamScoreApi) > 0 && Number(awayTeamScoreApi) > 0  ) {    
+    if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?' ) {    
         console.log(mongoMatch);
         console.log(apiDataMatch);
         console.log(`${scoreMondoSplit} != ${scoreApiSplit}`);
         console.log(`${homeTeamScoreApi} !== ? && ${awayTeamScoreApi} != ?`);
 
-        if (homeTeamScoreMongo !== homeTeamScoreApi) {
+        if (homeTeamScoreMongo !== homeTeamScoreApi && Number(homeTeamScoreApi) > 0) {
             diff['lastGoal'] = 'home';
+            diff['newGoal'] = true;
         }
 
-        if (awayTeamScoreMongo !== awayTeamScoreApi) {
+        if (awayTeamScoreMongo !== awayTeamScoreApi && Number(awayTeamScoreApi) > 0) {
             diff['lastGoal'] = 'away';
+            diff['newGoal'] = true;
         }
-
-        diff['newGoal'] = true;
+        
     }
     return diff;
 }

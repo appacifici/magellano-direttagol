@@ -31,15 +31,15 @@ class CompetitionProcessor extends BaseApi  {
         }
     }
 
-    private importAllCompetition(byFeed:string) :void {        
+    private importAllCompetition(byFeed:string) :void {                
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('competitions');
-        feed.then( (feed) => {
+        feed.then( (feed) => {            
             if (this.isValidDataType(feed)) {
                 let elements: Promise<FederationMongo.FederationArrayWithIdType | CountryMongo.CountryArrayWithIdType | null | undefined>;
 
                 switch (byFeed) {
                     case 'federation':
-                        elements = this.retrieveAndProcessCountries() as Promise<FederationMongo.FederationArrayWithIdType | null | undefined>;
+                        elements = this.retrieveAndProcessFederations() as Promise<FederationMongo.FederationArrayWithIdType | null | undefined>;                        
                         break;
                     case 'country':
                         elements = this.retrieveAndProcessCountries() as Promise<CountryMongo.CountryArrayWithIdType | null | undefined>;
@@ -49,7 +49,8 @@ class CompetitionProcessor extends BaseApi  {
                         break;
                 }
                 
-                elements.then( (element) => {
+                
+                elements.then( (element) => {                       
                     if (this.isValidDataType(element)) {
                         this.fetchCountriesData(element, feed, byFeed);
                     }
@@ -60,9 +61,9 @@ class CompetitionProcessor extends BaseApi  {
 
     //Per ogni paese chiama la funzione per recuperare i suoi team
     private async fetchCountriesData(elements: CountryMongo.CountryArrayWithIdType|FederationMongo.FederationArrayWithIdType, feed: FeedTypeMongo, byFeed:string): Promise<void> {
-        try {                    
-            const countryWorldId = await this.getCountryByName('Coppe');
-            for (let element of elements) {     
+        try {                                                 
+            const countryWorldId = await this.getCountryByName('Coppe');            
+            for (let element of elements) {                                     
                 let endPoint:string = '';
                 let countryId:ObjectId|undefined = undefined;
                 if( byFeed == 'federation') {
