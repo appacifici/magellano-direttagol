@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import connectMongoDB from '../connect';
 
 // Definizione delle costanti di classe
 const FORMAT_FEED = {
@@ -48,11 +47,7 @@ const FeedSchema = new Schema({
 //Creazione indice e chiave univoca
 FeedSchema.index({ name: 1, format: 1 }, { unique: true });
 
-//Un metodo è una funzione per elaborare i dati in un certo modo non un metodo semplice find 
-FeedSchema.methods.checkBySource = function(source:string) {
-    return mongoose.model('Feed').find({ source: this.source }, source);
-};
-  
 const Feed = mongoose.model('Feed', FeedSchema);
 
-export {Feed,FORMAT_FEED,SOURCE_FEED,FeedType,FeedArrayType};
+export {Feed,FORMAT_FEED,SOURCE_FEED};
+export type {FeedType,FeedArrayType};

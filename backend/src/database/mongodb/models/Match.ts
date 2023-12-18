@@ -85,6 +85,7 @@ const MatchSchema = new Schema({
 MatchSchema.index({ fixtureId:1, extMatchId: 1 }, { unique: true });
 MatchSchema.index({ dateMatch: 1 });
 MatchSchema.index({ competitionId: 1, teamHome: 1, teamAway: 1 });
-const Match:Model<IMatch> = mongoose.model<IMatch>('Match', MatchSchema);
+const Match:Model<IMatch> = mongoose.models.Match || mongoose.model<IMatch>('Match', MatchSchema);
 
-export {Match,MatchType,IMatch,MatchWithIdType,MatchArrayWithIdType,MatchSchema};
+export {Match,MatchSchema};
+export type {MatchType,IMatch,MatchWithIdType,MatchArrayWithIdType};

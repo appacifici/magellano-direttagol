@@ -2,8 +2,12 @@ import connectMongoDB       from "../../database/mongodb/connect";
 import { GenericApiResponse } from "../interface/API/GlobalInterface";
 import { Feed as FeedMongo, 
     FeedType as FeedTypeMongo }             from "../../database/mongodb/models/Feed";
-import * as CountryMongo                    from "../../database/mongodb/models/Country";
-import * as CompetitionMongo                from "../../database/mongodb/models/Competition";
+    
+import Country                    from "../../database/mongodb/models/Country";
+import {ICountry,CountryArrayWithIdType,CountryWithIdType,CountryType} from "../../database/mongodb/models/Country";
+
+import Competition                          from "../../database/mongodb/models/Competition";
+import type { ICompetition, CompetitionType, CompetitionWithIdType, CompetitionArrayWithIdType } from "../../database/mongodb/models/Competition";
 import * as TeamMongo                       from "../../database/mongodb/models/Team";
 
 type TransformFunction<T, U> = (input: T) => U;
@@ -30,27 +34,27 @@ class BaseApi {
     }
 
     //Recupera tutti i contries su MongoDB
-    public async retrieveAndProcessCountries(): Promise<CountryMongo.CountryArrayWithIdType|null|undefined> {
+    public async retrieveAndProcessCountries(): Promise<CountryArrayWithIdType|null|undefined> {
         try {
-            const countries:CountryMongo.CountryArrayWithIdType|null = await CountryMongo.Country.find({}).exec()
+            const countries:CountryArrayWithIdType|null = await Country.find({}).exec()
             return countries;             
         } catch (error) {
             console.error('Errore durante la ricerca del country:', error);
         }
     }
    
-    public async retrieveAndProcessCompetitions(): Promise<CompetitionMongo.CompetitionArrayWithIdType|null|undefined> {
+    public async retrieveAndProcessCompetitions(): Promise<CompetitionArrayWithIdType|null|undefined> {
         try {
-            const competitions:CompetitionMongo.CompetitionArrayWithIdType|null = await CompetitionMongo.Competition.find({}).exec()
+            const competitions:CompetitionArrayWithIdType|null = await Competition.find({}).exec()
             return competitions;             
         } catch (error) {
             console.error('Errore durante la ricerca della competition:', error);
         }
     }
     
-    public async getOneCompetitionByFilter(filter:object): Promise<CompetitionMongo.CompetitionWithIdType|null|undefined> {
+    public async getOneCompetitionByFilter(filter:object): Promise<CompetitionWithIdType|null|undefined> {
         try {
-            const competition:CompetitionMongo.CompetitionWithIdType|null = await CompetitionMongo.Competition.findOne(filter).exec()
+            const competition:CompetitionWithIdType|null = await Competition.findOne(filter).exec()
             return competition;             
         } catch (error) {
             console.error('Errore durante la ricerca della competition:', error);
@@ -66,9 +70,9 @@ class BaseApi {
         }
     }
 
-    public async getCountryByName(search:string):Promise<CountryMongo.CountryWithIdType|null|undefined> {
+    public async getCountryByName(search:string):Promise<CountryWithIdType|null|undefined> {
         try {
-            const countryId:CountryMongo.CountryWithIdType|null = await CountryMongo.Country.findOne({ name: search }).exec()
+            const countryId:CountryWithIdType|null = await Country.findOne({ name: search }).exec()
             return countryId;              
         } catch (error) {
             console.error('Errore durante la ricerca del caountry by name:', error);

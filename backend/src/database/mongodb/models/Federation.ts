@@ -31,6 +31,8 @@ FederationSchema.methods.checkBySource = function(source:string) {
     return mongoose.model('federation').find({ source: this.source }, source);
 };
 
-const Federation:      Model<IFederation>     = mongoose.model<IFederation>('federations', FederationSchema);
 
-export {Federation,IFederation,FederationType,FederationArrayType,FederationArrayWithIdType,FederationWithIdType,FederationSchema};
+const Federation:Model<IFederation> =  mongoose.models.Federation || mongoose.model<IFederation>('federations', FederationSchema);
+export {FederationSchema};
+export type {IFederation,FederationType,FederationArrayType,FederationArrayWithIdType,FederationWithIdType};
+export default Federation;

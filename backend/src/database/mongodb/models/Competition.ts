@@ -36,7 +36,8 @@ const CompetitionSchema   = new Schema({
     countryId: { 
         type: Schema.Types.ObjectId, 
         ref: 'Country', 
-        required: true 
+        required: true,
+        index: true,
     },
     name: { 
         type:       String, 
@@ -97,8 +98,10 @@ const CompetitionSchema   = new Schema({
     },
 });
 
-
-//Creazione indice e chiave univoca
 CompetitionSchema.index({ externalId: 1, countryId:1 }, { unique: true });
-const Competition:  Model<ICompetition> = mongoose.model<ICompetition>('Competition', CompetitionSchema);
-export {Competition,CompetitionType,CompetitionArrayWithIdType,CompetitionWithIdType,CompetitionSeasonType,ICompetition,CompetitionSchema};
+CompetitionSchema.index({ isTop: -1 });
+
+const Competition:Model<ICompetition> = mongoose.models.Competition || mongoose.model('Competition', CompetitionSchema);
+export type {ICompetition,CompetitionType, CompetitionWithIdType,CompetitionArrayWithIdType};
+export {CompetitionSchema};
+export default Competition;

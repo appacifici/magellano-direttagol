@@ -5,7 +5,8 @@ import { GenericApiResponse }               from "../interface/API/GlobalInterfa
 import { Feed as FeedMongo, 
          FeedType as FeedTypeMongo }        from "../../database/mongodb/models/Feed";
 
-import * as FederationMongo                 from "../../database/mongodb/models/Federation";
+import Federation                 from "../../database/mongodb/models/Federation";
+import {IFederation,FederationType,FederationArrayType,FederationArrayWithIdType,FederationWithIdType}                 from "../../database/mongodb/models/Federation";
 import * as FederationApiInterface          from "../interface/API/FederationInterface";
 
 import BaseApi                              from "./BaseApi";
@@ -20,7 +21,7 @@ class FederationProcessor extends BaseApi  {
         const feed:Promise<FeedTypeMongo|null|undefined> = this.retrieveAndProcessFeed();
         feed.then( (feed) => {
             if (this.isFeedType(feed)) {
-                this.getFederationApi(feed);
+                this.getFederationApi(feed); 
             }
         })
     }
@@ -46,14 +47,14 @@ class FederationProcessor extends BaseApi  {
 
             console.log(apiResponse.success);
             if (apiResponse.success) {
-                const transform = (federation: FederationApiInterface.Federation): FederationMongo.FederationType => ({
+                const transform = (federation: FederationApiInterface.Federation): FederationType => ({
                     externalId: Number(federation.id),
                     name: federation.name,
                 });
                                 
                 const resultArray = this.transformAPIResponseToArray(apiResponse, 'federation', transform);      
 
-                FederationMongo.Federation.insertMany(resultArray)
+                Federation.insertMany(resultArray)
                 .then((docs) => {
                     console.log('Feeds inserted successfully:', docs);
                 })

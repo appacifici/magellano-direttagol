@@ -5,12 +5,14 @@ import {  ObjectId }                        from 'mongoose';
 import { Feed as FeedMongo, 
     FeedType as FeedTypeMongo }             from "../../database/mongodb/models/Feed";
 import { GenericApiResponse }               from "../interface/API/GlobalInterface";
-import * as CompetitionMongo                from "../../database/mongodb/models/Competition";
+import  Competition                         from "../../database/mongodb/models/Competition";
 import * as CountryMongo                    from "../../database/mongodb/models/Country";
 import * as FederationMongo                 from "../../database/mongodb/models/Federation";
 import * as CompetitionApiInterface         from "../interface/API/CompetitionInterface";
 import BaseApi                              from "./BaseApi";
 import StringUtility                        from "../../services/StringUtility";   
+import type { ICompetition, CompetitionType, CompetitionWithIdType, CompetitionArrayWithIdType } from "../../database/mongodb/models/Competition";
+
 
 class CompetitionProcessor extends BaseApi  {
     constructor(action:string) {
@@ -88,7 +90,7 @@ class CompetitionProcessor extends BaseApi  {
     //Inserisce su mongo i team di un paese
     private insertCompetition(apiResponse:GenericApiResponse<CompetitionApiInterface.Competition>, countryId:ObjectId ) {
         if (apiResponse.success ) {
-            const transform = (competition: CompetitionApiInterface.Competition): CompetitionMongo.CompetitionType => ({
+            const transform = (competition: CompetitionApiInterface.Competition): CompetitionType => ({
                 externalId:         Number(competition.id),
                 countryId:          countryId,
                 name:               competition.name,                
@@ -110,7 +112,7 @@ class CompetitionProcessor extends BaseApi  {
                             
             const resultArray = this.transformAPIResponseToArray(apiResponse, 'competition', transform);      
 
-            CompetitionMongo.Competition.insertMany(resultArray)
+            Competition.insertMany(resultArray)
             .then((docs) => {
                 console.log('Feeds inserted successfully');
             })
@@ -131,7 +133,7 @@ class CompetitionProcessor extends BaseApi  {
          * 2 = Premier Ligue
          * 1 = Bundesliga
          */
-        CompetitionMongo.Competition.updateMany(
+        Competition.updateMany(
             { externalId: { $in: [244, 245, 3, 4, 5, 47, 2, 1] } }, // Criterio di selezione
             { $set: { isTop: 1 } }                 // Aggiornamento
         )

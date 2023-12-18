@@ -93,15 +93,19 @@ sudo ufw status numbered
 sudo apt update
 sudo apt upgrade
 
+sudo apt install software-properties-common gnupg apt-transport-https ca-certificates -y
+
 #Importa la Chiave Pubblica di MongoDB
-wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-archive-keyring.gpg
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc |  sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
 
 #Aggiungi il Repository di MongoDB
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 
 #Aggiorna i Pacchetti e Installa MongoDB
-sudo apt update
-sudo apt install mongodb-org
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+mongod --version
+
 
 #Avvia e Abilita MongoDB: Una volta installato, devi avviare il servizio MongoDB e abilitarlo a partire automaticamente all'avvio del sistema
 sudo systemctl start mongod

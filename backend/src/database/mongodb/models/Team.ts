@@ -34,12 +34,14 @@ const TeamSchema   = new Schema({
     countryId: { 
         type: Schema.Types.ObjectId, 
         ref: 'Country', 
-        required: true 
+        required: true,
+        index:true
     }
 });
 
 //Creazione indice e chiave univoca
 TeamSchema.index({ externalId: 1 }, { unique: true });
-const Team:Model<ITeam> = mongoose.model<ITeam>('Team', TeamSchema);
+const Team:Model<ITeam> = mongoose.models.Team || mongoose.model<ITeam>('Team',TeamSchema);
 
-export {TeamType,TeamArrayWithIdType,TeamWithIdType,ITeam,Team,TeamSchema};
+export { Team, TeamSchema };
+export type { TeamType, TeamArrayWithIdType, TeamWithIdType, ITeam };

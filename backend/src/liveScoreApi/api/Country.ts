@@ -5,7 +5,9 @@ import { GenericApiResponse }               from "../interface/API/GlobalInterfa
 import { Feed as FeedMongo, 
          FeedType as FeedTypeMongo }        from "../../database/mongodb/models/Feed";
 
-import * as CountryMongo                    from "../../database/mongodb/models/Country";
+import Country                        from "../../database/mongodb/models/Country";
+import {ICountry,CountryArrayWithIdType,CountryWithIdType,CountryType} from "../../database/mongodb/models/Country";
+
 import * as CountryApiInterface             from "../interface/API/CountryInterface";
 
 import BaseApi                              from "./BaseApi";
@@ -55,7 +57,7 @@ class CountryProcessor extends BaseApi  {
             console.log(apiResponse.success);
             
             if (apiResponse.success) {
-                const transform = (country: CountryApiInterface.Country): CountryMongo.CountryType => ({
+                const transform = (country: CountryApiInterface.Country): CountryType => ({
                     externalId: Number(country.id),
                     name:       country.name,
                     permalink:  StringUtility.sanitizeString(country.name),
@@ -75,7 +77,7 @@ class CountryProcessor extends BaseApi  {
                     img:        'coppe'
                 });
 
-                CountryMongo.Country.insertMany(resultArray)
+                Country.insertMany(resultArray)
                 .then((docs) => {
                     console.log('Feeds inserted successfully:', docs);
                 })
@@ -90,7 +92,7 @@ class CountryProcessor extends BaseApi  {
     }   
 
     private setTopCountries() {
-        CountryMongo.Country.updateMany(
+        Country.updateMany(
             { name: { $in: ['Italy', 'Spain', 'Germany', 'England', 'France', 'Netherlands'] } }, // Criterio di selezione
             { $set: { isTop: 1 } }                 // Aggiornamento
         )
