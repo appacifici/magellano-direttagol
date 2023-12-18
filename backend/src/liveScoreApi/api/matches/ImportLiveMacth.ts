@@ -82,6 +82,10 @@ class ImportLiveMacth extends BaseApi {
             return null;
         }
         
+        if(match.fixture_id === 0 ) {
+            console.log('Skip match fixture_id 0:');
+            return null;
+        }
 
         const dateMatch = moment().format('YYYY-MM-DD')+' '+match.scheduled;
         const dataMatch:MatchMongo.MatchType = {
@@ -174,7 +178,11 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
     const [homeTeamScoreApi, awayTeamScoreApi]      = scoreApiSplit.split('-');
 
     
-    if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?'  ) {    
+    if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?' && Number(homeTeamScoreApi) > 0 && Number(awayTeamScoreApi) > 0  ) {    
+        console.log(mongoMatch);
+        console.log(apiDataMatch);
+        console.log(`${scoreMondoSplit} != ${scoreApiSplit}`);
+        console.log(`${homeTeamScoreApi} !== ? && ${awayTeamScoreApi} != ?`);
 
         if (homeTeamScoreMongo !== homeTeamScoreApi) {
             diff['lastGoal'] = 'home';
