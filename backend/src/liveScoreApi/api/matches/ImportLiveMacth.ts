@@ -116,8 +116,8 @@ class ImportLiveMacth extends BaseApi {
                 .catch(err => {
                     console.error(err);
                 });
-            }            
-            console.log('update: '+match.id);
+                console.log('update: '+match.id);
+            }                        
         } else {
             console.log('insert');
             const newMatch = new MatchMongo.Match(dataMatch);
@@ -170,7 +170,7 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
     const [homeTeamScoreMongo, awayTeamScoreMongo]  = scoreMondoSplit.split('-');
     const [homeTeamScoreApi, awayTeamScoreApi]      = scoreApiSplit.split('-');
 
-    
+    diff['newGoal'] = false;
     if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?'  ) {    
 
         if (homeTeamScoreMongo !== homeTeamScoreApi) {
