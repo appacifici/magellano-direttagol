@@ -170,7 +170,7 @@ function findDiff(apiDataMatch: Record<string, any>, mongoMatch: Record<string, 
     const [homeTeamScoreMongo, awayTeamScoreMongo]  = scoreMondoSplit.split('-');
     const [homeTeamScoreApi, awayTeamScoreApi]      = scoreApiSplit.split('-');
 
-    diff['newGoal'] = false;
+    
     if( scoreMondoSplit != scoreApiSplit && homeTeamScoreApi !== '?' && awayTeamScoreApi != '?'  ) {    
 
         if (homeTeamScoreMongo !== homeTeamScoreApi) {

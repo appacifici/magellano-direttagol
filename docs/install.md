@@ -103,9 +103,13 @@ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gp
 
 #Aggiorna i Pacchetti e Installa MongoDB
 sudo apt-get update
-sudo apt-get install -y mongodb-org
+sudo apt install mongodb-org -y
 mongod --version
 
+sudo nano /usr/lib/systemd/system/mongod.service
+Environment="MONGODB_CONFIG_OVERRIDE_NOFORK=0"
+sudo systemctl daemon-reload
+sudo systemctl resart mongod
 
 #Avvia e Abilita MongoDB: Una volta installato, devi avviare il servizio MongoDB e abilitarlo a partire automaticamente all'avvio del sistema
 sudo systemctl start mongod
@@ -116,8 +120,10 @@ sudo systemctl enable mongod
 sudo ufw status numbered
 sudo ufw allow from 149.202.70.56 to any port 27017
 sudo ufw allow from 193.70.46.74 to any port 27017
-sudo ufw status numbered
 sudo ufw allow 22
+sudo ufw enable
+sudo ufw status numbered
+
 
 #Per verificare se blocca correttamente
 tail -f /var/log/ufw.log #Sul server con ufw
