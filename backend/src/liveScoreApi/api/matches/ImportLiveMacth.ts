@@ -109,14 +109,14 @@ class ImportLiveMacth extends BaseApi {
                     dataMatch.lastGoal = differences.lastGoal;
                 }
                 this.frontendCreateResponse.addLiveMatch(differences, resultMatch);
-                MatchMongo.Match.updateOne({ extMatchId: match.id }, dataMatch )
+                MatchMongo.Match.updateOne({ fixtureId: match.fixture_id }, dataMatch )
                 .then(result => {
-                    
+                    console.log(result);  
                 })
                 .catch(err => {
                     console.error(err);
                 });
-                console.log('update: '+match.id);
+                console.log('update: '+match.fixture_id);
             }                        
         } else {
             console.log('insert');

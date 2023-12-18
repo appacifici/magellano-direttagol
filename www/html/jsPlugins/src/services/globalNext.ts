@@ -84,6 +84,7 @@ const initData = async(store:any, dateMatches:string | string[] | (() => string)
         console.error('Error:', error);
     }); 
 
+    console.log(nationsCompetitions);
 
     const startOfDay 	= new Date(`${dateMatches}T00:00:00Z`);
     const endOfDay 		= new Date(`${dateMatches}T23:59:59Z`);
