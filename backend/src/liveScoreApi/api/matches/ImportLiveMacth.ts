@@ -104,7 +104,7 @@ class ImportLiveMacth extends BaseApi {
             const differences = findDiff(dataMatch, resultMatch);            
             
             if( JSON.stringify(differences) !== '{}' ) {         
-                //console.log(differences);
+                console.log(differences);
                 if( differences.lastGoal != '' ) {
                     dataMatch.lastGoal = differences.lastGoal;
                 }
@@ -117,7 +117,7 @@ class ImportLiveMacth extends BaseApi {
                     console.error(err);
                 });
             }            
-            //console.log('update: '+match.id);
+            console.log('update: '+match.id);
         } else {
             console.log('insert');
             const newMatch = new MatchMongo.Match(dataMatch);

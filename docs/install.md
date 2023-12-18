@@ -80,6 +80,7 @@ forever start socketLiveMacth.js
 
 sudo apt-get install ufw
 sudo ufw allow 22
+sudo ufw allow 80
 sudo ufw allow 3001
 sudo ufw enable
 sudo ufw status numbered
@@ -190,3 +191,14 @@ npm run start ( produzione )
 ```bash
 0 1 * * * cd /home/ubuntu/site/magellano-direttagol/backend/ && NODE_ENV=production npx ts-node src/liveScoreApi/api/matches/ImportFixtureMatch.ts
 ```
+
+## SSL autofirmato
+```bash
+openssl genrsa -out mykey.pem 2048
+openssl req -new -key mykey.pem -out mycsr.pem
+openssl x509 -req -days 365 -in mycsr.pem -signkey mykey.pem -out mycert.pem
+
+
+```
+
+
