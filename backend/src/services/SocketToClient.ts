@@ -103,8 +103,8 @@ class SocketToClient {
             return false;
         }
     
-        referer = this.rtrim(referer, '/').replace('http://', '').split('/')[0];
-        referer = 'http://' + referer;
+        //referer = this.rtrim(referer, '/').replace('http://', '').split('/')[0];
+        //referer = 'http://' + referer;
     
          console.info( '===>'+referer);
         
