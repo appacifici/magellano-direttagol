@@ -83,7 +83,7 @@ class ImportLiveMacth extends BaseApi {
         }
         
         if(match.fixture_id === 0 ) {
-            console.log('Skip match fixture_id 0:');
+            //console.log('Skip match fixture_id 0:');
             return null;
         }
 
