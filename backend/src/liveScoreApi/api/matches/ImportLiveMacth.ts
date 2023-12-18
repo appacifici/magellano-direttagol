@@ -111,7 +111,7 @@ class ImportLiveMacth extends BaseApi {
                 this.frontendCreateResponse.addLiveMatch(differences, resultMatch);
                 MatchMongo.Match.updateOne({ fixtureId: match.fixture_id }, dataMatch )
                 .then(result => {
-                    console.log(result);  
+                    
                 })
                 .catch(err => {
                     console.error(err);
