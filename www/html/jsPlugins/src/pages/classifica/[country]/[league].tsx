@@ -65,7 +65,7 @@ function MatchesBoardPage(data:any) {
     const dispatch          = useDispatch();
     const host              = process.env.NEXT_PUBLIC_WS_HOST;
     const socket: Socket    = socketIOClient(host, { secure: true, rejectUnauthorized: false });
-    console.info('Tentativo connessione: '+process.env.NEXT_PUBLIC_WS_HOST);
+    // console.info('Tentativo connessione: '+process.env.NEXT_PUBLIC_WS_HOST);
     socket.on('connect', () => {
         console.info('Client connesso: '+process.env.NEXT_PUBLIC_WS_HOST);
         

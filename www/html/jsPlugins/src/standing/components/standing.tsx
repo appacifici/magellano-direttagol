@@ -8,7 +8,6 @@ import { StandingArrayWithIdType,
 import stlStanding                  from '../../../scss/standing.module.scss';
 
 const StandingTable = ({ standings }:{ standings:StandingArrayWithIdType }) => {    
-    console.log(standings);
     return (      
         <>    
             {standings && standings.length > 0 ? (   

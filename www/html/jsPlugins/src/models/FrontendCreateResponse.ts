@@ -14,8 +14,6 @@ class FrontendCreateResponse {
         const liveMatch: MatchInterface = {};
         const fullScore     = match.score?.split('-');
         const halfTimeScore = match.halfTimeScore?.split('-');       
-
-        console.log(match);
         liveMatch.keyMatch = matchId;  
 
         if( typeof match.newGoal !== "undefined") {
