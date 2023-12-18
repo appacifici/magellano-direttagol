@@ -52,7 +52,7 @@ const MatchBoard = ({match,competitionId,nation}:{match:MatchInterface,competiti
 
                 dispatch(setNewGoalMatch(matchState));
                 clearTimeout(timeoutId);
-            }, 5000);
+            }, 30000);
         }
 
         const newGoalClass = newGoal === true ? stlMatchBoard.newGoal : '';

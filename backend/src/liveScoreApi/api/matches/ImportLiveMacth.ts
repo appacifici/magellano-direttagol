@@ -26,7 +26,7 @@ class ImportLiveMacth extends BaseApi {
         that.importAll();
         setInterval(() => {
             that.importAll();
-        }, 10000);                
+        }, 2000);                
     }
 
     private async importAll():Promise<void> {
@@ -46,8 +46,11 @@ class ImportLiveMacth extends BaseApi {
             const response = await axios.get(endPoint);
             const apiResponse: GenericApiResponse<MatchApiResponse.Match> = response.data;       
             await this.eachFixture(apiResponse).then((result) => {         
-                console.log(JSON.stringify(this.frontendCreateResponse.objResponse));       
-                this.socketToClient.sendDataLive(JSON.stringify(this.frontendCreateResponse.objResponse));
+                const differences = JSON.stringify(this.frontendCreateResponse.objResponse);
+                if( differences !== '{}' ) {
+                    console.log(differences);       
+                    this.socketToClient.sendDataLive(differences);
+                }
             })
         } catch (error) {
             console.error('Errore durante la richiesta:', error);
