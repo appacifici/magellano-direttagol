@@ -31,8 +31,7 @@ class SocketToClient {
             transports: ['websocket', 'polling']
         });
 
-        this.app.listen(port);
-        console.log('connessione socket');
+        this.app.listen(port);        
         this.isConnected = false;
 
         setInterval(() => {
@@ -59,7 +58,7 @@ class SocketToClient {
 
     connectClientSocket(): void {        
         this.io.on('connection', (socket: Socket) => {
-            console.log('connectClientSocket');
+            // console.log('connectClientSocket');
             if (!this.authorizedReferer(socket)) {
                 console.log('disconnect authorizedReferer');
                 socket.disconnect();
@@ -101,20 +100,23 @@ class SocketToClient {
         }
     
         if (!referer) {
-            return true;
+            return false;
         }
     
         referer = this.rtrim(referer, '/').replace('http://', '').split('/')[0];
         referer = 'http://' + referer;
     
-        // console.info( '===>'+referer);
+         console.info( '===>'+referer);
         
         switch (referer) {
-            case 'http://alebrunch-direttagoal.it':
+            case 'https://www.direttagol.it':
+                authorized = true;
+                break;
+            case 'https://www.direttagol.it/':
                 authorized = true;
                 break;
         }
-        return true;
+        return authorized;
     }
         
     sendDataLive(jsonData: string): void {
