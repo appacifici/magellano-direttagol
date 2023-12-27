@@ -23,7 +23,7 @@ function AsideList({ nationsCompetitions,competitionsTop }:{nationsCompetitions:
 							</Offcanvas.Header>
 							<Offcanvas.Body className={styles.asideOffcanvas}>
 								<Link href='/'>
-									<Image src="/images/logodirettagol.png" rounded className={`${styles.logo} d-lg-none`} />									
+									<Image src="/images/diretta-orizzontale.svg" rounded className={`${styles.logo} d-lg-none`} />									
 								</Link>
 								<TopChampionship competitionsTop={competitionsTop}/>
 								<Nations nationsCompetitions={nationsCompetitions}/>

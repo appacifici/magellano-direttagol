@@ -10,7 +10,7 @@ function Header() {
             <header>
                 <div className={headerStyle.topBar}>
                     <Link href='/'>
-                        <Image src="/images/logodirettagol.png" rounded />
+                        <Image src="/images/diretta-orizzontale.svg" rounded />
                     </Link>
                 </div>
                 <div className={headerStyle.searchBar}></div>                
