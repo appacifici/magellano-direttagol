@@ -21,14 +21,14 @@ class StandingProcessor extends BaseApi  {
         }
     }
 
-    private async emptyCollection() {
-        StandingMongo.Standing.deleteMany({}, function(err:any) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log("La collection è stata svuotata con successo!");
-            }
-        });
+    private async emptyCollection() {     
+        try {
+            // Svuota la collection senza criteri di filtro.
+            await StandingMongo.Standing.deleteMany({});
+            console.log("La collection è stata svuotata con successo!");
+          } catch (err) {
+            console.error("Si è verificato un errore:", err);
+          }
     }
 
     private importAllStandings() :void {
