@@ -21,7 +21,7 @@ class StandingProcessor extends BaseApi  {
         }
     }
 
-    private importAllStandings() :void {
+    private async emptyCollection() {
         StandingMongo.Standing.deleteMany({}, function(err:any) {
             if (err) {
               console.log(err);
@@ -29,7 +29,10 @@ class StandingProcessor extends BaseApi  {
               console.log("La collection è stata svuotata con successo!");
             }
         });
+    }
 
+    private importAllStandings() :void {
+        this.emptyCollection();
 
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('standings');
         feed.then( (feed) => {
