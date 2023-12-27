@@ -22,6 +22,15 @@ class StandingProcessor extends BaseApi  {
     }
 
     private importAllStandings() :void {
+        StandingMongo.Standing.deleteMany({}, function(err:any) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("La collection è stata svuotata con successo!");
+            }
+        });
+
+
         const feed:Promise<FeedTypeMongo|null|undefined> = this.getFeedByName('standings');
         feed.then( (feed) => {
             if (this.isValidDataType(feed)) {
