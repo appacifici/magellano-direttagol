@@ -2,9 +2,10 @@ import React                            from 'react';
 import { useDispatch }                  from 'react-redux';
 import { Socket, io as socketIOClient } from 'socket.io-client';
 import dotenv                           from 'dotenv';
+import Head                             from 'next/head';
+
 import * as CountryMongo                from '../../../dbService/models/Country';
 import * as StandingMongo               from '../../../dbService/models/Standing';
-
 import Header                           from '../../../container/Header';
 import Footer                           from '../../../container/Footer';
 import MainStanding                     from '../../../container/MainStanding';
@@ -54,6 +55,7 @@ export const getServerSideProps = wrapperMatch.getServerSideProps(
                 'nationsCompetitions':  data.nationsCompetitions,
                 'competitionsTop':      data.competitionsTop,
                 'standings':            standings,
+                'sleague':              sleague
             },
 		};
 	}
@@ -88,10 +90,16 @@ function MatchesBoardPage(data:any) {
         //lastHidden = window.document.hidden;
     });
 
+    const rLeague = data.sleague.replace(/-/g, " ");
+    console.log(rLeague);
     return(  
-        <>                                                        
+        <>              
+            <Head>
+                <title>{`Direttagol.it | Risultati in tempo reale ${rLeague} | Gol in diretta live`}</title>
+                <meta name="description" content={`${rLeague} - I risultati in tempo reale delle partite live e la classifica : segui con noi in diretta tutti gli aggiornamenti sulla ${rLeague}`} />
+            </Head>                                          
             <Header/>                                        
-                <MainStanding standings={data.standings} nationsCompetitions={data.nationsCompetitions} competitionsTop={data.competitionsTop} MatchBoard={<MatchesBoard/>}/>
+            <MainStanding standings={data.standings} nationsCompetitions={data.nationsCompetitions} competitionsTop={data.competitionsTop} MatchBoard={<MatchesBoard/>}/>
             <Footer/>            
         </>
     );

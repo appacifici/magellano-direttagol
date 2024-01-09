@@ -2,6 +2,7 @@ import React                            from 'react';
 import { useDispatch }                  from 'react-redux';
 import { Socket, io as socketIOClient } from 'socket.io-client';
 import dotenv                           from 'dotenv';
+import Head                             from 'next/head';
 
 import Header                           from '../container/Header';
 import Footer                           from '../container/Footer';
@@ -9,6 +10,7 @@ import Main                             from '../container/Main';
 import MatchesBoard                     from '../match/components/MatchesBoard';
 import { updateMatches } 	            from '../match/slice/MatchSlice';
 import { wrapperMatch }                 from '../match/store/MatchStore';
+
 
 import { connectMongoDB, initData, InitDataReturnType,currentDate }          from '../services/globalNext';
 
@@ -66,7 +68,11 @@ function MatchesBoardPage(data:any) {
         //lastHidden = window.document.hidden;
     });
     return(  
-        <>                                                        
+        <>           
+            <Head>
+                <title>Direttagol.it | Risultati in tempo reale serie A | Gol in diretta live</title>
+                <meta name="description" content="Tutti i risultati in tempo reale delle partite live: segui con noi in diretta tutti gli aggiornamenti sulla serie A, Liga, Premier League, Bundesliga e Ligue 1" />
+            </Head>                                             
             <Header/>            
                 <Main nationsCompetitions={data.nationsCompetitions} competitionsTop={data.competitionsTop} MatchBoard={<MatchesBoard/>}/>
             <Footer/>            
