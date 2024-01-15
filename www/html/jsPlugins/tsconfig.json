@@ -27,6 +27,7 @@
     "node_modules"
   ],
   "include": [
+    "globals.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"

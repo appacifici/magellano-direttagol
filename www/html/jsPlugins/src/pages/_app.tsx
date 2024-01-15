@@ -1,6 +1,7 @@
 import '../../scss/global.scss';
 import {wrapperMatch}  from "../match/store/MatchStore";
 import { Provider } from 'react-redux';
+import Analytics from '../services/GoogleAnalytics';
 
 function MyApp({ Component, ...rest }:{ Component:any, pageProps:any }) {    
     const { store, props } = wrapperMatch.useWrappedStore(rest);
@@ -8,6 +9,7 @@ function MyApp({ Component, ...rest }:{ Component:any, pageProps:any }) {
 
     return (
         <Provider store={store}>
+          <Analytics />
           <Component {...pageProps} />
         </Provider>
       );
